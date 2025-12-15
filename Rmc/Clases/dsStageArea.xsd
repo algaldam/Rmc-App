@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsStageArea" targetNamespace="http://tempuri.org/dsStageArea.xsd" xmlns:mstns="http://tempuri.org/dsStageArea.xsd" xmlns="http://tempuri.org/dsStageArea.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ES_SOCKS_StagingAreaConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ES_SOCKS_StagingAreaConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Rmc.Properties.Settings.GlobalReference.Default.ES_SOCKS_StagingAreaConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ValidarCargaPlanTableAdapter" GeneratorDataComponentClassName="ValidarCargaPlanTableAdapter" Name="ValidarCargaPlan" UserDataComponentName="ValidarCargaPlanTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ES_SOCKS_StagingAreaConnectionString (Settings)" DbObjectName="ES_SOCKS_StagingArea.dbo.PMC_stg_Plan" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT stg.SACA, UPPER(stg.Item) AS ITEM, 'ERROR' AS ESTADO, 1 AS ORDEN
+FROM     dbo.PMC_stg_Plan AS stg LEFT OUTER JOIN
+                  ES_SOCKS.dbo.pmc_Rep_BOM AS BO ON stg.SACA = BO.bom_SACA AND stg.Item = BO.bom_producto
+WHERE  (BO.bom_producto IS NULL) AND stg.SACA &lt;&gt;'GEN'
+UNION ALL
+SELECT BO.bom_SACA, UPPER(BO.bom_producto) AS ITEM, 'CORRECTO' AS ESTADO, 3 AS ORDEN
+FROM     dbo.PMC_stg_Plan AS stg INNER JOIN
+                  ES_SOCKS.dbo.pmc_Rep_BOM AS BO ON stg.SACA = BO.bom_SACA AND stg.Item = BO.bom_producto
+WHERE  (stg.SACA IS NULL)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ITEM" DataSetColumn="ITEM" />
+              <Mapping SourceColumn="ESTADO" DataSetColumn="ESTADO" />
+              <Mapping SourceColumn="ORDEN" DataSetColumn="ORDEN" />
+              <Mapping SourceColumn="SACA" DataSetColumn="SACA" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ValidadPlanGENTableAdapter" GeneratorDataComponentClassName="ValidadPlanGENTableAdapter" Name="ValidadPlanGEN" UserDataComponentName="ValidadPlanGENTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ES_SOCKS_StagingAreaConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText> SELECT  UPPER(stg.Item) AS ITEM, 'ERROR' AS ESTADO, 1 AS ORDEN
+FROM     dbo.PMC_stg_Plan AS stg LEFT OUTER JOIN
+                  ES_SOCKS.dbo.pmc_Rep_BOM AS BO ON  stg.Item = BO.bom_producto
+WHERE  (BO.bom_producto IS NULL) AND stg.SACA='GEN'
+</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ITEM" DataSetColumn="ITEM" />
+              <Mapping SourceColumn="ESTADO" DataSetColumn="ESTADO" />
+              <Mapping SourceColumn="ORDEN" DataSetColumn="ORDEN" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsStageArea" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsStageArea" msprop:Generator_UserDSName="dsStageArea">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ValidarCargaPlan" msprop:Generator_TableClassName="ValidarCargaPlanDataTable" msprop:Generator_TableVarName="tableValidarCargaPlan" msprop:Generator_RowChangedName="ValidarCargaPlanRowChanged" msprop:Generator_TablePropName="ValidarCargaPlan" msprop:Generator_RowDeletingName="ValidarCargaPlanRowDeleting" msprop:Generator_RowChangingName="ValidarCargaPlanRowChanging" msprop:Generator_RowEvHandlerName="ValidarCargaPlanRowChangeEventHandler" msprop:Generator_RowDeletedName="ValidarCargaPlanRowDeleted" msprop:Generator_RowClassName="ValidarCargaPlanRow" msprop:Generator_UserTableName="ValidarCargaPlan" msprop:Generator_RowEvArgName="ValidarCargaPlanRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ITEM" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnITEM" msprop:Generator_ColumnPropNameInRow="ITEM" msprop:Generator_ColumnPropNameInTable="ITEMColumn" msprop:Generator_UserColumnName="ITEM" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ESTADO" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnESTADO" msprop:Generator_ColumnPropNameInRow="ESTADO" msprop:Generator_ColumnPropNameInTable="ESTADOColumn" msprop:Generator_UserColumnName="ESTADO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ORDEN" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnORDEN" msprop:Generator_ColumnPropNameInRow="ORDEN" msprop:Generator_ColumnPropNameInTable="ORDENColumn" msprop:Generator_UserColumnName="ORDEN" type="xs:int" minOccurs="0" />
+              <xs:element name="SACA" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSACA" msprop:Generator_ColumnPropNameInRow="SACA" msprop:Generator_ColumnPropNameInTable="SACAColumn" msprop:Generator_UserColumnName="SACA" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ValidadPlanGEN" msprop:Generator_TableClassName="ValidadPlanGENDataTable" msprop:Generator_TableVarName="tableValidadPlanGEN" msprop:Generator_RowChangedName="ValidadPlanGENRowChanged" msprop:Generator_TablePropName="ValidadPlanGEN" msprop:Generator_RowDeletingName="ValidadPlanGENRowDeleting" msprop:Generator_RowChangingName="ValidadPlanGENRowChanging" msprop:Generator_RowEvHandlerName="ValidadPlanGENRowChangeEventHandler" msprop:Generator_RowDeletedName="ValidadPlanGENRowDeleted" msprop:Generator_RowClassName="ValidadPlanGENRow" msprop:Generator_UserTableName="ValidadPlanGEN" msprop:Generator_RowEvArgName="ValidadPlanGENRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ITEM" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnITEM" msprop:Generator_ColumnPropNameInRow="ITEM" msprop:Generator_ColumnPropNameInTable="ITEMColumn" msprop:Generator_UserColumnName="ITEM" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ESTADO" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnESTADO" msprop:Generator_ColumnPropNameInRow="ESTADO" msprop:Generator_ColumnPropNameInTable="ESTADOColumn" msprop:Generator_UserColumnName="ESTADO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ORDEN" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnORDEN" msprop:Generator_ColumnPropNameInRow="ORDEN" msprop:Generator_ColumnPropNameInTable="ORDENColumn" msprop:Generator_UserColumnName="ORDEN" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,2485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ES_SOCKSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="mst_Applications">
+          <Key>
+            <PropertyRef Name="App_ID" />
+          </Key>
+          <Property Name="App_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="App_Name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="App_Description" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="App_DT" Type="datetime" Nullable="false" />
+          <Property Name="Dept_ID" Type="int" Nullable="false" />
+          <Property Name="App_Type" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="mst_Autorizadores">
+          <Key>
+            <PropertyRef Name="aut_ID" />
+          </Key>
+          <Property Name="aut_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="aut_Obj_ID" Type="int" />
+          <Property Name="aut_usuario" Type="varchar" MaxLength="25" />
+          <Property Name="aut_contrasenia" Type="varchar" MaxLength="25" />
+          <Property Name="aut_FH_creacion" Type="datetime" />
+          <Property Name="aut_estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="mst_Autorizadores_Bitacora">
+          <Key>
+            <PropertyRef Name="aut_bit_ID" />
+          </Key>
+          <Property Name="aut_bit_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="aut_ID" Type="int" Nullable="false" />
+          <Property Name="aut_bit_FH_creacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="mst_Objects">
+          <Key>
+            <PropertyRef Name="Obj_ID" />
+          </Key>
+          <Property Name="Obj_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="App_ID" Type="int" Nullable="false" />
+          <Property Name="Obj_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Obj_Description" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Obj_Type" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Obj_Parent" Type="int" />
+          <Property Name="Obj_DT" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wai_Ajuste">
+          <Key>
+            <PropertyRef Name="aju_id" />
+          </Key>
+          <Property Name="aju_id" Type="int" Nullable="false" />
+          <Property Name="aju_pack_id" Type="int" />
+          <Property Name="aju_fecha_antigua" Type="datetime" />
+          <Property Name="aju_tipo_ajuste" Type="char" MaxLength="1" />
+          <Property Name="aju_fecha_ajuste" Type="datetime" />
+          <Property Name="aju_usuario_crea" Type="varchar" MaxLength="25" />
+          <Property Name="aju_fecha_crea" Type="datetime" />
+        </EntityType>
+        <EntityType Name="wai_Areas">
+          <Key>
+            <PropertyRef Name="are_id" />
+          </Key>
+          <Property Name="are_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="are_codigo" Type="varchar" MaxLength="10" />
+          <Property Name="are_descripcion" Type="varchar" MaxLength="25" />
+          <Property Name="are_usuario_crea" Type="varchar" MaxLength="25" />
+          <Property Name="are_fecha_crea" Type="datetime" />
+          <Property Name="are_usuario_mod" Type="varchar" MaxLength="25" />
+          <Property Name="are_fecha_mod" Type="datetime" />
+        </EntityType>
+        <EntityType Name="wai_Bodegas">
+          <Key>
+            <PropertyRef Name="bod_id" />
+          </Key>
+          <Property Name="bod_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bod_nombre" Type="varchar" MaxLength="12" />
+          <Property Name="bod_descripcion" Type="varchar" MaxLength="30" />
+          <Property Name="bod_usuario_crea" Type="varchar" MaxLength="25" />
+          <Property Name="bod_fecha_crea" Type="datetime" />
+          <Property Name="bod_usuario_mod" Type="varchar" MaxLength="25" />
+          <Property Name="bod_fecha_mod" Type="datetime" />
+        </EntityType>
+        <EntityType Name="wai_Defectos_NoConformes">
+          <Key>
+            <PropertyRef Name="def_ID" />
+          </Key>
+          <Property Name="def_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="def_Descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="def_FH_crea" Type="datetime" />
+          <Property Name="def_usuario" Type="varchar" MaxLength="50" />
+          <Property Name="def_FH_mod" Type="datetime" />
+          <Property Name="def_usuario_mod" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="wai_Devoluciones">
+          <Key>
+            <PropertyRef Name="dev_id" />
+          </Key>
+          <Property Name="dev_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dev_item_id" Type="int" Nullable="false" />
+          <Property Name="dev_localidad_id" Type="int" />
+          <Property Name="dev_codigo" Type="varchar" MaxLength="25" />
+          <Property Name="dev_libras" Type="real" />
+          <Property Name="dev_lote" Type="varchar" MaxLength="20" />
+          <Property Name="dev_prioridad" Type="int" />
+          <Property Name="dev_fecha_in" Type="datetime" />
+          <Property Name="dev_fecha_out" Type="datetime" />
+          <Property Name="dev_fecha_produccion" Type="datetime" />
+          <Property Name="dev_fecha_caducidad" Type="datetime" />
+          <Property Name="dev_libras_out" Type="real" />
+          <Property Name="dev_impreso" Type="int" />
+          <Property Name="dev_usuario_crea" Type="varchar" MaxLength="25" />
+          <Property Name="dev_fecha_crea" Type="datetime" />
+          <Property Name="dev_No_Conformidad" Type="bit" />
+          <Property Name="def_ID" Type="int" />
+          <Property Name="dev_FH_No_Conforme_IN" Type="datetime" />
+          <Property Name="dev_FH_No_Conforme_OUT" Type="datetime" />
+          <Property Name="pro_id" Type="int" />
+        </EntityType>
+        <EntityType Name="wai_Factura">
+          <Key>
+            <PropertyRef Name="fac_id" />
+          </Key>
+          <Property Name="fac_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fac_pos_id" Type="int" Nullable="false" />
+          <Property Name="fac_numero" Type="varchar" MaxLength="20" />
+          <Property Name="fac_paquetes" Type="int" />
+          <Property Name="fac_libras" Type="real" />
+          <Property Name="fac_fecha" Type="date" />
+          <Property Name="fac_usuario_crea" Type="varchar" MaxLength="25" />
+          <Property Name="fac_fecha_crea" Type="datetime" />
+          <Property Name="fac_usuario_mod" Type="varchar" MaxLength="25" />
+          <Property Name="fac_fecha_mod" Type="datetime" />
+          <Property Name="fac_medida" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="wai_Factura_Detalle">
+          <Key>
+            <PropertyRef Name="facd_id" />
+          </Key>
+          <Property Name="facd_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="facd_fac_id" Type="int" Nullable="false" />
+          <Property Name="facd_item_id" Type="int" Nullable="false" />
+          <Property Name="facd_cantidad" Type="int" />
+          <Property Name="facd_peso" Type="float" />
+          <Property Name="facd_lote" Type="varchar" MaxLength="20" />
+          <Property Name="facd_prioridad" Type="int" />
+          <Property Name="facd_fecha_caducidad" Type="date" />
+          <Property Name="facd_no_conforme" Type="int" />
+          <Property Name="facd_usuario_crea" Type="varchar" MaxLength="25" />
+          <Property Name="facd_fecha_crea" Type="datetime" />
+          <Property Name="facd_usuario_mod" Type="varchar" MaxLength="25" />
+          <Property Name="facd_fecha_mod" Type="datetime" />
+        </EntityType>
+        <EntityType Name="wai_Inventario">
+          <Key>
+            <PropertyRef Name="inv_id" />
+          </Key>
+          <Property Name="inv_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="inv_periodo" Type="varchar" MaxLength="25" />
+          <Property Name="inv_responsable" Type="varchar" MaxLength="50" />
+          <Property Name="inv_fecha" Type="date" />
+          <Property Name="inv_activo" Type="int" />
+          <Property Name="inv_usuario_crea" Type="varchar" MaxLength="25" />
+          <Property Name="inv_fecha_crea" Type="datetime" />
+          <Property Name="inv_usuario_mod" Type="varchar" MaxLength="25" />
+          <Property Name="inv_fecha_mod" Type="datetime" />
+          <Property Name="bod_id" Type="int" />
+          <Property Name="inv_tipo" Type="int" />
+          <Property Name="inv_year" Type="int" />
+          <Property Name="inv_num_periodo" Type="int" />
+        </EntityType>
+        <EntityType Name="wai_Inventario_Escaneos">
+          <Key>
+            <PropertyRef Name="inve_id" />
+          </Key>
+          <Property Name="inve_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="inve_localidadinventario_id" Type="int" Nullable="false" />
+          <Property Name="inve_packid" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="inve_libras" Type="real" />
+          <Property Name="inve_escaneado" Type="int" />
+          <Property Name="inve_localidad_preescaneo" Type="int" />
+          <Property Name="inve_nuevo" Type="int" />
+          <Property Name="inve_eliminado" Type="int" />
+          <Property Name="inve_usuario_crea" Type="varchar" MaxLength="25" />
+          <Property Name="inve_DT_crea" Type="datetime" />
+          <Property Name="inve_usuario_mod" Type="varchar" MaxLength="25" />
+          <Property Name="inve_DT_mod" Type="datetime" />
+        </EntityType>
+        <EntityType Name="wai_Inventario_Localidad">
+          <Key>
+            <PropertyRef Name="invl_id" />
+          </Key>
+          <Property Name="invl_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="invl_inventario_id" Type="int" Nullable="false" />
+          <Property Name="invl_localidad_id" Type="int" Nullable="false" />
+          <Property Name="invl_usuario_crea" Type="varchar" MaxLength="25" />
+          <Property Name="invl_fecha_crea" Type="datetime" />
+          <Property Name="invl_usuario_mod" Type="varchar" MaxLength="25" />
+          <Property Name="invl_fecha_mod" Type="datetime" />
+          <Property Name="invl_responsable" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="wai_Item">
+          <Key>
+            <PropertyRef Name="ite_id" />
+          </Key>
+          <Property Name="ite_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ite_bodega_id" Type="int" />
+          <Property Name="ite_area_id" Type="int" />
+          <Property Name="ite_codigo" Type="varchar" MaxLength="25" />
+          <Property Name="ite_descripcion" Type="varchar" MaxLength="150" />
+          <Property Name="ite_existencia" Type="int" />
+          <Property Name="ite_usuario_crea" Type="varchar" MaxLength="25" />
+          <Property Name="ite_fecha_crea" Type="datetime" />
+          <Property Name="ite_usuario_mod" Type="varchar" MaxLength="25" />
+          <Property Name="ite_fecha_mod" Type="datetime" />
+        </EntityType>
+        <EntityType Name="wai_Item_Localidad">
+          <Key>
+            <PropertyRef Name="itl_id" />
+          </Key>
+          <Property Name="itl_id" Type="int" Nullable="false" />
+          <Property Name="itl_localidad_id" Type="int" />
+          <Property Name="itl_item_id" Type="int" />
+          <Property Name="itl_periodo" Type="varchar" MaxLength="15" />
+          <Property Name="itl_usuario_crea" Type="varchar" MaxLength="50" />
+          <Property Name="itl_fecha_crea" Type="datetime" />
+          <Property Name="itl_usuario_mod" Type="varchar" MaxLength="50" />
+          <Property Name="itl_fecha_mod" Type="datetime" />
+        </EntityType>
+        <EntityType Name="wai_Localidad">
+          <Key>
+            <PropertyRef Name="loc_id" />
+          </Key>
+          <Property Name="loc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="loc_nombre" Type="varchar" MaxLength="12" />
+          <Property Name="loc_usuario_crea" Type="varchar" MaxLength="25" />
+          <Property Name="loc_fecha_crea" Type="datetime" />
+          <Property Name="loc_usuario_mod" Type="varchar" MaxLength="25" />
+          <Property Name="loc_fecha_mod" Type="datetime" />
+        </EntityType>
+        <EntityType Name="wai_Pack_List">
+          <Key>
+            <PropertyRef Name="pac_id" />
+          </Key>
+          <Property Name="pac_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pac_factura_detalle_id" Type="int" />
+          <Property Name="pac_localidad_id" Type="int" />
+          <Property Name="pac_prov_pack_id" Type="varchar" MaxLength="30" />
+          <Property Name="pac_libras" Type="real" />
+          <Property Name="pac_impreso" Type="bit" />
+          <Property Name="pac_scan_whin" Type="datetime" />
+          <Property Name="pac_scan_whout" Type="datetime" />
+          <Property Name="pac_libras_salida" Type="real" />
+          <Property Name="pac_ajuste" Type="bit" />
+          <Property Name="pac_fecha_produccion" Type="datetime" />
+          <Property Name="pac_envio" Type="int" />
+          <Property Name="pac_usuario_crea" Type="varchar" MaxLength="25" />
+          <Property Name="pac_fecha_crea" Type="datetime" />
+          <Property Name="pac_usuario_mod" Type="varchar" MaxLength="25" />
+          <Property Name="pac_fecha_mod" Type="datetime" />
+          <Property Name="pac_No_Conformidad" Type="bit" />
+          <Property Name="def_ID" Type="int" />
+          <Property Name="pac_FH_No_Conforme_IN" Type="datetime" />
+          <Property Name="pac_FH_No_Conforme_OUT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="wai_Parametros">
+          <Key>
+            <PropertyRef Name="par_id" />
+          </Key>
+          <Property Name="par_id" Type="int" Nullable="false" />
+          <Property Name="par_bodega_id" Type="int" />
+          <Property Name="par_campo1" Type="varchar" MaxLength="25" />
+          <Property Name="par_campo2" Type="varchar" MaxLength="25" />
+          <Property Name="par_salida_bodega" Type="int" />
+        </EntityType>
+        <EntityType Name="wai_Plan">
+          <Key>
+            <PropertyRef Name="pla_semana" />
+            <PropertyRef Name="pla_item" />
+          </Key>
+          <Property Name="pla_semana" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="pla_item" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="pla_UOM" Type="varchar" MaxLength="10" />
+          <Property Name="pla_FH" Type="datetime" Nullable="false" />
+          <Property Name="pla_usuario" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="wai_POS">
+          <Key>
+            <PropertyRef Name="pos_id" />
+          </Key>
+          <Property Name="pos_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pos_numero" Type="varchar" MaxLength="30" />
+          <Property Name="pos_proveedor_id" Type="int" />
+          <Property Name="pos_bodega_id" Type="int" />
+          <Property Name="pos_ajuste" Type="bit" />
+          <Property Name="pos_estado" Type="char" MaxLength="1" />
+          <Property Name="pos_semana" Type="varchar" MaxLength="10" />
+          <Property Name="pos_fecha" Type="date" />
+          <Property Name="pos_creador" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'ES_SOCKS.dbo.wai_Print_ID' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="wai_Print_ID">
+          <Property Name="pri_id" Type="int" />
+          <Property Name="pri_codigo" Type="int" />
+          <Property Name="pri_factura_detalle_id" Type="int" />
+        </EntityType>-->
+        <EntityType Name="wai_Prioridades">
+          <Key>
+            <PropertyRef Name="pri_id" />
+          </Key>
+          <Property Name="pri_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pri_item_id" Type="int" />
+          <Property Name="pri_lote" Type="varchar" MaxLength="25" />
+          <Property Name="pri_semana" Type="varchar" MaxLength="10" />
+          <Property Name="pri_prioridad" Type="int" />
+          <Property Name="pri_paquetes" Type="int" />
+          <Property Name="pri_libras" Type="real" />
+          <Property Name="pri_usuario_crea" Type="varchar" MaxLength="25" />
+          <Property Name="pri_fecha_crea" Type="datetime" />
+          <Property Name="pri_usuario_mod" Type="varchar" MaxLength="25" />
+          <Property Name="pri_fecha_mod" Type="datetime" />
+        </EntityType>
+        <EntityType Name="wai_Proveedor">
+          <Key>
+            <PropertyRef Name="pro_id" />
+          </Key>
+          <Property Name="pro_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pro_nombre" Type="varchar" MaxLength="50" />
+          <Property Name="pro_usuario_crea" Type="varchar" MaxLength="25" />
+          <Property Name="pro_fecha_crea" Type="datetime" />
+          <Property Name="pro_usuario_mod" Type="varchar" MaxLength="25" />
+          <Property Name="pro_fecha_mod" Type="datetime" />
+        </EntityType>
+        <EntityType Name="wai_Solicitudes">
+          <Key>
+            <PropertyRef Name="sol_ID" />
+          </Key>
+          <Property Name="sol_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sol_semana" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="sol_item" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="sol_estado" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="sol_UOM" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="sol_pro_ID" Type="int" Nullable="false" />
+          <Property Name="sol_turno_crea" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="sol_turno_entrega" Type="char" MaxLength="1" />
+          <Property Name="sol_FH_crea" Type="datetime" Nullable="false" />
+          <Property Name="sol_FH_entrega" Type="datetime" />
+          <Property Name="sol_localidad" Type="varchar" MaxLength="5" />
+          <Property Name="sol_prioridad" Type="varchar" MaxLength="10" />
+          <Property Name="sol_usuario_pedido" Type="varchar" MaxLength="25" />
+          <Property Name="sol_usuario_entrega" Type="varchar" MaxLength="25" />
+          <Property Name="sol_aut_ID" Type="int" />
+          <Property Name="sol_pack_list_ID" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="wai_Tipo_Transaccion">
+          <Key>
+            <PropertyRef Name="tipt_id" />
+          </Key>
+          <Property Name="tipt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipt_nombre" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="wai_Transacciones">
+          <Key>
+            <PropertyRef Name="tra_id" />
+          </Key>
+          <Property Name="tra_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tra_pack_list_id" Type="int" />
+          <Property Name="tra_tipo_transaccion" Type="int" />
+          <Property Name="tra_libras" Type="real" />
+          <Property Name="tra_usuario" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="tra_DT" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wai_Transacciones_Devoluciones">
+          <Key>
+            <PropertyRef Name="tra_dev_id" />
+          </Key>
+          <Property Name="tra_dev_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tra_dev_dev_id" Type="int" />
+          <Property Name="tra_dev_tipo_transaccion" Type="int" />
+          <Property Name="tra_dev_libras" Type="real" />
+          <Property Name="tra_dev_usuario" Type="varchar" MaxLength="25" />
+          <Property Name="tra_dev_DT" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_mst_Objects_mst_Applications">
+          <End Role="mst_Applications" Type="Self.mst_Applications" Multiplicity="1" />
+          <End Role="mst_Objects" Type="Self.mst_Objects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mst_Applications">
+              <PropertyRef Name="App_ID" />
+            </Principal>
+            <Dependent Role="mst_Objects">
+              <PropertyRef Name="App_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mst_Objects_mst_Objects">
+          <End Role="mst_Objects" Type="Self.mst_Objects" Multiplicity="0..1" />
+          <End Role="mst_Objects1" Type="Self.mst_Objects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mst_Objects">
+              <PropertyRef Name="Obj_ID" />
+            </Principal>
+            <Dependent Role="mst_Objects1">
+              <PropertyRef Name="Obj_Parent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Devoluciones_wai_Defectos_NoConformes">
+          <End Role="wai_Defectos_NoConformes" Type="Self.wai_Defectos_NoConformes" Multiplicity="0..1" />
+          <End Role="wai_Devoluciones" Type="Self.wai_Devoluciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Defectos_NoConformes">
+              <PropertyRef Name="def_ID" />
+            </Principal>
+            <Dependent Role="wai_Devoluciones">
+              <PropertyRef Name="def_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Devoluciones_wai_Item">
+          <End Role="wai_Item" Type="Self.wai_Item" Multiplicity="1" />
+          <End Role="wai_Devoluciones" Type="Self.wai_Devoluciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Item">
+              <PropertyRef Name="ite_id" />
+            </Principal>
+            <Dependent Role="wai_Devoluciones">
+              <PropertyRef Name="dev_item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Devoluciones_wai_Localidad">
+          <End Role="wai_Localidad" Type="Self.wai_Localidad" Multiplicity="0..1" />
+          <End Role="wai_Devoluciones" Type="Self.wai_Devoluciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Localidad">
+              <PropertyRef Name="loc_id" />
+            </Principal>
+            <Dependent Role="wai_Devoluciones">
+              <PropertyRef Name="dev_localidad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Factura_Detalle_wai_Factura1">
+          <End Role="wai_Factura" Type="Self.wai_Factura" Multiplicity="1" />
+          <End Role="wai_Factura_Detalle" Type="Self.wai_Factura_Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Factura">
+              <PropertyRef Name="fac_id" />
+            </Principal>
+            <Dependent Role="wai_Factura_Detalle">
+              <PropertyRef Name="facd_fac_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Factura_Detalle_wai_Item">
+          <End Role="wai_Item" Type="Self.wai_Item" Multiplicity="1" />
+          <End Role="wai_Factura_Detalle" Type="Self.wai_Factura_Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Item">
+              <PropertyRef Name="ite_id" />
+            </Principal>
+            <Dependent Role="wai_Factura_Detalle">
+              <PropertyRef Name="facd_item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Factura_wai_POS1">
+          <End Role="wai_POS" Type="Self.wai_POS" Multiplicity="1" />
+          <End Role="wai_Factura" Type="Self.wai_Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_POS">
+              <PropertyRef Name="pos_id" />
+            </Principal>
+            <Dependent Role="wai_Factura">
+              <PropertyRef Name="fac_pos_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Item_wai_Areas">
+          <End Role="wai_Areas" Type="Self.wai_Areas" Multiplicity="0..1" />
+          <End Role="wai_Item" Type="Self.wai_Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Areas">
+              <PropertyRef Name="are_id" />
+            </Principal>
+            <Dependent Role="wai_Item">
+              <PropertyRef Name="ite_area_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Item_wai_Bodegas">
+          <End Role="wai_Bodegas" Type="Self.wai_Bodegas" Multiplicity="0..1" />
+          <End Role="wai_Item" Type="Self.wai_Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Bodegas">
+              <PropertyRef Name="bod_id" />
+            </Principal>
+            <Dependent Role="wai_Item">
+              <PropertyRef Name="ite_bodega_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_LocalidadInventario_wai_Inventario">
+          <End Role="wai_Inventario" Type="Self.wai_Inventario" Multiplicity="1" />
+          <End Role="wai_Inventario_Localidad" Type="Self.wai_Inventario_Localidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Inventario">
+              <PropertyRef Name="inv_id" />
+            </Principal>
+            <Dependent Role="wai_Inventario_Localidad">
+              <PropertyRef Name="invl_inventario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_LocalidadInventario_wai_Localidad">
+          <End Role="wai_Localidad" Type="Self.wai_Localidad" Multiplicity="1" />
+          <End Role="wai_Inventario_Localidad" Type="Self.wai_Inventario_Localidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Localidad">
+              <PropertyRef Name="loc_id" />
+            </Principal>
+            <Dependent Role="wai_Inventario_Localidad">
+              <PropertyRef Name="invl_localidad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Pack_List_wai_Defectos_NoConformes">
+          <End Role="wai_Defectos_NoConformes" Type="Self.wai_Defectos_NoConformes" Multiplicity="0..1" />
+          <End Role="wai_Pack_List" Type="Self.wai_Pack_List" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Defectos_NoConformes">
+              <PropertyRef Name="def_ID" />
+            </Principal>
+            <Dependent Role="wai_Pack_List">
+              <PropertyRef Name="def_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Pack_List_wai_Factura_Detalle">
+          <End Role="wai_Factura_Detalle" Type="Self.wai_Factura_Detalle" Multiplicity="0..1" />
+          <End Role="wai_Pack_List" Type="Self.wai_Pack_List" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Factura_Detalle">
+              <PropertyRef Name="facd_id" />
+            </Principal>
+            <Dependent Role="wai_Pack_List">
+              <PropertyRef Name="pac_factura_detalle_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Pack_List_wai_Localidad">
+          <End Role="wai_Localidad" Type="Self.wai_Localidad" Multiplicity="0..1" />
+          <End Role="wai_Pack_List" Type="Self.wai_Pack_List" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Localidad">
+              <PropertyRef Name="loc_id" />
+            </Principal>
+            <Dependent Role="wai_Pack_List">
+              <PropertyRef Name="pac_localidad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_POS_wai_Bodegas">
+          <End Role="wai_Bodegas" Type="Self.wai_Bodegas" Multiplicity="0..1" />
+          <End Role="wai_POS" Type="Self.wai_POS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Bodegas">
+              <PropertyRef Name="bod_id" />
+            </Principal>
+            <Dependent Role="wai_POS">
+              <PropertyRef Name="pos_bodega_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_POS_wai_Proveedor">
+          <End Role="wai_Proveedor" Type="Self.wai_Proveedor" Multiplicity="0..1" />
+          <End Role="wai_POS" Type="Self.wai_POS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Proveedor">
+              <PropertyRef Name="pro_id" />
+            </Principal>
+            <Dependent Role="wai_POS">
+              <PropertyRef Name="pos_proveedor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Prioridades_wai_Item">
+          <End Role="wai_Item" Type="Self.wai_Item" Multiplicity="0..1" />
+          <End Role="wai_Prioridades" Type="Self.wai_Prioridades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Item">
+              <PropertyRef Name="ite_id" />
+            </Principal>
+            <Dependent Role="wai_Prioridades">
+              <PropertyRef Name="pri_item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Solicitudes_wai_Plan">
+          <End Role="wai_Plan" Type="Self.wai_Plan" Multiplicity="1" />
+          <End Role="wai_Solicitudes" Type="Self.wai_Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Plan">
+              <PropertyRef Name="pla_semana" />
+              <PropertyRef Name="pla_item" />
+            </Principal>
+            <Dependent Role="wai_Solicitudes">
+              <PropertyRef Name="sol_semana" />
+              <PropertyRef Name="sol_item" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Solicitudes_wai_Proveedor">
+          <End Role="wai_Proveedor" Type="Self.wai_Proveedor" Multiplicity="1" />
+          <End Role="wai_Solicitudes" Type="Self.wai_Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Proveedor">
+              <PropertyRef Name="pro_id" />
+            </Principal>
+            <Dependent Role="wai_Solicitudes">
+              <PropertyRef Name="sol_pro_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Transacciones_Devoluciones_wai_Devoluciones">
+          <End Role="wai_Devoluciones" Type="Self.wai_Devoluciones" Multiplicity="0..1" />
+          <End Role="wai_Transacciones_Devoluciones" Type="Self.wai_Transacciones_Devoluciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Devoluciones">
+              <PropertyRef Name="dev_id" />
+            </Principal>
+            <Dependent Role="wai_Transacciones_Devoluciones">
+              <PropertyRef Name="tra_dev_dev_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Transacciones_Devoluciones_wai_Tipo_Transaccion">
+          <End Role="wai_Tipo_Transaccion" Type="Self.wai_Tipo_Transaccion" Multiplicity="0..1" />
+          <End Role="wai_Transacciones_Devoluciones" Type="Self.wai_Transacciones_Devoluciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Tipo_Transaccion">
+              <PropertyRef Name="tipt_id" />
+            </Principal>
+            <Dependent Role="wai_Transacciones_Devoluciones">
+              <PropertyRef Name="tra_dev_tipo_transaccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Transacciones_wai_Pack_List">
+          <End Role="wai_Pack_List" Type="Self.wai_Pack_List" Multiplicity="0..1" />
+          <End Role="wai_Transacciones" Type="Self.wai_Transacciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Pack_List">
+              <PropertyRef Name="pac_id" />
+            </Principal>
+            <Dependent Role="wai_Transacciones">
+              <PropertyRef Name="tra_pack_list_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Transacciones_wai_Tipo_Transaccion">
+          <End Role="wai_Tipo_Transaccion" Type="Self.wai_Tipo_Transaccion" Multiplicity="0..1" />
+          <End Role="wai_Transacciones" Type="Self.wai_Transacciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Tipo_Transaccion">
+              <PropertyRef Name="tipt_id" />
+            </Principal>
+            <Dependent Role="wai_Transacciones">
+              <PropertyRef Name="tra_tipo_transaccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_wai_Reporte_Toma_Inventario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idInventario" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="PACK_ID" Type="varchar" MaxLength="30" />
+                <Property Name="LOC_ESCANEO" Type="varchar" MaxLength="12" />
+                <Property Name="CODIGO" Type="varchar" MaxLength="25" />
+                <Property Name="DESCRIPCION" Type="varchar" MaxLength="150" />
+                <Property Name="LIBRAS" Type="real" />
+                <Property Name="FECHA_ENTRADA" Type="datetime" />
+                <Property Name="ESCANEO" Type="varchar" MaxLength="12" Nullable="false" />
+                <Property Name="FECHA_ESCANEO" Type="date" />
+                <Property Name="HORA_ESCANEO" Type="time" Precision="7" />
+                <Property Name="LOC_PREESCANEO" Type="varchar" MaxLength="12" />
+                <Property Name="USUARIO" Type="varchar" MaxLength="25" />
+                <Property Name="FECHA" Type="datetime" />
+                <Property Name="CAMBIO_LOCALIDAD" Type="varchar" MaxLength="10" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="usp_mst_PermissionsByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UsLogin" Type="varchar" Mode="In" />
+          <Parameter Name="App" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_wai_Areas_CRUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="codigo" Type="varchar" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="accion" Type="char" Mode="In" />
+        </Function>
+        <Function Name="usp_wai_Bodegas_CRUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="accion" Type="char" Mode="In" />
+        </Function>
+        <Function Name="usp_wai_Devoluciones_CRUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="accion" Type="char" Mode="In" />
+          <Parameter Name="itemID" Type="int" Mode="In" />
+          <Parameter Name="localidadID" Type="int" Mode="In" />
+          <Parameter Name="libras" Type="real" Mode="In" />
+          <Parameter Name="lote" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_wai_Factura_CRUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="accion" Type="char" Mode="In" />
+          <Parameter Name="idFactura" Type="int" Mode="In" />
+          <Parameter Name="idPO" Type="int" Mode="In" />
+          <Parameter Name="numero" Type="varchar" Mode="In" />
+          <Parameter Name="paquetes" Type="int" Mode="In" />
+          <Parameter Name="libras" Type="real" Mode="In" />
+          <Parameter Name="fecha" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="usp_wai_Factura_Detalle_CRUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="accion" Type="char" Mode="In" />
+          <Parameter Name="idFacD" Type="int" Mode="In" />
+          <Parameter Name="idFactura" Type="int" Mode="In" />
+          <Parameter Name="idItem" Type="int" Mode="In" />
+          <Parameter Name="cantidad" Type="int" Mode="In" />
+          <Parameter Name="peso" Type="float" Mode="In" />
+          <Parameter Name="lote" Type="varchar" Mode="In" />
+          <Parameter Name="prioridad" Type="int" Mode="In" />
+          <Parameter Name="fecha" Type="datetime" Mode="In" />
+          <Parameter Name="noConforme" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_wai_Inventario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="idInventario" Type="int" Mode="In" />
+          <Parameter Name="periodo" Type="varchar" Mode="In" />
+          <Parameter Name="responsable" Type="varchar" Mode="In" />
+          <Parameter Name="fecha" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="usp_wai_Inventario_Escaneos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="packID" Type="varchar" Mode="In" />
+          <Parameter Name="idInventario" Type="int" Mode="In" />
+          <Parameter Name="idLocalidad" Type="int" Mode="In" />
+          <Parameter Name="nuevo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_wai_Inventario_Localidad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="accion" Type="char" Mode="In" />
+          <Parameter Name="idInventario" Type="int" Mode="In" />
+          <Parameter Name="idLocalidad" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_wai_Item_CRUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="bodega" Type="int" Mode="In" />
+          <Parameter Name="codigo" Type="varchar" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="accion" Type="char" Mode="In" />
+        </Function>
+        <Function Name="usp_wai_Localidades_CRUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="accion" Type="char" Mode="In" />
+        </Function>
+        <Function Name="usp_wai_POS_CRUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="accion" Type="char" Mode="In" />
+          <Parameter Name="idPO" Type="int" Mode="In" />
+          <Parameter Name="numeroPO" Type="varchar" Mode="In" />
+          <Parameter Name="proveedorID" Type="int" Mode="In" />
+          <Parameter Name="bodegaID" Type="int" Mode="In" />
+          <Parameter Name="estado" Type="int" Mode="In" />
+          <Parameter Name="semana" Type="varchar" Mode="In" />
+          <Parameter Name="fecha" Type="datetime" Mode="In" />
+          <Parameter Name="creador" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_wai_Prioridades_CRUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="accion" Type="char" Mode="In" />
+          <Parameter Name="item" Type="int" Mode="In" />
+          <Parameter Name="lote" Type="varchar" Mode="In" />
+          <Parameter Name="semana" Type="varchar" Mode="In" />
+          <Parameter Name="prioridad" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_wai_Proveedores_CRUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="accion" Type="char" Mode="In" />
+        </Function>
+        <Function Name="usp_wai_Reporte_Entradas_Salidas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fechaInicio" Type="datetime" Mode="In" />
+          <Parameter Name="fechaFin" Type="datetime" Mode="In" />
+          <Parameter Name="reporte" Type="int" Mode="In" />
+          <Parameter Name="bodega" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_wai_Solicitud_CRUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="semana" Type="char" Mode="In" />
+          <Parameter Name="sol_item" Type="varchar" Mode="In" />
+          <Parameter Name="sol_estado" Type="varchar" Mode="In" />
+          <Parameter Name="sol_UOM" Type="varchar" Mode="In" />
+          <Parameter Name="sol_pro_ID" Type="int" Mode="In" />
+          <Parameter Name="sol_localidad" Type="varchar" Mode="In" />
+          <Parameter Name="sol_prioridad" Type="varchar" Mode="In" />
+          <Parameter Name="sol_usuario_pedido" Type="varchar" Mode="In" />
+          <Parameter Name="accion" Type="char" Mode="In" />
+        </Function>
+        <Function Name="usp_wai_Transacciones_CRUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="accion" Type="int" Mode="In" />
+          <Parameter Name="packID" Type="varchar" Mode="In" />
+          <Parameter Name="libras" Type="real" Mode="In" />
+          <Parameter Name="itemID" Type="int" Mode="In" />
+          <Parameter Name="Autoriza" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_wai_TransaccionesProv_CRUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="accion" Type="int" Mode="In" />
+          <Parameter Name="packProvID" Type="varchar" Mode="In" />
+          <Parameter Name="libras" Type="real" Mode="In" />
+          <Parameter Name="itemID" Type="int" Mode="In" />
+          <Parameter Name="Autoriza" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_wai_Traslados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="PackID" Type="int" Mode="In" />
+          <Parameter Name="idLocalidad" Type="int" Mode="In" />
+          <Parameter Name="origen" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="ES_SOCKSModelStoreContainer">
+          <EntitySet Name="mst_Applications" EntityType="Self.mst_Applications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mst_Autorizadores" EntityType="Self.mst_Autorizadores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mst_Autorizadores_Bitacora" EntityType="Self.mst_Autorizadores_Bitacora" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mst_Objects" EntityType="Self.mst_Objects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Ajuste" EntityType="Self.wai_Ajuste" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Areas" EntityType="Self.wai_Areas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Bodegas" EntityType="Self.wai_Bodegas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Defectos_NoConformes" EntityType="Self.wai_Defectos_NoConformes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Devoluciones" EntityType="Self.wai_Devoluciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Factura" EntityType="Self.wai_Factura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Factura_Detalle" EntityType="Self.wai_Factura_Detalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Inventario" EntityType="Self.wai_Inventario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Inventario_Escaneos" EntityType="Self.wai_Inventario_Escaneos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Inventario_Localidad" EntityType="Self.wai_Inventario_Localidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Item" EntityType="Self.wai_Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Item_Localidad" EntityType="Self.wai_Item_Localidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Localidad" EntityType="Self.wai_Localidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Pack_List" EntityType="Self.wai_Pack_List" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Parametros" EntityType="Self.wai_Parametros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Plan" EntityType="Self.wai_Plan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_POS" EntityType="Self.wai_POS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Prioridades" EntityType="Self.wai_Prioridades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Proveedor" EntityType="Self.wai_Proveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Solicitudes" EntityType="Self.wai_Solicitudes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Tipo_Transaccion" EntityType="Self.wai_Tipo_Transaccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Transacciones" EntityType="Self.wai_Transacciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wai_Transacciones_Devoluciones" EntityType="Self.wai_Transacciones_Devoluciones" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_mst_Objects_mst_Applications" Association="Self.FK_mst_Objects_mst_Applications">
+            <End Role="mst_Applications" EntitySet="mst_Applications" />
+            <End Role="mst_Objects" EntitySet="mst_Objects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mst_Objects_mst_Objects" Association="Self.FK_mst_Objects_mst_Objects">
+            <End Role="mst_Objects" EntitySet="mst_Objects" />
+            <End Role="mst_Objects1" EntitySet="mst_Objects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Devoluciones_wai_Defectos_NoConformes" Association="Self.FK_wai_Devoluciones_wai_Defectos_NoConformes">
+            <End Role="wai_Defectos_NoConformes" EntitySet="wai_Defectos_NoConformes" />
+            <End Role="wai_Devoluciones" EntitySet="wai_Devoluciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Devoluciones_wai_Item" Association="Self.FK_wai_Devoluciones_wai_Item">
+            <End Role="wai_Item" EntitySet="wai_Item" />
+            <End Role="wai_Devoluciones" EntitySet="wai_Devoluciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Devoluciones_wai_Localidad" Association="Self.FK_wai_Devoluciones_wai_Localidad">
+            <End Role="wai_Localidad" EntitySet="wai_Localidad" />
+            <End Role="wai_Devoluciones" EntitySet="wai_Devoluciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Factura_Detalle_wai_Factura1" Association="Self.FK_wai_Factura_Detalle_wai_Factura1">
+            <End Role="wai_Factura" EntitySet="wai_Factura" />
+            <End Role="wai_Factura_Detalle" EntitySet="wai_Factura_Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Factura_Detalle_wai_Item" Association="Self.FK_wai_Factura_Detalle_wai_Item">
+            <End Role="wai_Item" EntitySet="wai_Item" />
+            <End Role="wai_Factura_Detalle" EntitySet="wai_Factura_Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Factura_wai_POS1" Association="Self.FK_wai_Factura_wai_POS1">
+            <End Role="wai_POS" EntitySet="wai_POS" />
+            <End Role="wai_Factura" EntitySet="wai_Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Item_wai_Areas" Association="Self.FK_wai_Item_wai_Areas">
+            <End Role="wai_Areas" EntitySet="wai_Areas" />
+            <End Role="wai_Item" EntitySet="wai_Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Item_wai_Bodegas" Association="Self.FK_wai_Item_wai_Bodegas">
+            <End Role="wai_Bodegas" EntitySet="wai_Bodegas" />
+            <End Role="wai_Item" EntitySet="wai_Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_LocalidadInventario_wai_Inventario" Association="Self.FK_wai_LocalidadInventario_wai_Inventario">
+            <End Role="wai_Inventario" EntitySet="wai_Inventario" />
+            <End Role="wai_Inventario_Localidad" EntitySet="wai_Inventario_Localidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_LocalidadInventario_wai_Localidad" Association="Self.FK_wai_LocalidadInventario_wai_Localidad">
+            <End Role="wai_Localidad" EntitySet="wai_Localidad" />
+            <End Role="wai_Inventario_Localidad" EntitySet="wai_Inventario_Localidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Pack_List_wai_Defectos_NoConformes" Association="Self.FK_wai_Pack_List_wai_Defectos_NoConformes">
+            <End Role="wai_Defectos_NoConformes" EntitySet="wai_Defectos_NoConformes" />
+            <End Role="wai_Pack_List" EntitySet="wai_Pack_List" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Pack_List_wai_Factura_Detalle" Association="Self.FK_wai_Pack_List_wai_Factura_Detalle">
+            <End Role="wai_Factura_Detalle" EntitySet="wai_Factura_Detalle" />
+            <End Role="wai_Pack_List" EntitySet="wai_Pack_List" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Pack_List_wai_Localidad" Association="Self.FK_wai_Pack_List_wai_Localidad">
+            <End Role="wai_Localidad" EntitySet="wai_Localidad" />
+            <End Role="wai_Pack_List" EntitySet="wai_Pack_List" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_POS_wai_Bodegas" Association="Self.FK_wai_POS_wai_Bodegas">
+            <End Role="wai_Bodegas" EntitySet="wai_Bodegas" />
+            <End Role="wai_POS" EntitySet="wai_POS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_POS_wai_Proveedor" Association="Self.FK_wai_POS_wai_Proveedor">
+            <End Role="wai_Proveedor" EntitySet="wai_Proveedor" />
+            <End Role="wai_POS" EntitySet="wai_POS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Prioridades_wai_Item" Association="Self.FK_wai_Prioridades_wai_Item">
+            <End Role="wai_Item" EntitySet="wai_Item" />
+            <End Role="wai_Prioridades" EntitySet="wai_Prioridades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Solicitudes_wai_Plan" Association="Self.FK_wai_Solicitudes_wai_Plan">
+            <End Role="wai_Plan" EntitySet="wai_Plan" />
+            <End Role="wai_Solicitudes" EntitySet="wai_Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Solicitudes_wai_Proveedor" Association="Self.FK_wai_Solicitudes_wai_Proveedor">
+            <End Role="wai_Proveedor" EntitySet="wai_Proveedor" />
+            <End Role="wai_Solicitudes" EntitySet="wai_Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Transacciones_Devoluciones_wai_Devoluciones" Association="Self.FK_wai_Transacciones_Devoluciones_wai_Devoluciones">
+            <End Role="wai_Devoluciones" EntitySet="wai_Devoluciones" />
+            <End Role="wai_Transacciones_Devoluciones" EntitySet="wai_Transacciones_Devoluciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Transacciones_Devoluciones_wai_Tipo_Transaccion" Association="Self.FK_wai_Transacciones_Devoluciones_wai_Tipo_Transaccion">
+            <End Role="wai_Tipo_Transaccion" EntitySet="wai_Tipo_Transaccion" />
+            <End Role="wai_Transacciones_Devoluciones" EntitySet="wai_Transacciones_Devoluciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Transacciones_wai_Pack_List" Association="Self.FK_wai_Transacciones_wai_Pack_List">
+            <End Role="wai_Pack_List" EntitySet="wai_Pack_List" />
+            <End Role="wai_Transacciones" EntitySet="wai_Transacciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Transacciones_wai_Tipo_Transaccion" Association="Self.FK_wai_Transacciones_wai_Tipo_Transaccion">
+            <End Role="wai_Tipo_Transaccion" EntitySet="wai_Tipo_Transaccion" />
+            <End Role="wai_Transacciones" EntitySet="wai_Transacciones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ES_SOCKSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="fn_wai_Reporte_Toma_Inventario_Result">
+          <Property Name="PACK_ID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="LOC_ESCANEO" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="CODIGO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="LIBRAS" Type="Single" />
+          <Property Name="FECHA_ENTRADA" Type="DateTime" />
+          <Property Name="ESCANEO" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FECHA_ESCANEO" Type="DateTime" />
+          <Property Name="HORA_ESCANEO" Type="Time" />
+          <Property Name="LOC_PREESCANEO" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="USUARIO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA" Type="DateTime" />
+          <Property Name="CAMBIO_LOCALIDAD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="mst_Applications">
+          <Key>
+            <PropertyRef Name="App_ID" />
+          </Key>
+          <Property Name="App_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="App_Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="App_Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="App_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Dept_ID" Type="Int32" Nullable="false" />
+          <Property Name="App_Type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="mst_Objects" Relationship="Self.FK_mst_Objects_mst_Applications" FromRole="mst_Applications" ToRole="mst_Objects" />
+        </EntityType>
+        <EntityType Name="mst_Autorizadores">
+          <Key>
+            <PropertyRef Name="aut_ID" />
+          </Key>
+          <Property Name="aut_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="aut_Obj_ID" Type="Int32" />
+          <Property Name="aut_usuario" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="aut_contrasenia" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="aut_FH_creacion" Type="DateTime" Precision="3" />
+          <Property Name="aut_estado" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="mst_Autorizadores_Bitacora">
+          <Key>
+            <PropertyRef Name="aut_bit_ID" />
+          </Key>
+          <Property Name="aut_bit_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="aut_ID" Type="Int32" Nullable="false" />
+          <Property Name="aut_bit_FH_creacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="mst_Objects">
+          <Key>
+            <PropertyRef Name="Obj_ID" />
+          </Key>
+          <Property Name="Obj_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="App_ID" Type="Int32" Nullable="false" />
+          <Property Name="Obj_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Obj_Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Obj_Type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Obj_Parent" Type="Int32" />
+          <Property Name="Obj_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="mst_Applications" Relationship="Self.FK_mst_Objects_mst_Applications" FromRole="mst_Objects" ToRole="mst_Applications" />
+          <NavigationProperty Name="mst_Objects1" Relationship="Self.FK_mst_Objects_mst_Objects" FromRole="mst_Objects" ToRole="mst_Objects1" />
+          <NavigationProperty Name="mst_Objects2" Relationship="Self.FK_mst_Objects_mst_Objects" FromRole="mst_Objects1" ToRole="mst_Objects" />
+        </EntityType>
+        <EntityType Name="wai_Ajuste">
+          <Key>
+            <PropertyRef Name="aju_id" />
+          </Key>
+          <Property Name="aju_id" Type="Int32" Nullable="false" />
+          <Property Name="aju_pack_id" Type="Int32" />
+          <Property Name="aju_fecha_antigua" Type="DateTime" Precision="3" />
+          <Property Name="aju_tipo_ajuste" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="aju_fecha_ajuste" Type="DateTime" Precision="3" />
+          <Property Name="aju_usuario_crea" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="aju_fecha_crea" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="wai_Areas">
+          <Key>
+            <PropertyRef Name="are_id" />
+          </Key>
+          <Property Name="are_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="are_codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="are_descripcion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="are_usuario_crea" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="are_fecha_crea" Type="DateTime" Precision="3" />
+          <Property Name="are_usuario_mod" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="are_fecha_mod" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="wai_Item" Relationship="Self.FK_wai_Item_wai_Areas" FromRole="wai_Areas" ToRole="wai_Item" />
+        </EntityType>
+        <EntityType Name="wai_Bodegas">
+          <Key>
+            <PropertyRef Name="bod_id" />
+          </Key>
+          <Property Name="bod_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bod_nombre" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="bod_descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="bod_usuario_crea" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="bod_fecha_crea" Type="DateTime" Precision="3" />
+          <Property Name="bod_usuario_mod" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="bod_fecha_mod" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="wai_Item" Relationship="Self.FK_wai_Item_wai_Bodegas" FromRole="wai_Bodegas" ToRole="wai_Item" />
+          <NavigationProperty Name="wai_POS" Relationship="Self.FK_wai_POS_wai_Bodegas" FromRole="wai_Bodegas" ToRole="wai_POS" />
+        </EntityType>
+        <EntityType Name="wai_Defectos_NoConformes">
+          <Key>
+            <PropertyRef Name="def_ID" />
+          </Key>
+          <Property Name="def_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="def_Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="def_FH_crea" Type="DateTime" Precision="3" />
+          <Property Name="def_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="def_FH_mod" Type="DateTime" Precision="3" />
+          <Property Name="def_usuario_mod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="wai_Devoluciones" Relationship="Self.FK_wai_Devoluciones_wai_Defectos_NoConformes" FromRole="wai_Defectos_NoConformes" ToRole="wai_Devoluciones" />
+          <NavigationProperty Name="wai_Pack_List" Relationship="Self.FK_wai_Pack_List_wai_Defectos_NoConformes" FromRole="wai_Defectos_NoConformes" ToRole="wai_Pack_List" />
+        </EntityType>
+        <EntityType Name="wai_Devoluciones">
+          <Key>
+            <PropertyRef Name="dev_id" />
+          </Key>
+          <Property Name="dev_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dev_item_id" Type="Int32" Nullable="false" />
+          <Property Name="dev_localidad_id" Type="Int32" />
+          <Property Name="dev_codigo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="dev_libras" Type="Single" />
+          <Property Name="dev_lote" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="dev_prioridad" Type="Int32" />
+          <Property Name="dev_fecha_in" Type="DateTime" Precision="3" />
+          <Property Name="dev_fecha_out" Type="DateTime" Precision="3" />
+          <Property Name="dev_fecha_produccion" Type="DateTime" Precision="3" />
+          <Property Name="dev_fecha_caducidad" Type="DateTime" Precision="3" />
+          <Property Name="dev_libras_out" Type="Single" />
+          <Property Name="dev_impreso" Type="Int32" />
+          <Property Name="dev_usuario_crea" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="dev_fecha_crea" Type="DateTime" Precision="3" />
+          <Property Name="dev_No_Conformidad" Type="Boolean" />
+          <Property Name="def_ID" Type="Int32" />
+          <Property Name="dev_FH_No_Conforme_IN" Type="DateTime" Precision="3" />
+          <Property Name="dev_FH_No_Conforme_OUT" Type="DateTime" Precision="3" />
+          <Property Name="pro_id" Type="Int32" />
+          <NavigationProperty Name="wai_Defectos_NoConformes" Relationship="Self.FK_wai_Devoluciones_wai_Defectos_NoConformes" FromRole="wai_Devoluciones" ToRole="wai_Defectos_NoConformes" />
+          <NavigationProperty Name="wai_Item" Relationship="Self.FK_wai_Devoluciones_wai_Item" FromRole="wai_Devoluciones" ToRole="wai_Item" />
+          <NavigationProperty Name="wai_Localidad" Relationship="Self.FK_wai_Devoluciones_wai_Localidad" FromRole="wai_Devoluciones" ToRole="wai_Localidad" />
+          <NavigationProperty Name="wai_Transacciones_Devoluciones" Relationship="Self.FK_wai_Transacciones_Devoluciones_wai_Devoluciones" FromRole="wai_Devoluciones" ToRole="wai_Transacciones_Devoluciones" />
+        </EntityType>
+        <EntityType Name="wai_Factura">
+          <Key>
+            <PropertyRef Name="fac_id" />
+          </Key>
+          <Property Name="fac_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fac_pos_id" Type="Int32" Nullable="false" />
+          <Property Name="fac_numero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fac_paquetes" Type="Int32" />
+          <Property Name="fac_libras" Type="Single" />
+          <Property Name="fac_fecha" Type="DateTime" Precision="0" />
+          <Property Name="fac_usuario_crea" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fac_fecha_crea" Type="DateTime" Precision="3" />
+          <Property Name="fac_usuario_mod" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fac_fecha_mod" Type="DateTime" Precision="3" />
+          <Property Name="fac_medida" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="wai_Factura_Detalle" Relationship="Self.FK_wai_Factura_Detalle_wai_Factura1" FromRole="wai_Factura" ToRole="wai_Factura_Detalle" />
+          <NavigationProperty Name="wai_POS" Relationship="Self.FK_wai_Factura_wai_POS1" FromRole="wai_Factura" ToRole="wai_POS" />
+        </EntityType>
+        <EntityType Name="wai_Factura_Detalle">
+          <Key>
+            <PropertyRef Name="facd_id" />
+          </Key>
+          <Property Name="facd_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="facd_fac_id" Type="Int32" Nullable="false" />
+          <Property Name="facd_item_id" Type="Int32" Nullable="false" />
+          <Property Name="facd_cantidad" Type="Int32" />
+          <Property Name="facd_peso" Type="Double" />
+          <Property Name="facd_lote" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="facd_prioridad" Type="Int32" />
+          <Property Name="facd_fecha_caducidad" Type="DateTime" Precision="0" />
+          <Property Name="facd_no_conforme" Type="Int32" />
+          <Property Name="facd_usuario_crea" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="facd_fecha_crea" Type="DateTime" Precision="3" />
+          <Property Name="facd_usuario_mod" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="facd_fecha_mod" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="wai_Factura" Relationship="Self.FK_wai_Factura_Detalle_wai_Factura1" FromRole="wai_Factura_Detalle" ToRole="wai_Factura" />
+          <NavigationProperty Name="wai_Item" Relationship="Self.FK_wai_Factura_Detalle_wai_Item" FromRole="wai_Factura_Detalle" ToRole="wai_Item" />
+          <NavigationProperty Name="wai_Pack_List" Relationship="Self.FK_wai_Pack_List_wai_Factura_Detalle" FromRole="wai_Factura_Detalle" ToRole="wai_Pack_List" />
+        </EntityType>
+        <EntityType Name="wai_Inventario">
+          <Key>
+            <PropertyRef Name="inv_id" />
+          </Key>
+          <Property Name="inv_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="inv_periodo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="inv_responsable" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="inv_fecha" Type="DateTime" Precision="0" />
+          <Property Name="inv_activo" Type="Int32" />
+          <Property Name="inv_usuario_crea" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="inv_fecha_crea" Type="DateTime" Precision="3" />
+          <Property Name="inv_usuario_mod" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="inv_fecha_mod" Type="DateTime" Precision="3" />
+          <Property Name="bod_id" Type="Int32" />
+          <Property Name="inv_tipo" Type="Int32" />
+          <Property Name="inv_year" Type="Int32" />
+          <Property Name="inv_num_periodo" Type="Int32" />
+          <NavigationProperty Name="wai_Inventario_Localidad" Relationship="Self.FK_wai_LocalidadInventario_wai_Inventario" FromRole="wai_Inventario" ToRole="wai_Inventario_Localidad" />
+        </EntityType>
+        <EntityType Name="wai_Inventario_Escaneos">
+          <Key>
+            <PropertyRef Name="inve_id" />
+          </Key>
+          <Property Name="inve_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="inve_localidadinventario_id" Type="Int32" Nullable="false" />
+          <Property Name="inve_packid" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="inve_libras" Type="Single" />
+          <Property Name="inve_escaneado" Type="Int32" />
+          <Property Name="inve_localidad_preescaneo" Type="Int32" />
+          <Property Name="inve_nuevo" Type="Int32" />
+          <Property Name="inve_eliminado" Type="Int32" />
+          <Property Name="inve_usuario_crea" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="inve_DT_crea" Type="DateTime" Precision="3" />
+          <Property Name="inve_usuario_mod" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="inve_DT_mod" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="wai_Inventario_Localidad">
+          <Key>
+            <PropertyRef Name="invl_id" />
+          </Key>
+          <Property Name="invl_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="invl_inventario_id" Type="Int32" Nullable="false" />
+          <Property Name="invl_localidad_id" Type="Int32" Nullable="false" />
+          <Property Name="invl_usuario_crea" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="invl_fecha_crea" Type="DateTime" Precision="3" />
+          <Property Name="invl_usuario_mod" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="invl_fecha_mod" Type="DateTime" Precision="3" />
+          <Property Name="invl_responsable" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="wai_Inventario" Relationship="Self.FK_wai_LocalidadInventario_wai_Inventario" FromRole="wai_Inventario_Localidad" ToRole="wai_Inventario" />
+          <NavigationProperty Name="wai_Localidad" Relationship="Self.FK_wai_LocalidadInventario_wai_Localidad" FromRole="wai_Inventario_Localidad" ToRole="wai_Localidad" />
+        </EntityType>
+        <EntityType Name="wai_Item">
+          <Key>
+            <PropertyRef Name="ite_id" />
+          </Key>
+          <Property Name="ite_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ite_bodega_id" Type="Int32" />
+          <Property Name="ite_area_id" Type="Int32" />
+          <Property Name="ite_codigo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ite_descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ite_existencia" Type="Int32" />
+          <Property Name="ite_usuario_crea" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ite_fecha_crea" Type="DateTime" Precision="3" />
+          <Property Name="ite_usuario_mod" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ite_fecha_mod" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="wai_Areas" Relationship="Self.FK_wai_Item_wai_Areas" FromRole="wai_Item" ToRole="wai_Areas" />
+          <NavigationProperty Name="wai_Bodegas" Relationship="Self.FK_wai_Item_wai_Bodegas" FromRole="wai_Item" ToRole="wai_Bodegas" />
+          <NavigationProperty Name="wai_Devoluciones" Relationship="Self.FK_wai_Devoluciones_wai_Item" FromRole="wai_Item" ToRole="wai_Devoluciones" />
+          <NavigationProperty Name="wai_Factura_Detalle" Relationship="Self.FK_wai_Factura_Detalle_wai_Item" FromRole="wai_Item" ToRole="wai_Factura_Detalle" />
+          <NavigationProperty Name="wai_Prioridades" Relationship="Self.FK_wai_Prioridades_wai_Item" FromRole="wai_Item" ToRole="wai_Prioridades" />
+        </EntityType>
+        <EntityType Name="wai_Item_Localidad">
+          <Key>
+            <PropertyRef Name="itl_id" />
+          </Key>
+          <Property Name="itl_id" Type="Int32" Nullable="false" />
+          <Property Name="itl_localidad_id" Type="Int32" />
+          <Property Name="itl_item_id" Type="Int32" />
+          <Property Name="itl_periodo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="itl_usuario_crea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="itl_fecha_crea" Type="DateTime" Precision="3" />
+          <Property Name="itl_usuario_mod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="itl_fecha_mod" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="wai_Localidad">
+          <Key>
+            <PropertyRef Name="loc_id" />
+          </Key>
+          <Property Name="loc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="loc_nombre" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="loc_usuario_crea" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="loc_fecha_crea" Type="DateTime" Precision="3" />
+          <Property Name="loc_usuario_mod" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="loc_fecha_mod" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="wai_Devoluciones" Relationship="Self.FK_wai_Devoluciones_wai_Localidad" FromRole="wai_Localidad" ToRole="wai_Devoluciones" />
+          <NavigationProperty Name="wai_Inventario_Localidad" Relationship="Self.FK_wai_LocalidadInventario_wai_Localidad" FromRole="wai_Localidad" ToRole="wai_Inventario_Localidad" />
+          <NavigationProperty Name="wai_Pack_List" Relationship="Self.FK_wai_Pack_List_wai_Localidad" FromRole="wai_Localidad" ToRole="wai_Pack_List" />
+        </EntityType>
+        <EntityType Name="wai_Pack_List">
+          <Key>
+            <PropertyRef Name="pac_id" />
+          </Key>
+          <Property Name="pac_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pac_factura_detalle_id" Type="Int32" />
+          <Property Name="pac_localidad_id" Type="Int32" />
+          <Property Name="pac_prov_pack_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="pac_libras" Type="Single" />
+          <Property Name="pac_impreso" Type="Boolean" />
+          <Property Name="pac_scan_whin" Type="DateTime" Precision="3" />
+          <Property Name="pac_scan_whout" Type="DateTime" Precision="3" />
+          <Property Name="pac_libras_salida" Type="Single" />
+          <Property Name="pac_ajuste" Type="Boolean" />
+          <Property Name="pac_fecha_produccion" Type="DateTime" Precision="3" />
+          <Property Name="pac_envio" Type="Int32" />
+          <Property Name="pac_usuario_crea" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="pac_fecha_crea" Type="DateTime" Precision="3" />
+          <Property Name="pac_usuario_mod" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="pac_fecha_mod" Type="DateTime" Precision="3" />
+          <Property Name="pac_No_Conformidad" Type="Boolean" />
+          <Property Name="def_ID" Type="Int32" />
+          <Property Name="pac_FH_No_Conforme_IN" Type="DateTime" Precision="3" />
+          <Property Name="pac_FH_No_Conforme_OUT" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="wai_Defectos_NoConformes" Relationship="Self.FK_wai_Pack_List_wai_Defectos_NoConformes" FromRole="wai_Pack_List" ToRole="wai_Defectos_NoConformes" />
+          <NavigationProperty Name="wai_Factura_Detalle" Relationship="Self.FK_wai_Pack_List_wai_Factura_Detalle" FromRole="wai_Pack_List" ToRole="wai_Factura_Detalle" />
+          <NavigationProperty Name="wai_Localidad" Relationship="Self.FK_wai_Pack_List_wai_Localidad" FromRole="wai_Pack_List" ToRole="wai_Localidad" />
+          <NavigationProperty Name="wai_Transacciones" Relationship="Self.FK_wai_Transacciones_wai_Pack_List" FromRole="wai_Pack_List" ToRole="wai_Transacciones" />
+        </EntityType>
+        <EntityType Name="wai_Parametros">
+          <Key>
+            <PropertyRef Name="par_id" />
+          </Key>
+          <Property Name="par_id" Type="Int32" Nullable="false" />
+          <Property Name="par_bodega_id" Type="Int32" />
+          <Property Name="par_campo1" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="par_campo2" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="par_salida_bodega" Type="Int32" />
+        </EntityType>
+        <EntityType Name="wai_Plan">
+          <Key>
+            <PropertyRef Name="pla_semana" />
+            <PropertyRef Name="pla_item" />
+          </Key>
+          <Property Name="pla_semana" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="pla_item" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pla_UOM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="pla_FH" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="pla_usuario" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="wai_Solicitudes" Relationship="Self.FK_wai_Solicitudes_wai_Plan" FromRole="wai_Plan" ToRole="wai_Solicitudes" />
+        </EntityType>
+        <EntityType Name="wai_POS">
+          <Key>
+            <PropertyRef Name="pos_id" />
+          </Key>
+          <Property Name="pos_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pos_numero" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="pos_proveedor_id" Type="Int32" />
+          <Property Name="pos_bodega_id" Type="Int32" />
+          <Property Name="pos_ajuste" Type="Boolean" />
+          <Property Name="pos_estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="pos_semana" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="pos_fecha" Type="DateTime" Precision="0" />
+          <Property Name="pos_creador" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="wai_Bodegas" Relationship="Self.FK_wai_POS_wai_Bodegas" FromRole="wai_POS" ToRole="wai_Bodegas" />
+          <NavigationProperty Name="wai_Factura" Relationship="Self.FK_wai_Factura_wai_POS1" FromRole="wai_POS" ToRole="wai_Factura" />
+          <NavigationProperty Name="wai_Proveedor" Relationship="Self.FK_wai_POS_wai_Proveedor" FromRole="wai_POS" ToRole="wai_Proveedor" />
+        </EntityType>
+        <EntityType Name="wai_Prioridades">
+          <Key>
+            <PropertyRef Name="pri_id" />
+          </Key>
+          <Property Name="pri_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pri_item_id" Type="Int32" />
+          <Property Name="pri_lote" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="pri_semana" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="pri_prioridad" Type="Int32" />
+          <Property Name="pri_paquetes" Type="Int32" />
+          <Property Name="pri_libras" Type="Single" />
+          <Property Name="pri_usuario_crea" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="pri_fecha_crea" Type="DateTime" Precision="3" />
+          <Property Name="pri_usuario_mod" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="pri_fecha_mod" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="wai_Item" Relationship="Self.FK_wai_Prioridades_wai_Item" FromRole="wai_Prioridades" ToRole="wai_Item" />
+        </EntityType>
+        <EntityType Name="wai_Proveedor">
+          <Key>
+            <PropertyRef Name="pro_id" />
+          </Key>
+          <Property Name="pro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pro_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pro_usuario_crea" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="pro_fecha_crea" Type="DateTime" Precision="3" />
+          <Property Name="pro_usuario_mod" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="pro_fecha_mod" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="wai_POS" Relationship="Self.FK_wai_POS_wai_Proveedor" FromRole="wai_Proveedor" ToRole="wai_POS" />
+          <NavigationProperty Name="wai_Solicitudes" Relationship="Self.FK_wai_Solicitudes_wai_Proveedor" FromRole="wai_Proveedor" ToRole="wai_Solicitudes" />
+        </EntityType>
+        <EntityType Name="wai_Solicitudes">
+          <Key>
+            <PropertyRef Name="sol_ID" />
+          </Key>
+          <Property Name="sol_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sol_semana" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="sol_item" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sol_estado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sol_UOM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sol_pro_ID" Type="Int32" Nullable="false" />
+          <Property Name="sol_turno_crea" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="sol_turno_entrega" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="sol_FH_crea" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="sol_FH_entrega" Type="DateTime" Precision="3" />
+          <Property Name="sol_localidad" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="sol_prioridad" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sol_usuario_pedido" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="sol_usuario_entrega" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="sol_aut_ID" Type="Int32" />
+          <Property Name="sol_pack_list_ID" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="wai_Plan" Relationship="Self.FK_wai_Solicitudes_wai_Plan" FromRole="wai_Solicitudes" ToRole="wai_Plan" />
+          <NavigationProperty Name="wai_Proveedor" Relationship="Self.FK_wai_Solicitudes_wai_Proveedor" FromRole="wai_Solicitudes" ToRole="wai_Proveedor" />
+        </EntityType>
+        <EntityType Name="wai_Tipo_Transaccion">
+          <Key>
+            <PropertyRef Name="tipt_id" />
+          </Key>
+          <Property Name="tipt_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipt_nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="wai_Transacciones_Devoluciones" Relationship="Self.FK_wai_Transacciones_Devoluciones_wai_Tipo_Transaccion" FromRole="wai_Tipo_Transaccion" ToRole="wai_Transacciones_Devoluciones" />
+          <NavigationProperty Name="wai_Transacciones" Relationship="Self.FK_wai_Transacciones_wai_Tipo_Transaccion" FromRole="wai_Tipo_Transaccion" ToRole="wai_Transacciones" />
+        </EntityType>
+        <EntityType Name="wai_Transacciones">
+          <Key>
+            <PropertyRef Name="tra_id" />
+          </Key>
+          <Property Name="tra_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tra_pack_list_id" Type="Int32" />
+          <Property Name="tra_tipo_transaccion" Type="Int32" />
+          <Property Name="tra_libras" Type="Single" />
+          <Property Name="tra_usuario" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tra_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="wai_Pack_List" Relationship="Self.FK_wai_Transacciones_wai_Pack_List" FromRole="wai_Transacciones" ToRole="wai_Pack_List" />
+          <NavigationProperty Name="wai_Tipo_Transaccion" Relationship="Self.FK_wai_Transacciones_wai_Tipo_Transaccion" FromRole="wai_Transacciones" ToRole="wai_Tipo_Transaccion" />
+        </EntityType>
+        <EntityType Name="wai_Transacciones_Devoluciones">
+          <Key>
+            <PropertyRef Name="tra_dev_id" />
+          </Key>
+          <Property Name="tra_dev_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tra_dev_dev_id" Type="Int32" />
+          <Property Name="tra_dev_tipo_transaccion" Type="Int32" />
+          <Property Name="tra_dev_libras" Type="Single" />
+          <Property Name="tra_dev_usuario" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="tra_dev_DT" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="wai_Devoluciones" Relationship="Self.FK_wai_Transacciones_Devoluciones_wai_Devoluciones" FromRole="wai_Transacciones_Devoluciones" ToRole="wai_Devoluciones" />
+          <NavigationProperty Name="wai_Tipo_Transaccion" Relationship="Self.FK_wai_Transacciones_Devoluciones_wai_Tipo_Transaccion" FromRole="wai_Transacciones_Devoluciones" ToRole="wai_Tipo_Transaccion" />
+        </EntityType>
+        <Association Name="FK_mst_Objects_mst_Applications">
+          <End Role="mst_Applications" Type="Self.mst_Applications" Multiplicity="1" />
+          <End Role="mst_Objects" Type="Self.mst_Objects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mst_Applications">
+              <PropertyRef Name="App_ID" />
+            </Principal>
+            <Dependent Role="mst_Objects">
+              <PropertyRef Name="App_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mst_Objects_mst_Objects">
+          <End Role="mst_Objects" Type="Self.mst_Objects" Multiplicity="0..1" />
+          <End Role="mst_Objects1" Type="Self.mst_Objects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mst_Objects">
+              <PropertyRef Name="Obj_ID" />
+            </Principal>
+            <Dependent Role="mst_Objects1">
+              <PropertyRef Name="Obj_Parent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Item_wai_Areas">
+          <End Role="wai_Areas" Type="Self.wai_Areas" Multiplicity="0..1" />
+          <End Role="wai_Item" Type="Self.wai_Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Areas">
+              <PropertyRef Name="are_id" />
+            </Principal>
+            <Dependent Role="wai_Item">
+              <PropertyRef Name="ite_area_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Item_wai_Bodegas">
+          <End Role="wai_Bodegas" Type="Self.wai_Bodegas" Multiplicity="0..1" />
+          <End Role="wai_Item" Type="Self.wai_Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Bodegas">
+              <PropertyRef Name="bod_id" />
+            </Principal>
+            <Dependent Role="wai_Item">
+              <PropertyRef Name="ite_bodega_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_POS_wai_Bodegas">
+          <End Role="wai_Bodegas" Type="Self.wai_Bodegas" Multiplicity="0..1" />
+          <End Role="wai_POS" Type="Self.wai_POS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Bodegas">
+              <PropertyRef Name="bod_id" />
+            </Principal>
+            <Dependent Role="wai_POS">
+              <PropertyRef Name="pos_bodega_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Devoluciones_wai_Defectos_NoConformes">
+          <End Role="wai_Defectos_NoConformes" Type="Self.wai_Defectos_NoConformes" Multiplicity="0..1" />
+          <End Role="wai_Devoluciones" Type="Self.wai_Devoluciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Defectos_NoConformes">
+              <PropertyRef Name="def_ID" />
+            </Principal>
+            <Dependent Role="wai_Devoluciones">
+              <PropertyRef Name="def_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Pack_List_wai_Defectos_NoConformes">
+          <End Role="wai_Defectos_NoConformes" Type="Self.wai_Defectos_NoConformes" Multiplicity="0..1" />
+          <End Role="wai_Pack_List" Type="Self.wai_Pack_List" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Defectos_NoConformes">
+              <PropertyRef Name="def_ID" />
+            </Principal>
+            <Dependent Role="wai_Pack_List">
+              <PropertyRef Name="def_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Devoluciones_wai_Item">
+          <End Role="wai_Item" Type="Self.wai_Item" Multiplicity="1" />
+          <End Role="wai_Devoluciones" Type="Self.wai_Devoluciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Item">
+              <PropertyRef Name="ite_id" />
+            </Principal>
+            <Dependent Role="wai_Devoluciones">
+              <PropertyRef Name="dev_item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Devoluciones_wai_Localidad">
+          <End Role="wai_Localidad" Type="Self.wai_Localidad" Multiplicity="0..1" />
+          <End Role="wai_Devoluciones" Type="Self.wai_Devoluciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Localidad">
+              <PropertyRef Name="loc_id" />
+            </Principal>
+            <Dependent Role="wai_Devoluciones">
+              <PropertyRef Name="dev_localidad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Transacciones_Devoluciones_wai_Devoluciones">
+          <End Role="wai_Devoluciones" Type="Self.wai_Devoluciones" Multiplicity="0..1" />
+          <End Role="wai_Transacciones_Devoluciones" Type="Self.wai_Transacciones_Devoluciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Devoluciones">
+              <PropertyRef Name="dev_id" />
+            </Principal>
+            <Dependent Role="wai_Transacciones_Devoluciones">
+              <PropertyRef Name="tra_dev_dev_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Factura_Detalle_wai_Factura1">
+          <End Role="wai_Factura" Type="Self.wai_Factura" Multiplicity="1" />
+          <End Role="wai_Factura_Detalle" Type="Self.wai_Factura_Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Factura">
+              <PropertyRef Name="fac_id" />
+            </Principal>
+            <Dependent Role="wai_Factura_Detalle">
+              <PropertyRef Name="facd_fac_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Factura_wai_POS1">
+          <End Role="wai_POS" Type="Self.wai_POS" Multiplicity="1" />
+          <End Role="wai_Factura" Type="Self.wai_Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_POS">
+              <PropertyRef Name="pos_id" />
+            </Principal>
+            <Dependent Role="wai_Factura">
+              <PropertyRef Name="fac_pos_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Factura_Detalle_wai_Item">
+          <End Role="wai_Item" Type="Self.wai_Item" Multiplicity="1" />
+          <End Role="wai_Factura_Detalle" Type="Self.wai_Factura_Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Item">
+              <PropertyRef Name="ite_id" />
+            </Principal>
+            <Dependent Role="wai_Factura_Detalle">
+              <PropertyRef Name="facd_item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Pack_List_wai_Factura_Detalle">
+          <End Role="wai_Factura_Detalle" Type="Self.wai_Factura_Detalle" Multiplicity="0..1" />
+          <End Role="wai_Pack_List" Type="Self.wai_Pack_List" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Factura_Detalle">
+              <PropertyRef Name="facd_id" />
+            </Principal>
+            <Dependent Role="wai_Pack_List">
+              <PropertyRef Name="pac_factura_detalle_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_LocalidadInventario_wai_Inventario">
+          <End Role="wai_Inventario" Type="Self.wai_Inventario" Multiplicity="1" />
+          <End Role="wai_Inventario_Localidad" Type="Self.wai_Inventario_Localidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Inventario">
+              <PropertyRef Name="inv_id" />
+            </Principal>
+            <Dependent Role="wai_Inventario_Localidad">
+              <PropertyRef Name="invl_inventario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_LocalidadInventario_wai_Localidad">
+          <End Role="wai_Localidad" Type="Self.wai_Localidad" Multiplicity="1" />
+          <End Role="wai_Inventario_Localidad" Type="Self.wai_Inventario_Localidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Localidad">
+              <PropertyRef Name="loc_id" />
+            </Principal>
+            <Dependent Role="wai_Inventario_Localidad">
+              <PropertyRef Name="invl_localidad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Prioridades_wai_Item">
+          <End Role="wai_Item" Type="Self.wai_Item" Multiplicity="0..1" />
+          <End Role="wai_Prioridades" Type="Self.wai_Prioridades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Item">
+              <PropertyRef Name="ite_id" />
+            </Principal>
+            <Dependent Role="wai_Prioridades">
+              <PropertyRef Name="pri_item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Pack_List_wai_Localidad">
+          <End Role="wai_Localidad" Type="Self.wai_Localidad" Multiplicity="0..1" />
+          <End Role="wai_Pack_List" Type="Self.wai_Pack_List" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Localidad">
+              <PropertyRef Name="loc_id" />
+            </Principal>
+            <Dependent Role="wai_Pack_List">
+              <PropertyRef Name="pac_localidad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Transacciones_wai_Pack_List">
+          <End Role="wai_Pack_List" Type="Self.wai_Pack_List" Multiplicity="0..1" />
+          <End Role="wai_Transacciones" Type="Self.wai_Transacciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Pack_List">
+              <PropertyRef Name="pac_id" />
+            </Principal>
+            <Dependent Role="wai_Transacciones">
+              <PropertyRef Name="tra_pack_list_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Solicitudes_wai_Plan">
+          <End Role="wai_Plan" Type="Self.wai_Plan" Multiplicity="1" />
+          <End Role="wai_Solicitudes" Type="Self.wai_Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Plan">
+              <PropertyRef Name="pla_semana" />
+              <PropertyRef Name="pla_item" />
+            </Principal>
+            <Dependent Role="wai_Solicitudes">
+              <PropertyRef Name="sol_semana" />
+              <PropertyRef Name="sol_item" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_POS_wai_Proveedor">
+          <End Role="wai_Proveedor" Type="Self.wai_Proveedor" Multiplicity="0..1" />
+          <End Role="wai_POS" Type="Self.wai_POS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Proveedor">
+              <PropertyRef Name="pro_id" />
+            </Principal>
+            <Dependent Role="wai_POS">
+              <PropertyRef Name="pos_proveedor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Solicitudes_wai_Proveedor">
+          <End Role="wai_Proveedor" Type="Self.wai_Proveedor" Multiplicity="1" />
+          <End Role="wai_Solicitudes" Type="Self.wai_Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Proveedor">
+              <PropertyRef Name="pro_id" />
+            </Principal>
+            <Dependent Role="wai_Solicitudes">
+              <PropertyRef Name="sol_pro_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Transacciones_Devoluciones_wai_Tipo_Transaccion">
+          <End Role="wai_Tipo_Transaccion" Type="Self.wai_Tipo_Transaccion" Multiplicity="0..1" />
+          <End Role="wai_Transacciones_Devoluciones" Type="Self.wai_Transacciones_Devoluciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Tipo_Transaccion">
+              <PropertyRef Name="tipt_id" />
+            </Principal>
+            <Dependent Role="wai_Transacciones_Devoluciones">
+              <PropertyRef Name="tra_dev_tipo_transaccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wai_Transacciones_wai_Tipo_Transaccion">
+          <End Role="wai_Tipo_Transaccion" Type="Self.wai_Tipo_Transaccion" Multiplicity="0..1" />
+          <End Role="wai_Transacciones" Type="Self.wai_Transacciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wai_Tipo_Transaccion">
+              <PropertyRef Name="tipt_id" />
+            </Principal>
+            <Dependent Role="wai_Transacciones">
+              <PropertyRef Name="tra_tipo_transaccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ES_SOCKSEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="mst_Applications" EntityType="Self.mst_Applications" />
+          <EntitySet Name="mst_Autorizadores" EntityType="Self.mst_Autorizadores" />
+          <EntitySet Name="mst_Autorizadores_Bitacora" EntityType="Self.mst_Autorizadores_Bitacora" />
+          <EntitySet Name="mst_Objects" EntityType="Self.mst_Objects" />
+          <EntitySet Name="wai_Ajuste" EntityType="Self.wai_Ajuste" />
+          <EntitySet Name="wai_Areas" EntityType="Self.wai_Areas" />
+          <EntitySet Name="wai_Bodegas" EntityType="Self.wai_Bodegas" />
+          <EntitySet Name="wai_Defectos_NoConformes" EntityType="Self.wai_Defectos_NoConformes" />
+          <EntitySet Name="wai_Devoluciones" EntityType="Self.wai_Devoluciones" />
+          <EntitySet Name="wai_Factura" EntityType="Self.wai_Factura" />
+          <EntitySet Name="wai_Factura_Detalle" EntityType="Self.wai_Factura_Detalle" />
+          <EntitySet Name="wai_Inventario" EntityType="Self.wai_Inventario" />
+          <EntitySet Name="wai_Inventario_Escaneos" EntityType="Self.wai_Inventario_Escaneos" />
+          <EntitySet Name="wai_Inventario_Localidad" EntityType="Self.wai_Inventario_Localidad" />
+          <EntitySet Name="wai_Item" EntityType="Self.wai_Item" />
+          <EntitySet Name="wai_Item_Localidad" EntityType="Self.wai_Item_Localidad" />
+          <EntitySet Name="wai_Localidad" EntityType="Self.wai_Localidad" />
+          <EntitySet Name="wai_Pack_List" EntityType="Self.wai_Pack_List" />
+          <EntitySet Name="wai_Parametros" EntityType="Self.wai_Parametros" />
+          <EntitySet Name="wai_Plan" EntityType="Self.wai_Plan" />
+          <EntitySet Name="wai_POS" EntityType="Self.wai_POS" />
+          <EntitySet Name="wai_Prioridades" EntityType="Self.wai_Prioridades" />
+          <EntitySet Name="wai_Proveedor" EntityType="Self.wai_Proveedor" />
+          <EntitySet Name="wai_Solicitudes" EntityType="Self.wai_Solicitudes" />
+          <EntitySet Name="wai_Tipo_Transaccion" EntityType="Self.wai_Tipo_Transaccion" />
+          <EntitySet Name="wai_Transacciones" EntityType="Self.wai_Transacciones" />
+          <EntitySet Name="wai_Transacciones_Devoluciones" EntityType="Self.wai_Transacciones_Devoluciones" />
+          <AssociationSet Name="FK_mst_Objects_mst_Applications" Association="Self.FK_mst_Objects_mst_Applications">
+            <End Role="mst_Applications" EntitySet="mst_Applications" />
+            <End Role="mst_Objects" EntitySet="mst_Objects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mst_Objects_mst_Objects" Association="Self.FK_mst_Objects_mst_Objects">
+            <End Role="mst_Objects" EntitySet="mst_Objects" />
+            <End Role="mst_Objects1" EntitySet="mst_Objects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Item_wai_Areas" Association="Self.FK_wai_Item_wai_Areas">
+            <End Role="wai_Areas" EntitySet="wai_Areas" />
+            <End Role="wai_Item" EntitySet="wai_Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Item_wai_Bodegas" Association="Self.FK_wai_Item_wai_Bodegas">
+            <End Role="wai_Bodegas" EntitySet="wai_Bodegas" />
+            <End Role="wai_Item" EntitySet="wai_Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_POS_wai_Bodegas" Association="Self.FK_wai_POS_wai_Bodegas">
+            <End Role="wai_Bodegas" EntitySet="wai_Bodegas" />
+            <End Role="wai_POS" EntitySet="wai_POS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Devoluciones_wai_Defectos_NoConformes" Association="Self.FK_wai_Devoluciones_wai_Defectos_NoConformes">
+            <End Role="wai_Defectos_NoConformes" EntitySet="wai_Defectos_NoConformes" />
+            <End Role="wai_Devoluciones" EntitySet="wai_Devoluciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Pack_List_wai_Defectos_NoConformes" Association="Self.FK_wai_Pack_List_wai_Defectos_NoConformes">
+            <End Role="wai_Defectos_NoConformes" EntitySet="wai_Defectos_NoConformes" />
+            <End Role="wai_Pack_List" EntitySet="wai_Pack_List" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Devoluciones_wai_Item" Association="Self.FK_wai_Devoluciones_wai_Item">
+            <End Role="wai_Item" EntitySet="wai_Item" />
+            <End Role="wai_Devoluciones" EntitySet="wai_Devoluciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Devoluciones_wai_Localidad" Association="Self.FK_wai_Devoluciones_wai_Localidad">
+            <End Role="wai_Localidad" EntitySet="wai_Localidad" />
+            <End Role="wai_Devoluciones" EntitySet="wai_Devoluciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Transacciones_Devoluciones_wai_Devoluciones" Association="Self.FK_wai_Transacciones_Devoluciones_wai_Devoluciones">
+            <End Role="wai_Devoluciones" EntitySet="wai_Devoluciones" />
+            <End Role="wai_Transacciones_Devoluciones" EntitySet="wai_Transacciones_Devoluciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Factura_Detalle_wai_Factura1" Association="Self.FK_wai_Factura_Detalle_wai_Factura1">
+            <End Role="wai_Factura" EntitySet="wai_Factura" />
+            <End Role="wai_Factura_Detalle" EntitySet="wai_Factura_Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Factura_wai_POS1" Association="Self.FK_wai_Factura_wai_POS1">
+            <End Role="wai_POS" EntitySet="wai_POS" />
+            <End Role="wai_Factura" EntitySet="wai_Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Factura_Detalle_wai_Item" Association="Self.FK_wai_Factura_Detalle_wai_Item">
+            <End Role="wai_Item" EntitySet="wai_Item" />
+            <End Role="wai_Factura_Detalle" EntitySet="wai_Factura_Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Pack_List_wai_Factura_Detalle" Association="Self.FK_wai_Pack_List_wai_Factura_Detalle">
+            <End Role="wai_Factura_Detalle" EntitySet="wai_Factura_Detalle" />
+            <End Role="wai_Pack_List" EntitySet="wai_Pack_List" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_LocalidadInventario_wai_Inventario" Association="Self.FK_wai_LocalidadInventario_wai_Inventario">
+            <End Role="wai_Inventario" EntitySet="wai_Inventario" />
+            <End Role="wai_Inventario_Localidad" EntitySet="wai_Inventario_Localidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_LocalidadInventario_wai_Localidad" Association="Self.FK_wai_LocalidadInventario_wai_Localidad">
+            <End Role="wai_Localidad" EntitySet="wai_Localidad" />
+            <End Role="wai_Inventario_Localidad" EntitySet="wai_Inventario_Localidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Prioridades_wai_Item" Association="Self.FK_wai_Prioridades_wai_Item">
+            <End Role="wai_Item" EntitySet="wai_Item" />
+            <End Role="wai_Prioridades" EntitySet="wai_Prioridades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Pack_List_wai_Localidad" Association="Self.FK_wai_Pack_List_wai_Localidad">
+            <End Role="wai_Localidad" EntitySet="wai_Localidad" />
+            <End Role="wai_Pack_List" EntitySet="wai_Pack_List" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Transacciones_wai_Pack_List" Association="Self.FK_wai_Transacciones_wai_Pack_List">
+            <End Role="wai_Pack_List" EntitySet="wai_Pack_List" />
+            <End Role="wai_Transacciones" EntitySet="wai_Transacciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Solicitudes_wai_Plan" Association="Self.FK_wai_Solicitudes_wai_Plan">
+            <End Role="wai_Plan" EntitySet="wai_Plan" />
+            <End Role="wai_Solicitudes" EntitySet="wai_Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_POS_wai_Proveedor" Association="Self.FK_wai_POS_wai_Proveedor">
+            <End Role="wai_Proveedor" EntitySet="wai_Proveedor" />
+            <End Role="wai_POS" EntitySet="wai_POS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Solicitudes_wai_Proveedor" Association="Self.FK_wai_Solicitudes_wai_Proveedor">
+            <End Role="wai_Proveedor" EntitySet="wai_Proveedor" />
+            <End Role="wai_Solicitudes" EntitySet="wai_Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Transacciones_Devoluciones_wai_Tipo_Transaccion" Association="Self.FK_wai_Transacciones_Devoluciones_wai_Tipo_Transaccion">
+            <End Role="wai_Tipo_Transaccion" EntitySet="wai_Tipo_Transaccion" />
+            <End Role="wai_Transacciones_Devoluciones" EntitySet="wai_Transacciones_Devoluciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wai_Transacciones_wai_Tipo_Transaccion" Association="Self.FK_wai_Transacciones_wai_Tipo_Transaccion">
+            <End Role="wai_Tipo_Transaccion" EntitySet="wai_Tipo_Transaccion" />
+            <End Role="wai_Transacciones" EntitySet="wai_Transacciones" />
+          </AssociationSet>
+          <FunctionImport Name="fn_wai_Reporte_Toma_Inventario" IsComposable="true" ReturnType="Collection(ES_SOCKSModel.fn_wai_Reporte_Toma_Inventario_Result)">
+            <Parameter Name="idInventario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_mst_PermissionsByUser" ReturnType="Collection(ES_SOCKSModel.usp_mst_PermissionsByUser_Result)">
+            <Parameter Name="UsLogin" Mode="In" Type="String" />
+            <Parameter Name="App" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_wai_Areas_CRUD" ReturnType="Collection(String)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="codigo" Mode="In" Type="String" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="accion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_wai_Bodegas_CRUD" ReturnType="Collection(String)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="accion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_wai_Devoluciones_CRUD" ReturnType="Collection(Int32)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="accion" Mode="In" Type="String" />
+            <Parameter Name="itemID" Mode="In" Type="Int32" />
+            <Parameter Name="localidadID" Mode="In" Type="Int32" />
+            <Parameter Name="libras" Mode="In" Type="Single" />
+            <Parameter Name="lote" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_wai_Factura_CRUD" ReturnType="Collection(String)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="accion" Mode="In" Type="String" />
+            <Parameter Name="idFactura" Mode="In" Type="Int32" />
+            <Parameter Name="idPO" Mode="In" Type="Int32" />
+            <Parameter Name="numero" Mode="In" Type="String" />
+            <Parameter Name="paquetes" Mode="In" Type="Int32" />
+            <Parameter Name="libras" Mode="In" Type="Single" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="usp_wai_Factura_Detalle_CRUD" ReturnType="Collection(String)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="accion" Mode="In" Type="String" />
+            <Parameter Name="idFacD" Mode="In" Type="Int32" />
+            <Parameter Name="idFactura" Mode="In" Type="Int32" />
+            <Parameter Name="idItem" Mode="In" Type="Int32" />
+            <Parameter Name="cantidad" Mode="In" Type="Int32" />
+            <Parameter Name="peso" Mode="In" Type="Double" />
+            <Parameter Name="lote" Mode="In" Type="String" />
+            <Parameter Name="prioridad" Mode="In" Type="Int32" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="noConforme" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_wai_Inventario" ReturnType="Collection(String)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="idInventario" Mode="In" Type="Int32" />
+            <Parameter Name="periodo" Mode="In" Type="String" />
+            <Parameter Name="responsable" Mode="In" Type="String" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="usp_wai_Inventario_Escaneos" ReturnType="Collection(String)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="packID" Mode="In" Type="String" />
+            <Parameter Name="idInventario" Mode="In" Type="Int32" />
+            <Parameter Name="idLocalidad" Mode="In" Type="Int32" />
+            <Parameter Name="nuevo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_wai_Inventario_Localidad" ReturnType="Collection(String)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="accion" Mode="In" Type="String" />
+            <Parameter Name="idInventario" Mode="In" Type="Int32" />
+            <Parameter Name="idLocalidad" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_wai_Item_CRUD" ReturnType="Collection(String)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="bodega" Mode="In" Type="Int32" />
+            <Parameter Name="codigo" Mode="In" Type="String" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="accion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_wai_Localidades_CRUD" ReturnType="Collection(String)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="accion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_wai_POS_CRUD" ReturnType="Collection(String)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="accion" Mode="In" Type="String" />
+            <Parameter Name="idPO" Mode="In" Type="Int32" />
+            <Parameter Name="numeroPO" Mode="In" Type="String" />
+            <Parameter Name="proveedorID" Mode="In" Type="Int32" />
+            <Parameter Name="bodegaID" Mode="In" Type="Int32" />
+            <Parameter Name="estado" Mode="In" Type="Int32" />
+            <Parameter Name="semana" Mode="In" Type="String" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="creador" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_wai_Prioridades_CRUD" ReturnType="Collection(String)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="accion" Mode="In" Type="String" />
+            <Parameter Name="item" Mode="In" Type="Int32" />
+            <Parameter Name="lote" Mode="In" Type="String" />
+            <Parameter Name="semana" Mode="In" Type="String" />
+            <Parameter Name="prioridad" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_wai_Proveedores_CRUD" ReturnType="Collection(String)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="accion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_wai_Reporte_Entradas_Salidas" ReturnType="Collection(ES_SOCKSModel.usp_wai_Reporte_Entradas_Salidas_Result)">
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
+            <Parameter Name="reporte" Mode="In" Type="Int32" />
+            <Parameter Name="bodega" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_wai_Solicitud_CRUD" ReturnType="Collection(String)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="semana" Mode="In" Type="String" />
+            <Parameter Name="sol_item" Mode="In" Type="String" />
+            <Parameter Name="sol_estado" Mode="In" Type="String" />
+            <Parameter Name="sol_UOM" Mode="In" Type="String" />
+            <Parameter Name="sol_pro_ID" Mode="In" Type="Int32" />
+            <Parameter Name="sol_localidad" Mode="In" Type="String" />
+            <Parameter Name="sol_prioridad" Mode="In" Type="String" />
+            <Parameter Name="sol_usuario_pedido" Mode="In" Type="String" />
+            <Parameter Name="accion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_wai_Transacciones_CRUD" ReturnType="Collection(String)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="accion" Mode="In" Type="Int32" />
+            <Parameter Name="packID" Mode="In" Type="String" />
+            <Parameter Name="libras" Mode="In" Type="Single" />
+            <Parameter Name="itemID" Mode="In" Type="Int32" />
+            <Parameter Name="Autoriza" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_wai_TransaccionesProv_CRUD" ReturnType="Collection(String)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="accion" Mode="In" Type="Int32" />
+            <Parameter Name="packProvID" Mode="In" Type="String" />
+            <Parameter Name="libras" Mode="In" Type="Single" />
+            <Parameter Name="itemID" Mode="In" Type="Int32" />
+            <Parameter Name="Autoriza" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_wai_Traslados" ReturnType="Collection(String)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="PackID" Mode="In" Type="Int32" />
+            <Parameter Name="idLocalidad" Mode="In" Type="Int32" />
+            <Parameter Name="origen" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="usp_mst_PermissionsByUser_Result">
+          <Property Type="String" Name="Obj_Name" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="PCrear" Nullable="true" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PLeer" Nullable="true" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PUpdate" Nullable="true" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PDelete" Nullable="true" Precision="38" Scale="0" />
+          <Property Type="Int32" Name="Obj_Parent" Nullable="true" />
+          <Property Type="String" Name="Obj_Type" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Obj_Description" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="Obj_ID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_wai_Reporte_Entradas_Salidas_Result">
+          <Property Type="String" Name="CODIGO" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="DESCRIPCION" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="PAQUETES" Nullable="true" />
+          <Property Type="Double" Name="LIBRAS" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ES_SOCKSModelStoreContainer" CdmEntityContainer="ES_SOCKSEntities2">
+          <EntitySetMapping Name="mst_Applications">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.mst_Applications">
+              <MappingFragment StoreEntitySet="mst_Applications">
+                <ScalarProperty Name="App_ID" ColumnName="App_ID" />
+                <ScalarProperty Name="App_Name" ColumnName="App_Name" />
+                <ScalarProperty Name="App_Description" ColumnName="App_Description" />
+                <ScalarProperty Name="App_DT" ColumnName="App_DT" />
+                <ScalarProperty Name="Dept_ID" ColumnName="Dept_ID" />
+                <ScalarProperty Name="App_Type" ColumnName="App_Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mst_Autorizadores">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.mst_Autorizadores">
+              <MappingFragment StoreEntitySet="mst_Autorizadores">
+                <ScalarProperty Name="aut_ID" ColumnName="aut_ID" />
+                <ScalarProperty Name="aut_Obj_ID" ColumnName="aut_Obj_ID" />
+                <ScalarProperty Name="aut_usuario" ColumnName="aut_usuario" />
+                <ScalarProperty Name="aut_contrasenia" ColumnName="aut_contrasenia" />
+                <ScalarProperty Name="aut_FH_creacion" ColumnName="aut_FH_creacion" />
+                <ScalarProperty Name="aut_estado" ColumnName="aut_estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mst_Autorizadores_Bitacora">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.mst_Autorizadores_Bitacora">
+              <MappingFragment StoreEntitySet="mst_Autorizadores_Bitacora">
+                <ScalarProperty Name="aut_bit_ID" ColumnName="aut_bit_ID" />
+                <ScalarProperty Name="aut_ID" ColumnName="aut_ID" />
+                <ScalarProperty Name="aut_bit_FH_creacion" ColumnName="aut_bit_FH_creacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mst_Objects">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.mst_Objects">
+              <MappingFragment StoreEntitySet="mst_Objects">
+                <ScalarProperty Name="Obj_ID" ColumnName="Obj_ID" />
+                <ScalarProperty Name="App_ID" ColumnName="App_ID" />
+                <ScalarProperty Name="Obj_Name" ColumnName="Obj_Name" />
+                <ScalarProperty Name="Obj_Description" ColumnName="Obj_Description" />
+                <ScalarProperty Name="Obj_Type" ColumnName="Obj_Type" />
+                <ScalarProperty Name="Obj_Parent" ColumnName="Obj_Parent" />
+                <ScalarProperty Name="Obj_DT" ColumnName="Obj_DT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Ajuste">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Ajuste">
+              <MappingFragment StoreEntitySet="wai_Ajuste">
+                <ScalarProperty Name="aju_id" ColumnName="aju_id" />
+                <ScalarProperty Name="aju_pack_id" ColumnName="aju_pack_id" />
+                <ScalarProperty Name="aju_fecha_antigua" ColumnName="aju_fecha_antigua" />
+                <ScalarProperty Name="aju_tipo_ajuste" ColumnName="aju_tipo_ajuste" />
+                <ScalarProperty Name="aju_fecha_ajuste" ColumnName="aju_fecha_ajuste" />
+                <ScalarProperty Name="aju_usuario_crea" ColumnName="aju_usuario_crea" />
+                <ScalarProperty Name="aju_fecha_crea" ColumnName="aju_fecha_crea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Areas">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Areas">
+              <MappingFragment StoreEntitySet="wai_Areas">
+                <ScalarProperty Name="are_id" ColumnName="are_id" />
+                <ScalarProperty Name="are_codigo" ColumnName="are_codigo" />
+                <ScalarProperty Name="are_descripcion" ColumnName="are_descripcion" />
+                <ScalarProperty Name="are_usuario_crea" ColumnName="are_usuario_crea" />
+                <ScalarProperty Name="are_fecha_crea" ColumnName="are_fecha_crea" />
+                <ScalarProperty Name="are_usuario_mod" ColumnName="are_usuario_mod" />
+                <ScalarProperty Name="are_fecha_mod" ColumnName="are_fecha_mod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Bodegas">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Bodegas">
+              <MappingFragment StoreEntitySet="wai_Bodegas">
+                <ScalarProperty Name="bod_id" ColumnName="bod_id" />
+                <ScalarProperty Name="bod_nombre" ColumnName="bod_nombre" />
+                <ScalarProperty Name="bod_descripcion" ColumnName="bod_descripcion" />
+                <ScalarProperty Name="bod_usuario_crea" ColumnName="bod_usuario_crea" />
+                <ScalarProperty Name="bod_fecha_crea" ColumnName="bod_fecha_crea" />
+                <ScalarProperty Name="bod_usuario_mod" ColumnName="bod_usuario_mod" />
+                <ScalarProperty Name="bod_fecha_mod" ColumnName="bod_fecha_mod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Defectos_NoConformes">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Defectos_NoConformes">
+              <MappingFragment StoreEntitySet="wai_Defectos_NoConformes">
+                <ScalarProperty Name="def_ID" ColumnName="def_ID" />
+                <ScalarProperty Name="def_Descripcion" ColumnName="def_Descripcion" />
+                <ScalarProperty Name="def_FH_crea" ColumnName="def_FH_crea" />
+                <ScalarProperty Name="def_usuario" ColumnName="def_usuario" />
+                <ScalarProperty Name="def_FH_mod" ColumnName="def_FH_mod" />
+                <ScalarProperty Name="def_usuario_mod" ColumnName="def_usuario_mod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Devoluciones">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Devoluciones">
+              <MappingFragment StoreEntitySet="wai_Devoluciones">
+                <ScalarProperty Name="dev_id" ColumnName="dev_id" />
+                <ScalarProperty Name="dev_item_id" ColumnName="dev_item_id" />
+                <ScalarProperty Name="dev_localidad_id" ColumnName="dev_localidad_id" />
+                <ScalarProperty Name="dev_codigo" ColumnName="dev_codigo" />
+                <ScalarProperty Name="dev_libras" ColumnName="dev_libras" />
+                <ScalarProperty Name="dev_lote" ColumnName="dev_lote" />
+                <ScalarProperty Name="dev_prioridad" ColumnName="dev_prioridad" />
+                <ScalarProperty Name="dev_fecha_in" ColumnName="dev_fecha_in" />
+                <ScalarProperty Name="dev_fecha_out" ColumnName="dev_fecha_out" />
+                <ScalarProperty Name="dev_fecha_produccion" ColumnName="dev_fecha_produccion" />
+                <ScalarProperty Name="dev_fecha_caducidad" ColumnName="dev_fecha_caducidad" />
+                <ScalarProperty Name="dev_libras_out" ColumnName="dev_libras_out" />
+                <ScalarProperty Name="dev_impreso" ColumnName="dev_impreso" />
+                <ScalarProperty Name="dev_usuario_crea" ColumnName="dev_usuario_crea" />
+                <ScalarProperty Name="dev_fecha_crea" ColumnName="dev_fecha_crea" />
+                <ScalarProperty Name="dev_No_Conformidad" ColumnName="dev_No_Conformidad" />
+                <ScalarProperty Name="def_ID" ColumnName="def_ID" />
+                <ScalarProperty Name="dev_FH_No_Conforme_IN" ColumnName="dev_FH_No_Conforme_IN" />
+                <ScalarProperty Name="dev_FH_No_Conforme_OUT" ColumnName="dev_FH_No_Conforme_OUT" />
+                <ScalarProperty Name="pro_id" ColumnName="pro_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Factura">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Factura">
+              <MappingFragment StoreEntitySet="wai_Factura">
+                <ScalarProperty Name="fac_id" ColumnName="fac_id" />
+                <ScalarProperty Name="fac_pos_id" ColumnName="fac_pos_id" />
+                <ScalarProperty Name="fac_numero" ColumnName="fac_numero" />
+                <ScalarProperty Name="fac_paquetes" ColumnName="fac_paquetes" />
+                <ScalarProperty Name="fac_libras" ColumnName="fac_libras" />
+                <ScalarProperty Name="fac_fecha" ColumnName="fac_fecha" />
+                <ScalarProperty Name="fac_usuario_crea" ColumnName="fac_usuario_crea" />
+                <ScalarProperty Name="fac_fecha_crea" ColumnName="fac_fecha_crea" />
+                <ScalarProperty Name="fac_usuario_mod" ColumnName="fac_usuario_mod" />
+                <ScalarProperty Name="fac_fecha_mod" ColumnName="fac_fecha_mod" />
+                <ScalarProperty Name="fac_medida" ColumnName="fac_medida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Factura_Detalle">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Factura_Detalle">
+              <MappingFragment StoreEntitySet="wai_Factura_Detalle">
+                <ScalarProperty Name="facd_id" ColumnName="facd_id" />
+                <ScalarProperty Name="facd_fac_id" ColumnName="facd_fac_id" />
+                <ScalarProperty Name="facd_item_id" ColumnName="facd_item_id" />
+                <ScalarProperty Name="facd_cantidad" ColumnName="facd_cantidad" />
+                <ScalarProperty Name="facd_peso" ColumnName="facd_peso" />
+                <ScalarProperty Name="facd_lote" ColumnName="facd_lote" />
+                <ScalarProperty Name="facd_prioridad" ColumnName="facd_prioridad" />
+                <ScalarProperty Name="facd_fecha_caducidad" ColumnName="facd_fecha_caducidad" />
+                <ScalarProperty Name="facd_no_conforme" ColumnName="facd_no_conforme" />
+                <ScalarProperty Name="facd_usuario_crea" ColumnName="facd_usuario_crea" />
+                <ScalarProperty Name="facd_fecha_crea" ColumnName="facd_fecha_crea" />
+                <ScalarProperty Name="facd_usuario_mod" ColumnName="facd_usuario_mod" />
+                <ScalarProperty Name="facd_fecha_mod" ColumnName="facd_fecha_mod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Inventario">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Inventario">
+              <MappingFragment StoreEntitySet="wai_Inventario">
+                <ScalarProperty Name="inv_id" ColumnName="inv_id" />
+                <ScalarProperty Name="inv_periodo" ColumnName="inv_periodo" />
+                <ScalarProperty Name="inv_responsable" ColumnName="inv_responsable" />
+                <ScalarProperty Name="inv_fecha" ColumnName="inv_fecha" />
+                <ScalarProperty Name="inv_activo" ColumnName="inv_activo" />
+                <ScalarProperty Name="inv_usuario_crea" ColumnName="inv_usuario_crea" />
+                <ScalarProperty Name="inv_fecha_crea" ColumnName="inv_fecha_crea" />
+                <ScalarProperty Name="inv_usuario_mod" ColumnName="inv_usuario_mod" />
+                <ScalarProperty Name="inv_fecha_mod" ColumnName="inv_fecha_mod" />
+                <ScalarProperty Name="bod_id" ColumnName="bod_id" />
+                <ScalarProperty Name="inv_tipo" ColumnName="inv_tipo" />
+                <ScalarProperty Name="inv_year" ColumnName="inv_year" />
+                <ScalarProperty Name="inv_num_periodo" ColumnName="inv_num_periodo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Inventario_Escaneos">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Inventario_Escaneos">
+              <MappingFragment StoreEntitySet="wai_Inventario_Escaneos">
+                <ScalarProperty Name="inve_id" ColumnName="inve_id" />
+                <ScalarProperty Name="inve_localidadinventario_id" ColumnName="inve_localidadinventario_id" />
+                <ScalarProperty Name="inve_packid" ColumnName="inve_packid" />
+                <ScalarProperty Name="inve_libras" ColumnName="inve_libras" />
+                <ScalarProperty Name="inve_escaneado" ColumnName="inve_escaneado" />
+                <ScalarProperty Name="inve_localidad_preescaneo" ColumnName="inve_localidad_preescaneo" />
+                <ScalarProperty Name="inve_nuevo" ColumnName="inve_nuevo" />
+                <ScalarProperty Name="inve_eliminado" ColumnName="inve_eliminado" />
+                <ScalarProperty Name="inve_usuario_crea" ColumnName="inve_usuario_crea" />
+                <ScalarProperty Name="inve_DT_crea" ColumnName="inve_DT_crea" />
+                <ScalarProperty Name="inve_usuario_mod" ColumnName="inve_usuario_mod" />
+                <ScalarProperty Name="inve_DT_mod" ColumnName="inve_DT_mod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Inventario_Localidad">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Inventario_Localidad">
+              <MappingFragment StoreEntitySet="wai_Inventario_Localidad">
+                <ScalarProperty Name="invl_id" ColumnName="invl_id" />
+                <ScalarProperty Name="invl_inventario_id" ColumnName="invl_inventario_id" />
+                <ScalarProperty Name="invl_localidad_id" ColumnName="invl_localidad_id" />
+                <ScalarProperty Name="invl_usuario_crea" ColumnName="invl_usuario_crea" />
+                <ScalarProperty Name="invl_fecha_crea" ColumnName="invl_fecha_crea" />
+                <ScalarProperty Name="invl_usuario_mod" ColumnName="invl_usuario_mod" />
+                <ScalarProperty Name="invl_fecha_mod" ColumnName="invl_fecha_mod" />
+                <ScalarProperty Name="invl_responsable" ColumnName="invl_responsable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Item">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Item">
+              <MappingFragment StoreEntitySet="wai_Item">
+                <ScalarProperty Name="ite_id" ColumnName="ite_id" />
+                <ScalarProperty Name="ite_bodega_id" ColumnName="ite_bodega_id" />
+                <ScalarProperty Name="ite_area_id" ColumnName="ite_area_id" />
+                <ScalarProperty Name="ite_codigo" ColumnName="ite_codigo" />
+                <ScalarProperty Name="ite_descripcion" ColumnName="ite_descripcion" />
+                <ScalarProperty Name="ite_existencia" ColumnName="ite_existencia" />
+                <ScalarProperty Name="ite_usuario_crea" ColumnName="ite_usuario_crea" />
+                <ScalarProperty Name="ite_fecha_crea" ColumnName="ite_fecha_crea" />
+                <ScalarProperty Name="ite_usuario_mod" ColumnName="ite_usuario_mod" />
+                <ScalarProperty Name="ite_fecha_mod" ColumnName="ite_fecha_mod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Item_Localidad">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Item_Localidad">
+              <MappingFragment StoreEntitySet="wai_Item_Localidad">
+                <ScalarProperty Name="itl_id" ColumnName="itl_id" />
+                <ScalarProperty Name="itl_localidad_id" ColumnName="itl_localidad_id" />
+                <ScalarProperty Name="itl_item_id" ColumnName="itl_item_id" />
+                <ScalarProperty Name="itl_periodo" ColumnName="itl_periodo" />
+                <ScalarProperty Name="itl_usuario_crea" ColumnName="itl_usuario_crea" />
+                <ScalarProperty Name="itl_fecha_crea" ColumnName="itl_fecha_crea" />
+                <ScalarProperty Name="itl_usuario_mod" ColumnName="itl_usuario_mod" />
+                <ScalarProperty Name="itl_fecha_mod" ColumnName="itl_fecha_mod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Localidad">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Localidad">
+              <MappingFragment StoreEntitySet="wai_Localidad">
+                <ScalarProperty Name="loc_id" ColumnName="loc_id" />
+                <ScalarProperty Name="loc_nombre" ColumnName="loc_nombre" />
+                <ScalarProperty Name="loc_usuario_crea" ColumnName="loc_usuario_crea" />
+                <ScalarProperty Name="loc_fecha_crea" ColumnName="loc_fecha_crea" />
+                <ScalarProperty Name="loc_usuario_mod" ColumnName="loc_usuario_mod" />
+                <ScalarProperty Name="loc_fecha_mod" ColumnName="loc_fecha_mod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Pack_List">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Pack_List">
+              <MappingFragment StoreEntitySet="wai_Pack_List">
+                <ScalarProperty Name="pac_id" ColumnName="pac_id" />
+                <ScalarProperty Name="pac_factura_detalle_id" ColumnName="pac_factura_detalle_id" />
+                <ScalarProperty Name="pac_localidad_id" ColumnName="pac_localidad_id" />
+                <ScalarProperty Name="pac_prov_pack_id" ColumnName="pac_prov_pack_id" />
+                <ScalarProperty Name="pac_libras" ColumnName="pac_libras" />
+                <ScalarProperty Name="pac_impreso" ColumnName="pac_impreso" />
+                <ScalarProperty Name="pac_scan_whin" ColumnName="pac_scan_whin" />
+                <ScalarProperty Name="pac_scan_whout" ColumnName="pac_scan_whout" />
+                <ScalarProperty Name="pac_libras_salida" ColumnName="pac_libras_salida" />
+                <ScalarProperty Name="pac_ajuste" ColumnName="pac_ajuste" />
+                <ScalarProperty Name="pac_fecha_produccion" ColumnName="pac_fecha_produccion" />
+                <ScalarProperty Name="pac_envio" ColumnName="pac_envio" />
+                <ScalarProperty Name="pac_usuario_crea" ColumnName="pac_usuario_crea" />
+                <ScalarProperty Name="pac_fecha_crea" ColumnName="pac_fecha_crea" />
+                <ScalarProperty Name="pac_usuario_mod" ColumnName="pac_usuario_mod" />
+                <ScalarProperty Name="pac_fecha_mod" ColumnName="pac_fecha_mod" />
+                <ScalarProperty Name="pac_No_Conformidad" ColumnName="pac_No_Conformidad" />
+                <ScalarProperty Name="def_ID" ColumnName="def_ID" />
+                <ScalarProperty Name="pac_FH_No_Conforme_IN" ColumnName="pac_FH_No_Conforme_IN" />
+                <ScalarProperty Name="pac_FH_No_Conforme_OUT" ColumnName="pac_FH_No_Conforme_OUT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Parametros">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Parametros">
+              <MappingFragment StoreEntitySet="wai_Parametros">
+                <ScalarProperty Name="par_id" ColumnName="par_id" />
+                <ScalarProperty Name="par_bodega_id" ColumnName="par_bodega_id" />
+                <ScalarProperty Name="par_campo1" ColumnName="par_campo1" />
+                <ScalarProperty Name="par_campo2" ColumnName="par_campo2" />
+                <ScalarProperty Name="par_salida_bodega" ColumnName="par_salida_bodega" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Plan">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Plan">
+              <MappingFragment StoreEntitySet="wai_Plan">
+                <ScalarProperty Name="pla_semana" ColumnName="pla_semana" />
+                <ScalarProperty Name="pla_item" ColumnName="pla_item" />
+                <ScalarProperty Name="pla_UOM" ColumnName="pla_UOM" />
+                <ScalarProperty Name="pla_FH" ColumnName="pla_FH" />
+                <ScalarProperty Name="pla_usuario" ColumnName="pla_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_POS">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_POS">
+              <MappingFragment StoreEntitySet="wai_POS">
+                <ScalarProperty Name="pos_id" ColumnName="pos_id" />
+                <ScalarProperty Name="pos_numero" ColumnName="pos_numero" />
+                <ScalarProperty Name="pos_proveedor_id" ColumnName="pos_proveedor_id" />
+                <ScalarProperty Name="pos_bodega_id" ColumnName="pos_bodega_id" />
+                <ScalarProperty Name="pos_ajuste" ColumnName="pos_ajuste" />
+                <ScalarProperty Name="pos_estado" ColumnName="pos_estado" />
+                <ScalarProperty Name="pos_semana" ColumnName="pos_semana" />
+                <ScalarProperty Name="pos_fecha" ColumnName="pos_fecha" />
+                <ScalarProperty Name="pos_creador" ColumnName="pos_creador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Prioridades">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Prioridades">
+              <MappingFragment StoreEntitySet="wai_Prioridades">
+                <ScalarProperty Name="pri_id" ColumnName="pri_id" />
+                <ScalarProperty Name="pri_item_id" ColumnName="pri_item_id" />
+                <ScalarProperty Name="pri_lote" ColumnName="pri_lote" />
+                <ScalarProperty Name="pri_semana" ColumnName="pri_semana" />
+                <ScalarProperty Name="pri_prioridad" ColumnName="pri_prioridad" />
+                <ScalarProperty Name="pri_paquetes" ColumnName="pri_paquetes" />
+                <ScalarProperty Name="pri_libras" ColumnName="pri_libras" />
+                <ScalarProperty Name="pri_usuario_crea" ColumnName="pri_usuario_crea" />
+                <ScalarProperty Name="pri_fecha_crea" ColumnName="pri_fecha_crea" />
+                <ScalarProperty Name="pri_usuario_mod" ColumnName="pri_usuario_mod" />
+                <ScalarProperty Name="pri_fecha_mod" ColumnName="pri_fecha_mod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Proveedor">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Proveedor">
+              <MappingFragment StoreEntitySet="wai_Proveedor">
+                <ScalarProperty Name="pro_id" ColumnName="pro_id" />
+                <ScalarProperty Name="pro_nombre" ColumnName="pro_nombre" />
+                <ScalarProperty Name="pro_usuario_crea" ColumnName="pro_usuario_crea" />
+                <ScalarProperty Name="pro_fecha_crea" ColumnName="pro_fecha_crea" />
+                <ScalarProperty Name="pro_usuario_mod" ColumnName="pro_usuario_mod" />
+                <ScalarProperty Name="pro_fecha_mod" ColumnName="pro_fecha_mod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Solicitudes">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Solicitudes">
+              <MappingFragment StoreEntitySet="wai_Solicitudes">
+                <ScalarProperty Name="sol_ID" ColumnName="sol_ID" />
+                <ScalarProperty Name="sol_semana" ColumnName="sol_semana" />
+                <ScalarProperty Name="sol_item" ColumnName="sol_item" />
+                <ScalarProperty Name="sol_estado" ColumnName="sol_estado" />
+                <ScalarProperty Name="sol_UOM" ColumnName="sol_UOM" />
+                <ScalarProperty Name="sol_pro_ID" ColumnName="sol_pro_ID" />
+                <ScalarProperty Name="sol_turno_crea" ColumnName="sol_turno_crea" />
+                <ScalarProperty Name="sol_turno_entrega" ColumnName="sol_turno_entrega" />
+                <ScalarProperty Name="sol_FH_crea" ColumnName="sol_FH_crea" />
+                <ScalarProperty Name="sol_FH_entrega" ColumnName="sol_FH_entrega" />
+                <ScalarProperty Name="sol_localidad" ColumnName="sol_localidad" />
+                <ScalarProperty Name="sol_prioridad" ColumnName="sol_prioridad" />
+                <ScalarProperty Name="sol_usuario_pedido" ColumnName="sol_usuario_pedido" />
+                <ScalarProperty Name="sol_usuario_entrega" ColumnName="sol_usuario_entrega" />
+                <ScalarProperty Name="sol_aut_ID" ColumnName="sol_aut_ID" />
+                <ScalarProperty Name="sol_pack_list_ID" ColumnName="sol_pack_list_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Tipo_Transaccion">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Tipo_Transaccion">
+              <MappingFragment StoreEntitySet="wai_Tipo_Transaccion">
+                <ScalarProperty Name="tipt_id" ColumnName="tipt_id" />
+                <ScalarProperty Name="tipt_nombre" ColumnName="tipt_nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Transacciones">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Transacciones">
+              <MappingFragment StoreEntitySet="wai_Transacciones">
+                <ScalarProperty Name="tra_id" ColumnName="tra_id" />
+                <ScalarProperty Name="tra_pack_list_id" ColumnName="tra_pack_list_id" />
+                <ScalarProperty Name="tra_tipo_transaccion" ColumnName="tra_tipo_transaccion" />
+                <ScalarProperty Name="tra_libras" ColumnName="tra_libras" />
+                <ScalarProperty Name="tra_usuario" ColumnName="tra_usuario" />
+                <ScalarProperty Name="tra_DT" ColumnName="tra_DT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wai_Transacciones_Devoluciones">
+            <EntityTypeMapping TypeName="ES_SOCKSModel.wai_Transacciones_Devoluciones">
+              <MappingFragment StoreEntitySet="wai_Transacciones_Devoluciones">
+                <ScalarProperty Name="tra_dev_id" ColumnName="tra_dev_id" />
+                <ScalarProperty Name="tra_dev_dev_id" ColumnName="tra_dev_dev_id" />
+                <ScalarProperty Name="tra_dev_tipo_transaccion" ColumnName="tra_dev_tipo_transaccion" />
+                <ScalarProperty Name="tra_dev_libras" ColumnName="tra_dev_libras" />
+                <ScalarProperty Name="tra_dev_usuario" ColumnName="tra_dev_usuario" />
+                <ScalarProperty Name="tra_dev_DT" ColumnName="tra_dev_DT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionName="ES_SOCKSModel.Store.fn_wai_Reporte_Toma_Inventario" FunctionImportName="fn_wai_Reporte_Toma_Inventario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ES_SOCKSModel.fn_wai_Reporte_Toma_Inventario_Result">
+                <ScalarProperty Name="PACK_ID" ColumnName="PACK_ID" />
+                <ScalarProperty Name="LOC_ESCANEO" ColumnName="LOC_ESCANEO" />
+                <ScalarProperty Name="CODIGO" ColumnName="CODIGO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="LIBRAS" ColumnName="LIBRAS" />
+                <ScalarProperty Name="FECHA_ENTRADA" ColumnName="FECHA_ENTRADA" />
+                <ScalarProperty Name="ESCANEO" ColumnName="ESCANEO" />
+                <ScalarProperty Name="FECHA_ESCANEO" ColumnName="FECHA_ESCANEO" />
+                <ScalarProperty Name="HORA_ESCANEO" ColumnName="HORA_ESCANEO" />
+                <ScalarProperty Name="LOC_PREESCANEO" ColumnName="LOC_PREESCANEO" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="CAMBIO_LOCALIDAD" ColumnName="CAMBIO_LOCALIDAD" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_mst_PermissionsByUser" FunctionName="ES_SOCKSModel.Store.usp_mst_PermissionsByUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ES_SOCKSModel.usp_mst_PermissionsByUser_Result">
+                <ScalarProperty Name="Obj_Name" ColumnName="Obj_Name" />
+                <ScalarProperty Name="PCrear" ColumnName="PCrear" />
+                <ScalarProperty Name="PLeer" ColumnName="PLeer" />
+                <ScalarProperty Name="PUpdate" ColumnName="PUpdate" />
+                <ScalarProperty Name="PDelete" ColumnName="PDelete" />
+                <ScalarProperty Name="Obj_Parent" ColumnName="Obj_Parent" />
+                <ScalarProperty Name="Obj_Type" ColumnName="Obj_Type" />
+                <ScalarProperty Name="Obj_Description" ColumnName="Obj_Description" />
+                <ScalarProperty Name="Obj_ID" ColumnName="Obj_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_wai_Areas_CRUD" FunctionName="ES_SOCKSModel.Store.usp_wai_Areas_CRUD" />
+          <FunctionImportMapping FunctionImportName="usp_wai_Bodegas_CRUD" FunctionName="ES_SOCKSModel.Store.usp_wai_Bodegas_CRUD" />
+          <FunctionImportMapping FunctionImportName="usp_wai_Devoluciones_CRUD" FunctionName="ES_SOCKSModel.Store.usp_wai_Devoluciones_CRUD" />
+          <FunctionImportMapping FunctionImportName="usp_wai_Factura_CRUD" FunctionName="ES_SOCKSModel.Store.usp_wai_Factura_CRUD" />
+          <FunctionImportMapping FunctionImportName="usp_wai_Factura_Detalle_CRUD" FunctionName="ES_SOCKSModel.Store.usp_wai_Factura_Detalle_CRUD" />
+          <FunctionImportMapping FunctionImportName="usp_wai_Inventario" FunctionName="ES_SOCKSModel.Store.usp_wai_Inventario" />
+          <FunctionImportMapping FunctionImportName="usp_wai_Inventario_Escaneos" FunctionName="ES_SOCKSModel.Store.usp_wai_Inventario_Escaneos" />
+          <FunctionImportMapping FunctionImportName="usp_wai_Inventario_Localidad" FunctionName="ES_SOCKSModel.Store.usp_wai_Inventario_Localidad" />
+          <FunctionImportMapping FunctionImportName="usp_wai_Item_CRUD" FunctionName="ES_SOCKSModel.Store.usp_wai_Item_CRUD" />
+          <FunctionImportMapping FunctionImportName="usp_wai_Localidades_CRUD" FunctionName="ES_SOCKSModel.Store.usp_wai_Localidades_CRUD" />
+          <FunctionImportMapping FunctionImportName="usp_wai_POS_CRUD" FunctionName="ES_SOCKSModel.Store.usp_wai_POS_CRUD" />
+          <FunctionImportMapping FunctionImportName="usp_wai_Prioridades_CRUD" FunctionName="ES_SOCKSModel.Store.usp_wai_Prioridades_CRUD" />
+          <FunctionImportMapping FunctionImportName="usp_wai_Proveedores_CRUD" FunctionName="ES_SOCKSModel.Store.usp_wai_Proveedores_CRUD" />
+          <FunctionImportMapping FunctionImportName="usp_wai_Reporte_Entradas_Salidas" FunctionName="ES_SOCKSModel.Store.usp_wai_Reporte_Entradas_Salidas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ES_SOCKSModel.usp_wai_Reporte_Entradas_Salidas_Result">
+                <ScalarProperty Name="CODIGO" ColumnName="CODIGO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="PAQUETES" ColumnName="PAQUETES" />
+                <ScalarProperty Name="LIBRAS" ColumnName="LIBRAS" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_wai_Solicitud_CRUD" FunctionName="ES_SOCKSModel.Store.usp_wai_Solicitud_CRUD" />
+          <FunctionImportMapping FunctionImportName="usp_wai_Transacciones_CRUD" FunctionName="ES_SOCKSModel.Store.usp_wai_Transacciones_CRUD" />
+          <FunctionImportMapping FunctionImportName="usp_wai_TransaccionesProv_CRUD" FunctionName="ES_SOCKSModel.Store.usp_wai_TransaccionesProv_CRUD" />
+          <FunctionImportMapping FunctionImportName="usp_wai_Traslados" FunctionName="ES_SOCKSModel.Store.usp_wai_Traslados" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

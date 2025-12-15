@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="dcPmc">
+  <DataContextMoniker Name="/dcPmcDataContext" />
+  <nestedChildShapes>
+    <classShape Id="3a2f2827-7e7b-4f37-bf35-2705f47c8f84" absoluteBounds="3.875, 1, 2, 3.6939111328124996">
+      <DataClassMoniker Name="/dcPmcDataContext/pmc_Plan" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cb5c8b86-0b26-4ec6-9a8a-69800e56a046" absoluteBounds="3.89, 1.46, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="67647be6-e450-4599-bfd7-f1cba9559298" absoluteBounds="6.25, 1.25, 2, 1.9631982421875">
+      <DataClassMoniker Name="/dcPmcDataContext/pmc_Semanas" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ac9d2a05-80b0-40fa-a3fd-8d5846112f0f" absoluteBounds="6.265, 1.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f1a7ed00-b11d-4798-aa16-c91335568f6d" absoluteBounds="0.875, 0.75, 2, 4.2708154296875">
+      <DataClassMoniker Name="/dcPmcDataContext/pmc_Solicitudes" />
+      <nestedChildShapes>
+        <elementListCompartment Id="323becaf-7588-4bed-9385-29e2c1f31e99" absoluteBounds="0.89000000000000012, 1.21, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1bee1475-0771-45ba-8acc-dbe41fcce4cf" absoluteBounds="6.625, 5.125, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/dcPmcDataContext/pmc_Entregas" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a62743e4-49bd-492b-9a5a-690524646adf" absoluteBounds="6.64, 5.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="606bb9ce-3063-448d-b242-9668b18b0006" absoluteBounds="1.125, 5.375, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/dcPmcDataContext/pmc_Mov_Bodega_Det" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bc66ec80-db8b-40cd-ac67-0a1d83b427ad" absoluteBounds="1.1400000000000001, 5.835, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4ca5617e-4637-40a7-895a-36ec577b580b" absoluteBounds="3.75, 5.125, 2.375, 3.1170068359375">
+      <DataClassMoniker Name="/dcPmcDataContext/pmc_Mov_Bodega" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dfc61e7b-b675-4fcb-9fe2-bdb8370bcec0" absoluteBounds="3.765, 5.585, 2.3449999999999998, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

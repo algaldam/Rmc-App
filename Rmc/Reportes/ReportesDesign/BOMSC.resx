@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="GetDataReportBOM.ParameterValues" xml:space="preserve">
+    <value>{"@SobreConsumo":"985333928"}</value>
+  </metadata>
+  <data name="GetDataReportBOM.SelectCommand" xml:space="preserve">
+    <value>WITH cte AS (
+    SELECT 
+		T.TraceID AS ScID,
+        CONCAT('*', CT.Saca, '*') AS saca,
+        CT.Saca AS sku,
+        COALESCE(CP.QR, '') AS QR,
+        PM.brandstyle,
+        PM.size,
+        PM.color,
+        PM.colornumber,
+        PM.upc,
+        PM.millstyle,
+        PM.parentbrandstyle,
+        CONCAT('*', T.TraceID, '*') AS TraceID,
+        CONCAT('*', CT.TraceID, '*') AS TID,
+        T.TraceIDBase,
+        T.SobreconsumoNumber,
+        T.IsSobreconsumo,
+        CONCAT(T.TraceIDBase, ' - ', FORMAT(T.SobreconsumoNumber, '0')) AS SobreconsumoFullNumber,
+        (SELECT COUNT(*) 
+         FROM dbo.pmc_Stickers 
+         WHERE item = SB.sub_producto COLLATE SQL_Latin1_General_CP1_CI_AS) AS TotalNumStickers,
+        CASE 
+            WHEN EXISTS (SELECT 1 FROM dbo.pmc_Stickers WHERE item = SB.sub_producto COLLATE SQL_Latin1_General_CP1_CI_AS) 
+            THEN 1 ELSE 0 
+        END AS IsSticker,
+        CASE 
+            WHEN PM.color = 'ast' THEN 'ASSORTMENT' 
+            ELSE 'SOLIDO' 
+        END AS color_type,
+        SA.pmc_saca_2da AS SACA_IIR,
+        { fn CONCAT('9', RIGHT(SA.pmc_SACA_2da, 7)) } AS Slightly_Imperfect,
+        SB.sub_saca,
+        SB.sub_producto,
+        SB.sub_descripcion,
+        ROUND(SB.sub_factor, 2) AS Factor,
+        -- SOLUCIÓN: Usar CAST a INT para eliminar decimales
+        CASE 
+            WHEN SB.sub_factor IS NULL OR SB.sub_factor = 0 THEN 0
+            ELSE CAST(ROUND(ROUND(T.Dozens, 0) / SB.sub_factor, 0) AS INT)
+        END AS cantidad,
+        DI.pmc_coddoblado,
+        DI.pmc_descripcion AS ComentarioDob,
+        CP.socktype,
+        CP.dc,
+        CAST(ROUND(T.Dozens, 0) AS INT) AS Docenas, 
+        CT.SACA AS Expr1, 
+        AT.MaterialDeviation AS Desviacion,
+        CAST(ROUND(CT.Dozens, 0) AS INT) AS DocenasOriginales, 
+        CAST(ROUND(T.Dozens, 0) AS INT) AS DocenasSobreconsumo,
+        LEFT(CT.colormillstyle, 4) AS MillStyle1,
+        RIGHT(CT.colormillstyle, 4) AS Color1,
+        SUBSTRING(CT.rawmillstyle, 5, 3) AS Talla,
+        CT.WeekID AS Semana,
+        CASE 
+            WHEN CT.ChkID = 'DYE-LBL' THEN 'DYEING' 
+            ELSE 'BLEACHING' 
+        END AS ChkID,
+        BI.pmc_item,
+        CAST(ROUND(MAX(SB.sub_factor) OVER (PARTITION BY CT.Saca), 0) AS INT) AS DZxCase,
+        DE.desv_item,
+        CONCAT(
+            CASE WHEN DE.desv_Add IS NOT NULL AND DE.desv_Add &lt;&gt; '' THEN '*' ELSE '' END,
+            DE.desv_Add,
+            CASE WHEN DE.desv_Add IS NOT NULL AND DE.desv_Add &lt;&gt; '' THEN '*' ELSE '' END
+        ) AS desv_Add,
+        DE.desv_QtyToDesv,
+        DE.desv_Week,
+        UP.upc_Formato,
+        UP.upc_PBS,
+        UP.upc_MRSP,
+        UP.upc_Mod_Upc,
+        -- SOLUCIÓN: También en CONCATENADO
+        CONCAT('*',
+            CP.DC, 
+            CT.SACA, 
+            '         ', 
+            CT.SACA, 
+            '                  ', 
+            CASE 
+                WHEN SB.sub_producto IN (
+                    SELECT gn_number FROM es_socks.dbo.pmc_cases_primarios WHERE gn_number = SB.sub_producto
+                )
+                THEN 
+                    CASE 
+                        WHEN SB.sub_factor IS NULL OR SB.sub_factor = 0 THEN '0'
+                        ELSE CAST(ROUND(ROUND(CAST(T.Dozens AS FLOAT), 0) / NULLIF(CAST(SB.sub_factor AS FLOAT), 0), 0) AS VARCHAR(10))
+                    END
+                ELSE 
+                    CASE 
+                        WHEN SB.sub_factor IS NULL OR SB.sub_factor = 0 THEN '0'
+                        ELSE CAST(FIRST_VALUE(
+                            ROUND(ROUND(CAST(T.Dozens AS FLOAT), 0) / NULLIF(CAST(SB.sub_factor AS FLOAT), 0), 0)
+                        ) OVER (PARTITION BY PM.saca 
+                              ORDER BY CASE 
+                                          WHEN SB.sub_producto IN (
+                                              SELECT gn_number FROM es_socks.dbo.pmc_cases_primarios 
+                                              WHERE gn_number = SB.sub_producto
+                                          ) 
+                                          THEN 1 ELSE 2 END) AS VARCHAR(10))
+                    END
+            END,
+        '*') AS CONCATENADO,
+        (SELECT COUNT(COLORMILLSTYLE) 
+         FROM SACAMillStyle 
+         WHERE SACA = CT.SACA) AS COLORES,
+        -- SOLUCIÓN: También en Labels
+        CASE 
+            WHEN SB.sub_producto IN (
+                SELECT gn_number FROM es_socks.dbo.pmc_cases_primarios WHERE gn_number = SB.sub_producto
+            )
+            THEN 
+                CASE 
+                    WHEN SB.sub_factor IS NULL OR SB.sub_factor = 0 THEN 0
+                    ELSE CAST(ROUND(ROUND(T.Dozens, 0) / SB.sub_factor, 0) AS INT)
+                END
+            ELSE 
+                CASE 
+                    WHEN SB.sub_factor IS NULL OR SB.sub_factor = 0 THEN 0
+                    ELSE CAST(FIRST_VALUE(
+                        ROUND(ROUND(T.Dozens, 0) / SB.sub_factor, 0)
+                    ) OVER (PARTITION BY PM.saca 
+                          ORDER BY CASE 
+                                      WHEN SB.sub_producto IN (
+                                          SELECT gn_number FROM es_socks.dbo.pmc_cases_primarios 
+                                          WHERE gn_number = SB.sub_producto
+                                      ) 
+                                      THEN 1 ELSE 2 END) AS INT)
+                END
+        END AS Labels,
+        ROW_NUMBER() OVER (PARTITION BY SB.sub_producto ORDER BY CT.Saca) AS rn,
+	    T.TableNumber AS MesaAsignada,
+	    T.Celula,
+	    CONCAT('Maquina ', T.MachineCode) AS MachineCode
+    FROM CheckPointTrans CT
+    INNER JOIN ES_SOCKS.dbo.pmc_Transactions T ON CT.TraceID = T.TraceIDBase
+    INNER JOIN dbo.pmc_productmaster PM ON CT.saca = PM.saca
+    INNER JOIN dbo.pmc_consolidadoplanes CP ON CT.saca = CP.sku
+    INNER JOIN dbo.pmc_saca_1as_2das_3ras SA ON CT.saca = SA.pmc_saca_1ra
+    INNER JOIN dbo.pmc_doblado_irr DI ON SA.pmc_saca_2da = DI.pmc_saca_irr
+    INNER JOIN es_socks.dbo.pmc_Subida_bom SB 
+        ON CT.saca = SB.sub_SACA COLLATE SQL_Latin1_General_CP1_CI_AS
+    INNER JOIN dbo.pmc_bag_irr BI ON SA.pmc_saca_2da = BI.pmc_saca_irr
+    LEFT JOIN dbo.pmc_AsignacionTraceIDs AT ON CT.TraceID = AT.TraceId
+    LEFT JOIN dbo.pmc_upc UP ON CT.saca = UP.upc_saca
+    LEFT JOIN dbo.pmc_Stickers ST 
+        ON SB.sub_producto COLLATE SQL_Latin1_General_CP1_CI_AS = ST.item 
+    LEFT JOIN dbo.pmc_desviaciones DE 
+        ON SB.sub_producto COLLATE SQL_Latin1_General_CP1_CI_AS = DE.desv_item
+       AND DE.desv_Week = CT.WeekID COLLATE SQL_Latin1_General_CP1_CI_AS
+    WHERE T.TraceID = @SobreConsumo
+      AND T.IsSobreconsumo = 1
+)
+SELECT *
+FROM cte
+WHERE rn = 1
+ORDER BY TotalNumStickers DESC;</value>
+  </data>
+  <metadata name="$this.Zoom" type="System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>1.5</value>
+  </metadata>
+  <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.ShowDimensions" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+</root>

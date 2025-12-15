@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="_UpgradeWizard_Files\UpgradeWizardLog.xslt"?>
+<log>
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Pmc.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\App.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\App.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\App.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\App.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\App.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\App.config" />
+  <event action="Analyze" type="Success" name="App.config" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\App.config" />
+  <event action="Analyze" type="Success" name="ConsOrdenes.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Consultas\ConsOrdenes.resx" />
+  <event action="Analyze" type="Success" name="frmActualizarDetalle.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Consultas\frmActualizarDetalle.resx" />
+  <event action="Analyze" type="Success" name="frmDatosFactura.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Consultas\frmDatosFactura.resx" />
+  <event action="Analyze" type="Success" name="frmDatosPO.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Consultas\frmDatosPO.resx" />
+  <event action="Analyze" type="Success" name="frmListSobrantes.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Consultas\frmListSobrantes.resx" />
+  <event action="Analyze" type="Success" name="frmMovInventario.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Consultas\frmMovInventario.resx" />
+  <event action="Analyze" type="Success" name="frmPO.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Consultas\frmPO.resx" />
+  <event action="Analyze" type="Success" name="frmSolicitudEpc.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Consultas\frmSolicitudEpc.resx" />
+  <event action="Analyze" type="Success" name="frmTransaccionEPC.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Consultas\frmTransaccionEPC.resx" />
+  <event action="Analyze" type="Success" name="frmTransacciones.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Consultas\frmTransacciones.resx" />
+  <event action="Analyze" type="Success" name="frmTrasladoConformidad.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Consultas\frmTrasladoConformidad.resx" />
+  <event action="Analyze" type="Success" name="InputBox.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Consultas\InputBox.resx" />
+  <event action="Analyze" type="Success" name="InventarioFisicoForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Consultas\InventarioFisicoForm.resx" />
+  <event action="Analyze" type="Success" name="ValidarSalidaForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Consultas\ValidarSalidaForm.resx" />
+  <event action="Analyze" type="Success" name="VerDevoluciones.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Consultas\VerDevoluciones.resx" />
+  <event action="Analyze" type="Success" name="Main.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Main.resx" />
+  <event action="Analyze" type="Success" name="ActivarMesas.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\MaterialEmpaque\ActivarMesas.resx" />
+  <event action="Analyze" type="Success" name="Asignaciones.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\MaterialEmpaque\Asignaciones.resx" />
+  <event action="Analyze" type="Success" name="BOM.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\MaterialEmpaque\BOM.resx" />
+  <event action="Analyze" type="Success" name="DevolucionDesperdicio.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\MaterialEmpaque\DevolucionDesperdicio.resx" />
+  <event action="Analyze" type="Success" name="HistoricosID.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\MaterialEmpaque\HistoricosID.resx" />
+  <event action="Analyze" type="Success" name="InventarioMaterial.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\MaterialEmpaque\InventarioMaterial.resx" />
+  <event action="Analyze" type="Success" name="MaterialDeBodega.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\MaterialEmpaque\MaterialDeBodega.resx" />
+  <event action="Analyze" type="Success" name="MesasForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\MaterialEmpaque\Mesas\MesasForm.resx" />
+  <event action="Analyze" type="Success" name="Mesas.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\MaterialEmpaque\Mesas.resx" />
+  <event action="Analyze" type="Success" name="PreKiteoSACA.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\MaterialEmpaque\PreKiteoSACA.resx" />
+  <event action="Analyze" type="Success" name="ReporteriaInventario.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\MaterialEmpaque\ReporteriaInventario.resx" />
+  <event action="Analyze" type="Success" name="RequisicionMaterialBodega.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\MaterialEmpaque\RequisicionMaterialBodega.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\packages.config" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="BOM.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesDesign\BOM.resx" />
+  <event action="Analyze" type="Success" name="BOMSACA.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesDesign\BOMSACA.resx" />
+  <event action="Analyze" type="Success" name="DevolucionDesign.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesDesign\DevolucionDesign.resx" />
+  <event action="Analyze" type="Success" name="DevWasteSobreConsumo.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesDesign\DevWasteSobreConsumo.resx" />
+  <event action="Analyze" type="Success" name="Entrega.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesDesign\Entrega.resx" />
+  <event action="Analyze" type="Success" name="PackIDDesign.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesDesign\PackIDDesign.resx" />
+  <event action="Analyze" type="Success" name="ProvIDDesign.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesDesign\ProvIDDesign.resx" />
+  <event action="Analyze" type="Success" name="Report1.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesDesign\Report1.resx" />
+  <event action="Analyze" type="Success" name="rptConsumo.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesDesign\rptConsumo.resx" />
+  <event action="Analyze" type="Success" name="RptEntregaConsumo.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesDesign\RptEntregaConsumo.resx" />
+  <event action="Analyze" type="Success" name="RptOrden.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesDesign\RptOrden.resx" />
+  <event action="Analyze" type="Success" name="RptOrdenes.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesDesign\RptOrdenes.resx" />
+  <event action="Analyze" type="Success" name="RptTransaccionesCF.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesDesign\RptTransaccionesCF.resx" />
+  <event action="Analyze" type="Success" name="RptTransaccionesSF.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesDesign\RptTransaccionesSF.resx" />
+  <event action="Analyze" type="Success" name="DevolucionForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesForm\DevolucionForm.resx" />
+  <event action="Analyze" type="Success" name="FrmOrden.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesForm\FrmOrden.resx" />
+  <event action="Analyze" type="Success" name="frmReportViewer.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesForm\frmReportViewer.resx" />
+  <event action="Analyze" type="Success" name="FrmRptTransacciones.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesForm\FrmRptTransacciones.resx" />
+  <event action="Analyze" type="Success" name="frmRtpPlan.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesForm\frmRtpPlan.resx" />
+  <event action="Analyze" type="Success" name="FrmTransaccionesCF.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesForm\FrmTransaccionesCF.resx" />
+  <event action="Analyze" type="Success" name="FrmTransaccionesSF.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesForm\FrmTransaccionesSF.resx" />
+  <event action="Analyze" type="Success" name="PackIDForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesForm\PackIDForm.resx" />
+  <event action="Analyze" type="Success" name="ProvIDForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\ReportesForm\ProvIDForm.resx" />
+  <event action="Analyze" type="Success" name="RptPackIDPO.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Reportes\RptPackIDPO.resx" />
+  <event action="Analyze" type="Success" name="ChemicalsInventoryForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Chemical\Reports\ChemicalsInventoryForm.resx" />
+  <event action="Analyze" type="Success" name="ChemicalsItemsForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Chemical\Reports\ChemicalsItemsForm.resx" />
+  <event action="Analyze" type="Success" name="ChemicalsRequestDeliveryForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Chemical\Reports\ChemicalsRequestDeliveryForm.resx" />
+  <event action="Analyze" type="Success" name="ChemicalsTransactionsForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Chemical\Reports\ChemicalsTransactionsForm.resx" />
+  <event action="Analyze" type="Success" name="CreateChemicalRequestForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Chemical\Request\CreateChemicalRequestForm.resx" />
+  <event action="Analyze" type="Success" name="CrudChemicalRequestForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Chemical\Request\CrudChemicalRequestForm.resx" />
+  <event action="Analyze" type="Success" name="ListChemicalsRequestForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Chemical\Request\ListChemicalsRequestForm.resx" />
+  <event action="Analyze" type="Success" name="WeeklyPlanForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Chemical\Request\WeeklyPlanForm.resx" />
+  <event action="Analyze" type="Success" name="PackagingInventoryForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Packaging\Reports\PackagingInventoryForm.resx" />
+  <event action="Analyze" type="Success" name="PackagingItemsForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Packaging\Reports\PackagingItemsForm.resx" />
+  <event action="Analyze" type="Success" name="PackagingRequestDeliveryForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Packaging\Reports\PackagingRequestDeliveryForm.resx" />
+  <event action="Analyze" type="Success" name="PackagingTransactionsForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Packaging\Reports\PackagingTransactionsForm.resx" />
+  <event action="Analyze" type="Success" name="frmListadoSolicitud.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Packaging\Request\frmListadoSolicitud.resx" />
+  <event action="Analyze" type="Success" name="frmSolicitudes.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Packaging\Request\frmSolicitudes.resx" />
+  <event action="Analyze" type="Success" name="CycleCountInvForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\CycleCounts\CycleCountInvForm.resx" />
+  <event action="Analyze" type="Success" name="AreasForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Maintenance\AreasForm.resx" />
+  <event action="Analyze" type="Success" name="LocalitiesForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Maintenance\LocalitiesForm.resx" />
+  <event action="Analyze" type="Success" name="ProductsForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Maintenance\ProductsForm.resx" />
+  <event action="Analyze" type="Success" name="SuppliersForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Maintenance\SuppliersForm.resx" />
+  <event action="Analyze" type="Success" name="WarehousesForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Maintenance\WarehousesForm.resx" />
+  <event action="Analyze" type="Success" name="TakeRequestForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Reports\TakeRequestForm.resx" />
+  <event action="Analyze" type="Success" name="WarehouseDeliveryForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Reports\WarehouseDeliveryForm.resx" />
+  <event action="Analyze" type="Success" name="WarehouseItemsForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Reports\WarehouseItemsForm.resx" />
+  <event action="Analyze" type="Success" name="WarehouseReportForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Reports\WarehouseReportForm.resx" />
+  <event action="Analyze" type="Success" name="WarehouseTransactionsForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Reports\WarehouseTransactionsForm.resx" />
+  <event action="Analyze" type="Success" name="WarehouseChemicalRequest.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Requests\Chemical\WarehouseChemicalRequest.resx" />
+  <event action="Analyze" type="Success" name="frmConsSolicitud.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Requests\Packaging\frmConsSolicitud.resx" />
+  <event action="Analyze" type="Success" name="frmEntregas.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Requests\Packaging\frmEntregas.resx" />
+  <event action="Analyze" type="Success" name="frmOrdenesRpt.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Requests\Packaging\frmOrdenesRpt.resx" />
+  <event action="Analyze" type="Success" name="WarehousePackagingRequest.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Requests\Packaging\WarehousePackagingRequest.resx" />
+  <event action="Analyze" type="Success" name="ExitsForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Transactions\ExitsForm.resx" />
+  <event action="Analyze" type="Success" name="PrioritiesForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Transactions\PrioritiesForm.resx" />
+  <event action="Analyze" type="Success" name="ProductionDateForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Transactions\ProductionDateForm.resx" />
+  <event action="Analyze" type="Success" name="ReceiptForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Transactions\ReceiptForm.resx" />
+  <event action="Analyze" type="Success" name="ReturnsForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Transactions\ReturnsForm.resx" />
+  <event action="Analyze" type="Success" name="ShipmentsForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Transactions\ShipmentsForm.resx" />
+  <event action="Analyze" type="Success" name="TransfersForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Warehouse\Transactions\TransfersForm.resx" />
+  <event action="Analyze" type="Success" name="YarmInventoryForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Yarn\Reports\YarmInventoryForm.resx" />
+  <event action="Analyze" type="Success" name="YarnItemsForm.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\RMC\Yarn\Reports\YarnItemsForm.resx" />
+  <event action="Analyze" type="Success" name="BagIrr.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Subidas\BagIrr.resx" />
+  <event action="Analyze" type="Success" name="Consolidado de Planes.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Subidas\Consolidado de Planes.resx" />
+  <event action="Analyze" type="Success" name="Desviaciones.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Subidas\Desviaciones.resx" />
+  <event action="Analyze" type="Success" name="DobladoIRR.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Subidas\DobladoIRR.resx" />
+  <event action="Analyze" type="Success" name="frmCargarPendientes.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Subidas\frmCargarPendientes.resx" />
+  <event action="Analyze" type="Success" name="frmCargaSemanaVieja.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Subidas\frmCargaSemanaVieja.resx" />
+  <event action="Analyze" type="Success" name="frmCargaSolicitudesEPC.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Subidas\frmCargaSolicitudesEPC.resx" />
+  <event action="Analyze" type="Success" name="frmMtnSemanas.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Subidas\frmMtnSemanas.resx" />
+  <event action="Analyze" type="Success" name="frmSobrantes.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Subidas\frmSobrantes.resx" />
+  <event action="Analyze" type="Success" name="frmSubidaPlan.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Subidas\frmSubidaPlan.resx" />
+  <event action="Analyze" type="Success" name="MantoUsers.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Subidas\MantoUsers.resx" />
+  <event action="Analyze" type="Success" name="Maquinas.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Subidas\Maquinas.resx" />
+  <event action="Analyze" type="Success" name="ProductMaster.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Subidas\ProductMaster.resx" />
+  <event action="Analyze" type="Success" name="SubBOMExcel.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Subidas\SubBOMExcel.resx" />
+  <event action="Analyze" type="Success" name="Subida de Stickers.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Subidas\Subida de Stickers.resx" />
+  <event action="Analyze" type="Success" name="SubIRR.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Subidas\SubIRR.resx" />
+  <event action="Analyze" type="Success" name="Teams.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Subidas\Teams.resx" />
+  <event action="Analyze" type="Success" name="UPC.resx" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Subidas\UPC.resx" />
+  <event action="Analyze" type="Success" name="Pmc" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Pmc.csproj" />
+  <event action="Analyze" type="Success" name="Recovered-Aug-13-2019-0752AM.Pmc" path="C:\Users\algaldam\source\repos\RMC-DEV\Recovered-Aug-13-2019-0752AM.Pmc.sln" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Pmc.csproj" />
+  <event action="Upgrade" type="Success" name="Config Sections" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\App.config" />
+  <event action="Upgrade" type="Success" name="App.config" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\App.config" />
+  <event action="Upgrade" type="Success" name="Pmc" path="C:\Users\algaldam\source\repos\RMC-DEV\Pmc\Pmc.csproj" />
+  <event action="Upgrade" type="Success" name="Recovered-Aug-13-2019-0752AM.Pmc" path="C:\Users\algaldam\source\repos\RMC-DEV\Recovered-Aug-13-2019-0752AM.Pmc.sln" />
+</log>

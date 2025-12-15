@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ES_SOCKS" Class="dcPmcDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=ESDEVSQL1V;Initial Catalog=ES_SOCKS;Integrated Security=True;Persist Security Info=False;MultipleActiveResultSets=True;Application Name=EntityFramework" SettingsObjectName="Rmc.Properties.Settings" SettingsPropertyName="ES_SOCKSConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.pmc_Plan" Member="pmc_Plans">
+    <Type Name="pmc_Plan">
+      <Column Name="pla_semana" Type="System.String" DbType="VarChar(7) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="pla_SACA" Type="System.String" DbType="VarChar(8) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="pla_item" Type="System.String" DbType="VarChar(25) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="pla_silueta" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="pla_estilo" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="pla_talla" Type="System.String" DbType="Char(3) NOT NULL" CanBeNull="false" />
+      <Column Name="pla_cantidad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="pla_sobrantes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="pla_estado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="pla_item_desv" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="pla_FH_crea" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="pla_usuario_crea" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="sol_item_desv" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="pla_FH_mod" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="pla_usuario_mod" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.pmc_Semanas" Member="pmc_Semanas">
+    <Type Name="pmc_Semanas">
+      <Column Name="sem_ID" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="sem_FH_crea" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="sem_usuario_crea" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="sem_FH_mod" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="sem_usuario_mod" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="sem_estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.pmc_Solicitudes" Member="pmc_Solicitudes">
+    <Type Name="pmc_Solicitudes">
+      <Column Name="sol_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sol_semana" Type="System.String" DbType="Char(7) NOT NULL" CanBeNull="false" />
+      <Column Name="sol_SACA" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="sol_item" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="sol_item_desv" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="sol_cant" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="sol_desv" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="sol_FH_crea" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="sol_FH_modifica" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="sol_usuario_crea" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="sol_usuario_modifica" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="sol_cant_entregada" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sol_usuario_entrega" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="sol_FH_entrega" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="sol_estado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sol_salida" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="sol_sobreconsumo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="sol_localidad" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.pmc_Entregas" Member="pmc_Entregas">
+    <Type Name="pmc_Entregas">
+      <Column Name="ent_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ent_sol_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ent_FH_crea" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ent_usuario_crea" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="ent_num_reporte" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.pmc_Mov_Bodega_Det" Member="pmc_Mov_Bodega_Dets">
+    <Type Name="pmc_Mov_Bodega_Det">
+      <Column Name="mov_det_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="mov_det_semana" Type="System.String" DbType="VarChar(7)" CanBeNull="true" />
+      <Column Name="mov_det_item" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="mov_det_desv" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="mov_det_cant" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="mov_det_cant_desv" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="mov_det_FH_crea" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="mov_det_usuario" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="mov_det_FH_mod" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="mov_det_usuario_mod" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.pmc_Mov_Bodega" Member="pmc_Mov_Bodegas">
+    <Type Name="pmc_Mov_Bodega">
+      <Column Name="mov_semana" Type="System.String" DbType="VarChar(7) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="mov_item" Type="System.String" DbType="VarChar(25) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="mov_item_desv" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="mov_cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="mov_cantidad_vieja" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="mov_cantidad_vieja_desc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="mov_FH_crea" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="mov_usuario_crea" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="mov_orden" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="mov_FH_modificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="mov_usuario_modificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="mov_estado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.usp_pmc_Solicitudes_CRUD" Method="usp_pmc_Solicitudes_CRUD">
+    <Parameter Name="sol_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="sol_semana" Type="System.String" DbType="Char(7)" />
+    <Parameter Name="SACA" Parameter="sACA" Type="System.String" DbType="VarChar(8)" />
+    <Parameter Name="sol_item" Type="System.String" DbType="VarChar(25)" />
+    <Parameter Name="sol_item_desv" Type="System.String" DbType="VarChar(25)" />
+    <Parameter Name="sol_cant" Type="System.Int32" DbType="Int" />
+    <Parameter Name="sol_desv" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="sol_sobreconsumo" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="sol_localidad" Type="System.String" DbType="VarChar(25)" />
+    <Parameter Name="accion" Type="System.Char" DbType="Char(1)" />
+    <ElementType Name="usp_pmc_Solicitudes_CRUDResult">
+      <Column Name="" Member="Column1" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>
