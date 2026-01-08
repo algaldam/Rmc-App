@@ -27,7 +27,8 @@ namespace Rmc.MaterialEmpaque.Ventana
         private DesperdicioData datosDesperdicio;
         private bool moduloDesperdiciosActivo = false;
         private bool buscarPorTraceID = true;
-       
+
+
         public VentanaForm()
         {
             InitializeComponent();
@@ -39,6 +40,8 @@ namespace Rmc.MaterialEmpaque.Ventana
             this.KeyPreview = true;
             ConfigureGridEvents();
             ConfigurarComboBoxAreas();
+
+            ConfigureEntryFormEvents();
 
             if (checkID != null)
             {
@@ -52,12 +55,681 @@ namespace Rmc.MaterialEmpaque.Ventana
                 };
             }
 
+            if (checkEntry != null)
+            {
+                checkEntry.Checked = false; // Por defecto deshabilitado
+                checkEntry.CheckedChanged += CheckEntry_CheckedChanged;
+                checkEntry.Text = "Entrada de Desp. Material";
+
+                MostrarModuloDesperdicio();
+                OcultarModuloEntrada();
+            }
+
             txtDespTraceID.KeyDown += TxtDespTraceID_KeyDown;
             txtDespOperador.KeyDown += TxtDespOperador_KeyDown;
             cmbDespArea.SelectedIndexChanged += CmbDespArea_SelectedIndexChanged;
 
             OcultarModuloDesperdicios();
         }
+
+        private void CheckEntry_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkEntry.Checked)
+            {
+                OcultarModuloDesperdicio();
+                MostrarModuloEntrada();
+                checkEntry.Text = "Entrada de Material";
+
+                LimpiarCamposDesperdicio();
+
+                txtItemCodigo.Focus();
+                txtItemCodigo.SelectAll();
+
+                ShowStatusMessage("Modo: Entrada de Material");
+            }
+            else
+            {
+                MostrarModuloDesperdicio();
+                OcultarModuloEntrada();
+                checkEntry.Text = "Entrada de Desp. de Material";
+
+                ClearEntryForm();
+
+                txtDespTraceID.Focus();
+                txtDespTraceID.SelectAll();
+
+                ShowStatusMessage("Modo: Desperdicio de Material");
+            }
+        }
+
+        private void MostrarModuloDesperdicio()
+        {
+            if (Controls.Find("lblTraceIDs", true).FirstOrDefault() is Control lblTraceIDs)
+                lblTraceIDs.Visible = true;
+
+            if (Controls.Find("lblSaca", true).FirstOrDefault() is Control lblSaca)
+                lblSaca.Visible = true;
+
+            if (Controls.Find("lblArea", true).FirstOrDefault() is Control lblArea)
+                lblArea.Visible = true;
+
+            if (Controls.Find("lblMotivo", true).FirstOrDefault() is Control lblMotivo)
+                lblMotivo.Visible = true;
+
+            if (Controls.Find("lblCarnet", true).FirstOrDefault() is Control lblCarnet)
+                lblCarnet.Visible = true;
+
+            if (Controls.Find("txtDespTraceID", true).FirstOrDefault() is Control txtDespTraceID)
+                txtDespTraceID.Visible = true;
+
+            if (Controls.Find("txtDespSaca", true).FirstOrDefault() is Control txtDespSaca)
+                txtDespSaca.Visible = true;
+
+            if (Controls.Find("cmbDespArea", true).FirstOrDefault() is Control cmbDespArea)
+                cmbDespArea.Visible = true;
+
+            if (Controls.Find("cmbDespMotivo", true).FirstOrDefault() is Control cmbDespMotivo)
+                cmbDespMotivo.Visible = true;
+
+            if (Controls.Find("txtDespOperador", true).FirstOrDefault() is Control txtDespOperador)
+                txtDespOperador.Visible = true;
+        }
+
+        private void OcultarModuloDesperdicio()
+        {
+            if (Controls.Find("lblTraceIDs", true).FirstOrDefault() is Control lblTraceIDs)
+                lblTraceIDs.Visible = false;
+
+            if (Controls.Find("lblSaca", true).FirstOrDefault() is Control lblSaca)
+                lblSaca.Visible = false;
+
+            if (Controls.Find("lblArea", true).FirstOrDefault() is Control lblArea)
+                lblArea.Visible = false;
+
+            if (Controls.Find("lblMotivo", true).FirstOrDefault() is Control lblMotivo)
+                lblMotivo.Visible = false;
+
+            if (Controls.Find("lblCarnet", true).FirstOrDefault() is Control lblCarnet)
+                lblCarnet.Visible = false;
+
+            if (Controls.Find("txtDespTraceID", true).FirstOrDefault() is Control txtDespTraceID)
+                txtDespTraceID.Visible = false;
+
+            if (Controls.Find("txtDespSaca", true).FirstOrDefault() is Control txtDespSaca)
+                txtDespSaca.Visible = false;
+
+            if (Controls.Find("cmbDespArea", true).FirstOrDefault() is Control cmbDespArea)
+                cmbDespArea.Visible = false;
+
+            if (Controls.Find("cmbDespMotivo", true).FirstOrDefault() is Control cmbDespMotivo)
+                cmbDespMotivo.Visible = false;
+
+            if (Controls.Find("txtDespOperador", true).FirstOrDefault() is Control txtDespOperador)
+                txtDespOperador.Visible = false;
+        }
+
+        private void MostrarModuloEntrada()
+        {
+            if (Controls.Find("lblProduct", true).FirstOrDefault() is Control lblProduct)
+                lblProduct.Visible = true;
+
+            if (Controls.Find("lblCaja", true).FirstOrDefault() is Control lblCaja)
+                lblCaja.Visible = true;
+
+            if (Controls.Find("lblUbicacion", true).FirstOrDefault() is Control lblUbicacion)
+                lblUbicacion.Visible = true;
+
+            if (Controls.Find("lblCantidad", true).FirstOrDefault() is Control lblCantidad)
+                lblCantidad.Visible = true;
+
+            if (Controls.Find("lblCarnetItem", true).FirstOrDefault() is Control lblCarnetItem)
+                lblCarnetItem.Visible = true;
+
+            if (Controls.Find("txtItemCodigo", true).FirstOrDefault() is Control txtItemCodigo)
+                txtItemCodigo.Visible = true;
+
+            if (Controls.Find("txtIdCaja", true).FirstOrDefault() is Control txtIdCaja)
+                txtIdCaja.Visible = true;
+
+            if (Controls.Find("txtLocalidad", true).FirstOrDefault() is Control txtLocalidad)
+                txtLocalidad.Visible = true;
+
+            if (Controls.Find("txtCantidad", true).FirstOrDefault() is Control txtCantidad)
+                txtCantidad.Visible = true;
+
+            if (Controls.Find("txtCarnetItem", true).FirstOrDefault() is Control txtCarnetItem)
+                txtCarnetItem.Visible = true;
+        }
+
+        private void OcultarModuloEntrada()
+        {
+            if (Controls.Find("lblProduct", true).FirstOrDefault() is Control lblProduct)
+                lblProduct.Visible = false;
+
+            if (Controls.Find("lblCaja", true).FirstOrDefault() is Control lblCaja)
+                lblCaja.Visible = false;
+
+            if (Controls.Find("lblUbicacion", true).FirstOrDefault() is Control lblUbicacion)
+                lblUbicacion.Visible = false;
+
+            if (Controls.Find("lblCantidad", true).FirstOrDefault() is Control lblCantidad)
+                lblCantidad.Visible = false;
+
+            if (Controls.Find("lblCarnetItem", true).FirstOrDefault() is Control lblCarnetItem)
+                lblCarnetItem.Visible = false;
+
+            if (Controls.Find("txtItemCodigo", true).FirstOrDefault() is Control txtItemCodigo)
+                txtItemCodigo.Visible = false;
+
+            if (Controls.Find("txtIdCaja", true).FirstOrDefault() is Control txtIdCaja)
+                txtIdCaja.Visible = false;
+
+            if (Controls.Find("txtLocalidad", true).FirstOrDefault() is Control txtLocalidad)
+                txtLocalidad.Visible = false;
+
+            if (Controls.Find("txtCantidad", true).FirstOrDefault() is Control txtCantidad)
+                txtCantidad.Visible = false;
+
+            if (Controls.Find("txtCarnetItem", true).FirstOrDefault() is Control txtCarnetItem)
+                txtCarnetItem.Visible = false;
+        }
+
+        private void LimpiarCamposDesperdicio()
+        {
+            if (Controls.Find("txtDespTraceID", true).FirstOrDefault() is RadTextBox txtDespTraceIDControl)
+                txtDespTraceIDControl.Text = "";
+
+            if (Controls.Find("txtDespSaca", true).FirstOrDefault() is RadTextBox txtDespSacaControl)
+                txtDespSacaControl.Text = "";
+
+            if (Controls.Find("cmbDespArea", true).FirstOrDefault() is RadDropDownList cmbDespAreaControl)
+            {
+                cmbDespAreaControl.SelectedIndex = -1;
+                cmbDespAreaControl.Enabled = false;
+            }
+
+            if (Controls.Find("cmbDespMotivo", true).FirstOrDefault() is RadDropDownList cmbDespMotivoControl)
+            {
+                cmbDespMotivoControl.Items.Clear();
+                cmbDespMotivoControl.SelectedIndex = -1;
+                cmbDespMotivoControl.Enabled = false;
+            }
+
+            if (Controls.Find("txtDespOperador", true).FirstOrDefault() is RadTextBox txtDespOperadorControl)
+                txtDespOperadorControl.Text = "";
+
+            if (GridItemsDesperdicioOut != null)
+            {
+                GridItemsDesperdicioOut.DataSource = null;
+                GridItemsDesperdicioOut.Rows.Clear();
+            }
+
+            datosDesperdicio = null;
+            if (itemsDesperdicioTable != null)
+            {
+                itemsDesperdicioTable.Dispose();
+                itemsDesperdicioTable = null;
+            }
+        }
+
+        private void ConfigureEntryFormEvents()
+        {
+            txtItemCodigo.KeyDown += TxtItemCodigo_KeyDown;
+            txtCantidad.KeyDown += TxtCantidad_KeyDown;
+            txtCarnetItem.KeyDown += TxtCarnetItem_KeyDown;
+
+            txtItemCodigo.TextChanged += TxtItemCodigo_TextChanged;
+        }
+
+        #region Módulo de Ingreso de Material (VENT)
+
+        private void TxtItemCodigo_TextChanged(object sender, EventArgs e)
+        {
+            string texto = txtItemCodigo.Text.Trim();
+
+            // Detener el timer anterior si existe
+            if (searchTimer != null && searchTimer.Enabled)
+            {
+                searchTimer.Stop();
+            }
+
+            // Crear nuevo timer
+            searchTimer = new Timer();
+            searchTimer.Interval = 500; // 500ms de espera después de dejar de escribir
+            searchTimer.Tick += (s, args) =>
+            {
+                searchTimer.Stop();
+                searchTimer.Dispose();
+                searchTimer = null;
+
+                if (!string.IsNullOrWhiteSpace(txtItemCodigo.Text))
+                {
+                    // Solo buscar si el texto no ha cambiado durante el intervalo
+                    string currentText = txtItemCodigo.Text.Trim();
+                    SearchAndAutoCompleteItem(currentText);
+                }
+                else
+                {
+                    ClearItemFields();
+                }
+            };
+
+            searchTimer.Start();
+        }
+
+        // Agrega esta variable a nivel de clase
+        private Timer searchTimer;
+
+        private void TxtItemCodigo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+
+                string texto = txtItemCodigo.Text.Trim();
+                if (!string.IsNullOrEmpty(texto))
+                {
+                    // Detener el timer si está activo
+                    if (searchTimer != null && searchTimer.Enabled)
+                    {
+                        searchTimer.Stop();
+                        searchTimer.Dispose();
+                        searchTimer = null;
+                    }
+
+                    // Procesar inmediatamente
+                    string codigoLimpio = texto.ToUpper().Trim();
+                    bool itemExiste = SearchAndAutoCompleteItem(codigoLimpio);
+
+                    if (itemExiste)
+                    {
+                        txtCantidad.Focus();
+                        txtCantidad.SelectAll();
+                    }
+                    else
+                    {
+                        txtItemCodigo.SelectAll();
+                        txtItemCodigo.Focus();
+                    }
+                }
+            }
+        }
+
+        private void ProcessItemCodeFinal()
+        {
+            string texto = txtItemCodigo.Text.Trim();
+            if (!string.IsNullOrEmpty(texto))
+            {
+                string codigoLimpio = texto.ToUpper().Trim(); // Solo convertir a mayúsculas
+
+                bool itemExiste = SearchAndAutoCompleteItem(codigoLimpio);
+
+                if (itemExiste)
+                {
+                    txtCantidad.Text = "";
+                    txtCantidad.Focus();
+                }
+                else
+                {
+                    // Si no existe, mostrar mensaje pero mantener el texto
+                    txtItemCodigo.SelectAll();
+                    txtItemCodigo.Focus();
+                }
+            }
+        }
+
+        private void TxtCantidad_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+
+                if (!string.IsNullOrWhiteSpace(txtCantidad.Text) && decimal.TryParse(txtCantidad.Text, out decimal cantidad))
+                {
+                    if (cantidad > 0)
+                    {
+                        txtCarnetItem.Focus();
+                        txtCarnetItem.SelectAll();
+                    }
+                    else
+                    {
+                        ShowStatusMessage("La cantidad debe ser mayor a 0", true);
+                        txtCantidad.Focus();
+                        txtCantidad.SelectAll();
+                    }
+                }
+                else
+                {
+                    ShowStatusMessage("Ingrese una cantidad válida", true);
+                    txtCantidad.Focus();
+                    txtCantidad.SelectAll();
+                }
+            }
+        }
+
+        private bool SearchAndAutoCompleteItem(string itemCode)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(itemCode))
+                {
+                    ClearItemFields();
+                    return false;
+                }
+
+                // Solo mostrar mensaje si es diferente al anterior
+                if (lastSearchedItem != itemCode)
+                {
+                    ShowStatusMessage($"Buscando: '{itemCode}' en VENTANA");
+                    lastSearchedItem = itemCode;
+                }
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(@"
+                SELECT DISTINCT 
+                    IP.Code, 
+                    SB.sub_descripcion AS Description, 
+                    IP.TotalQuantity, 
+                    IP.Location, 
+                    IP.BoxID,
+                    W.WarehouseCode
+                FROM ES_SOCKS.dbo.pmc_InventoryPreparation IP
+                INNER JOIN ES_SOCKS.dbo.pmc_Warehouse W ON IP.WarehouseID = W.WarehouseID
+                LEFT JOIN ES_SOCKS.dbo.pmc_Subida_BOM SB ON SB.sub_producto = IP.Code
+                WHERE IP.Code = @ItemCode
+                AND W.WarehouseCode = 'VENT'", connection))
+                    {
+                        command.Parameters.AddWithValue("@ItemCode", itemCode);
+
+                        connection.Open();
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            txtIdCaja.Text = reader["BoxID"]?.ToString() ?? "";
+                            txtLocalidad.Text = reader["Location"]?.ToString() ?? "Sin ubicación";
+
+                            string descripcion = reader["Description"]?.ToString() ?? "Sin descripción";
+                            decimal stockActual = reader["TotalQuantity"] != DBNull.Value ?
+                                                  Convert.ToDecimal(reader["TotalQuantity"]) : 0;
+
+                            ShowStatusMessage($"✓ {descripcion} - Stock: {Math.Round(stockActual)} unidades");
+                            reader.Close();
+                            return true;
+                        }
+                        else
+                        {
+                            ClearItemFields();
+                            ShowStatusMessage($"Item '{itemCode}' no encontrado en VENTANA", true);
+                            reader.Close();
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowStatusMessage($"Error buscando item: {ex.Message}", true);
+                ClearItemFields();
+                return false;
+            }
+        }
+
+        // Agrega esta variable a nivel de clase
+        private string lastSearchedItem = "";
+
+        private void ClearItemFields()
+        {
+            // Limpiar campos de información adicional
+            if (Controls.Find("txtIdCaja", true).FirstOrDefault() is RadTextBox txtIdCajaControl)
+                txtIdCajaControl.Text = "";
+
+            if (Controls.Find("txtLocalidad", true).FirstOrDefault() is RadTextBox txtLocalidadControl)
+                txtLocalidadControl.Text = "";
+        }
+
+        private void TxtCarnetItem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                ProcessItemEntry();
+            }
+        }
+
+        private void ProcessItemEntry()
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(txtItemCodigo.Text))
+                {
+                    ShowStatusMessage("Ingrese el código del item", true);
+                    txtItemCodigo.Focus();
+                    return;
+                }
+
+                string codigoLimpio = txtItemCodigo.Text.Trim().ToUpper(); // Simplificado
+
+                if (string.IsNullOrWhiteSpace(txtCarnetItem.Text))
+                {
+                    ShowStatusMessage("Ingrese su carnet", true);
+                    txtCarnetItem.Focus();
+                    return;
+                }
+
+                if (!ValidarCarnetAntesDeConfirmar(txtCarnetItem.Text.Trim(), txtCarnetItem))
+                {
+                    return;
+                }
+
+                if (!decimal.TryParse(txtCantidad.Text, out decimal cantidad) || cantidad <= 0)
+                {
+                    ShowStatusMessage("Ingrese una cantidad válida mayor a 0", true);
+                    txtCantidad.Focus();
+                    return;
+                }
+
+                // VERIFICAR SI EL ITEM EXISTE - NO CREAR NUEVOS
+                if (!ValidateItemExistsInVentana(codigoLimpio))
+                {
+                    ShowStatusMessage($"El item '{codigoLimpio}' no existe en VENTANA", true);
+                    txtItemCodigo.Focus();
+                    txtItemCodigo.SelectAll();
+                    return;
+                }
+
+                RegistrarEntradaInventarioVentana(codigoLimpio, cantidad, txtCarnetItem.Text.Trim());
+
+                UpdateItemStockVentana(codigoLimpio, cantidad, txtCarnetItem.Text.Trim());
+
+                ShowStatusMessage($"✓ Entrada procesada - Se agregaron {Math.Round(cantidad)} unidades");
+
+                ClearEntryForm();
+                txtItemCodigo.Focus();
+
+                // Refrescar el grid si hay una transacción activa
+                if (currentTraceId > 0)
+                {
+                    RefreshMaterialsGrid();
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowStatusMessage($"✗ Error procesando entrada: {ex.Message}", true);
+            }
+        }
+
+        private bool ValidateItemExistsInVentana(string itemCode)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(@"
+                SELECT COUNT(*) 
+                FROM ES_SOCKS.dbo.pmc_InventoryPreparation IP
+                INNER JOIN ES_SOCKS.dbo.pmc_Warehouse W ON IP.WarehouseID = W.WarehouseID
+                WHERE IP.Code = @ItemCode
+                AND W.WarehouseCode = 'VENT'", connection))
+                    {
+                        command.Parameters.AddWithValue("@ItemCode", itemCode);
+                        connection.Open();
+                        int count = (int)command.ExecuteScalar();
+                        return count > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowStatusMessage($"Error validando item en VENTANA: {ex.Message}", true);
+                return false;
+            }
+        }
+
+        private void RegistrarEntradaInventarioVentana(string itemCode, decimal cantidad, string carnet)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(@"
+                INSERT INTO ES_SOCKS.dbo.pmc_InventoryMovements (
+                    Code, 
+                    MovementType, 
+                    Quantity, 
+                    Warehouse, 
+                    Description, 
+                    CreatedBy
+                ) 
+                VALUES (
+                    @Code,
+                    'IN',
+                    @Quantity,
+                    'VENT',
+                    @Description,
+                    @CreatedBy
+                )", connection))
+                    {
+                        string descripcion = $"+ Entrada Material {itemCode} - cantidad {Math.Round(cantidad)}";
+
+                        command.Parameters.AddWithValue("@Code", itemCode);
+                        command.Parameters.AddWithValue("@Quantity", cantidad);
+                        command.Parameters.AddWithValue("@Description", descripcion);
+                        command.Parameters.AddWithValue("@CreatedBy", carnet);
+
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            ShowStatusMessage($"Movimiento registrado: {descripcion}");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowStatusMessage($"Error registrando entrada en movimientos VENTANA: {ex.Message}", true);
+                throw;
+            }
+        }
+
+        private void UpdateItemStockVentana(string itemCode, decimal cantidad, string carnet)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(@"
+                UPDATE ES_SOCKS.dbo.pmc_InventoryPreparation 
+                SET 
+                    TotalQuantity = TotalQuantity + @Cantidad,
+                    ModifiedDate = SYSDATETIME(),
+                    ModifiedBy = @Carnet
+                WHERE Code = @ItemCode
+                AND WarehouseID = (SELECT WarehouseID FROM ES_SOCKS.dbo.pmc_Warehouse WHERE WarehouseCode = 'VENT')", connection))
+                    {
+                        command.Parameters.AddWithValue("@ItemCode", itemCode);
+                        command.Parameters.AddWithValue("@Cantidad", cantidad);
+                        command.Parameters.AddWithValue("@Carnet", carnet);
+
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected == 0)
+                        {
+                            // NO CREAR EL ITEM - solo mostrar error
+                            throw new Exception($"El item {itemCode} no existe en VENTANA");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error actualizando stock: {ex.Message}");
+            }
+        }
+
+        private void ClearEntryForm()
+        {
+            // Limpiar TODOS los campos
+            txtItemCodigo.Text = "";
+            txtCantidad.Text = "";
+            txtCarnetItem.Text = "";
+            txtIdCaja.Text = "";
+            txtLocalidad.Text = "";
+
+            txtItemCodigo.Focus();
+        }
+
+        private void RefreshMaterialsGrid()
+        {
+            try
+            {
+                if (currentTraceId > 0 && itemsDataTable != null)
+                {
+                    // Recargar datos de inventario
+                    LoadVentanaInventoryData();
+
+                    // Refrescar el binding del grid
+                    var bindingSource = GridItemsOut.DataSource as BindingSource;
+                    if (bindingSource != null)
+                    {
+                        bindingSource.ResetBindings(false);
+                    }
+
+                    GridItemsOut.Refresh();
+
+                    ShowStatusMessage("Inventario actualizado", false, false);
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowStatusMessage($"Error al actualizar el grid: {ex.Message}", true);
+            }
+        }
+
+        private string LimpiarCodigoEscaneado(string textoEscaneado)
+        {
+            if (string.IsNullOrEmpty(textoEscaneado))
+                return textoEscaneado;
+
+            textoEscaneado = textoEscaneado.Trim();
+            string[] partes = textoEscaneado.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (partes.Length > 0)
+            {
+                return partes[0].ToUpper().Trim();
+            }
+
+            return textoEscaneado.ToUpper().Trim();
+        }
+
+        #endregion
 
         private void CheckID_CheckedChanged(object sender, EventArgs e)
         {
@@ -122,11 +794,11 @@ namespace Rmc.MaterialEmpaque.Ventana
             txtDespOperador.Visible = true;
 
             radLabel11.Visible = true;
-            radLabel7.Visible = true;
-            radLabel6.Visible = true;
-            radLabel10.Visible = true;
-            radLabel8.Visible = true;
-            radLabel9.Visible = true;
+            lblTraceIDs.Visible = true;
+            lblSaca.Visible = true;
+            lblArea.Visible = true;
+            lblMotivo.Visible = true;
+            lblCarnet.Visible = true;
 
             txtDespTraceID.Text = "";
             txtDespSaca.Text = "";
@@ -165,11 +837,11 @@ namespace Rmc.MaterialEmpaque.Ventana
             txtDespOperador.Visible = true;
 
             radLabel11.Visible = true;
-            radLabel7.Visible = true;
-            radLabel6.Visible = true;
-            radLabel10.Visible = true;
-            radLabel8.Visible = true;
-            radLabel9.Visible = true;
+            lblTraceIDs.Visible = true;
+            lblSaca.Visible = true;
+            lblArea.Visible = true;
+            lblMotivo.Visible = true;
+            lblCarnet.Visible = true;
 
             moduloDesperdiciosActivo = true;
         }
@@ -466,7 +1138,7 @@ namespace Rmc.MaterialEmpaque.Ventana
                                 WHEN IP.WarehouseID = 3 THEN IP.Location
                                 ELSE 'No Disp.'
                             END AS Localidad
-                        FROM pmc_TransactionDetails D
+                        FROM dbo.pmc_TransactionDetails D
                         LEFT JOIN pmc_Subida_BOM SB 
                             ON SB.sub_producto = D.Code
                         LEFT JOIN pmc_InventoryPreparation IP 
@@ -1411,7 +2083,7 @@ namespace Rmc.MaterialEmpaque.Ventana
                         }
                     }
 
-                    ShowStatusMessage($"✗ No se encontró relación para ID {relatedID}", true);
+                    ShowStatusMessage($"No se encontró relación para ID {relatedID}", true);
                     return 0;
                 }
             }
@@ -1505,8 +2177,8 @@ namespace Rmc.MaterialEmpaque.Ventana
             if (!itemsDataTable.Columns.Contains("Inventory"))
                 itemsDataTable.Columns.Add("Inventory", typeof(decimal));
 
-            if (!itemsDataTable.Columns.Contains("Location"))
-                itemsDataTable.Columns.Add("Location", typeof(string));
+            if (!itemsDataTable.Columns.Contains("Ubicacion")) // Cambiado de "Location" a "Ubicacion"
+                itemsDataTable.Columns.Add("Ubicacion", typeof(string)); // Cambiado de "Location" a "Ubicacion"
 
             if (!itemsDataTable.Columns.Contains("InventoryDisplay"))
                 itemsDataTable.Columns.Add("InventoryDisplay", typeof(string));
@@ -1525,20 +2197,20 @@ namespace Rmc.MaterialEmpaque.Ventana
                         string itemCode = row["ItemCode"].ToString().Trim();
 
                         string inventoryQuery = @"
-                            SELECT
-                                IP.Code,
-                                SB.sub_descripcion AS Description,
-                                IP.TotalQuantity,
-                                IP.Location
-                            FROM ES_SOCKS.dbo.pmc_InventoryPreparation IP
-                            INNER JOIN ES_SOCKS.dbo.pmc_Warehouse W ON IP.WarehouseID = W.WarehouseID
-                            OUTER APPLY (
-                                SELECT TOP 1 sub_descripcion
-                                FROM ES_SOCKS.dbo.pmc_Subida_BOM SB
-                                WHERE SB.sub_producto = IP.Code
-                            ) SB
-                            WHERE IP.Code = @ItemCode
-                            AND W.WarehouseCode = 'VENT'";
+                        SELECT
+                            IP.Code,
+                            SB.sub_descripcion AS Description,
+                            IP.TotalQuantity,
+                            IP.Location
+                        FROM ES_SOCKS.dbo.pmc_InventoryPreparation IP
+                        INNER JOIN ES_SOCKS.dbo.pmc_Warehouse W ON IP.WarehouseID = W.WarehouseID
+                        OUTER APPLY (
+                            SELECT TOP 1 sub_descripcion
+                            FROM ES_SOCKS.dbo.pmc_Subida_BOM SB
+                            WHERE SB.sub_producto = IP.Code
+                        ) SB
+                        WHERE IP.Code = @ItemCode
+                        AND W.WarehouseCode = 'VENT'";
 
                         using (SqlCommand inventoryCommand = new SqlCommand(inventoryQuery, connection))
                         {
@@ -1557,7 +2229,7 @@ namespace Rmc.MaterialEmpaque.Ventana
                                     decimal quantityBOM = Convert.ToDecimal(row["QuantityBOM"]);
 
                                     row["Inventory"] = inventoryQuantity;
-                                    row["Location"] = inventoryReader["Location"]?.ToString() ?? "No ubicado";
+                                    row["Ubicacion"] = inventoryReader["Location"]?.ToString() ?? "No ubicado"; // Cambiado a Ubicacion
 
                                     string descripcion = inventoryReader["Description"]?.ToString();
                                     if (string.IsNullOrEmpty(descripcion))
@@ -1587,7 +2259,7 @@ namespace Rmc.MaterialEmpaque.Ventana
                                 else
                                 {
                                     row["Inventory"] = 0;
-                                    row["Location"] = "No en ventana";
+                                    row["Ubicacion"] = "No en ventana";
                                     row["InventoryDisplay"] = "No Disponible";
                                     row["Existencia"] = "No Disponible";
                                 }
@@ -1629,28 +2301,48 @@ namespace Rmc.MaterialEmpaque.Ventana
                         string itemCode = row["ItemCode"].ToString().Trim();
 
                         string query = @"
-                            SELECT ISNULL(SUM(Quantity), 0) as TotalSobrantes
-                            FROM dbo.pmc_InventoryOverstock 
-                            WHERE Saca = @Saca 
-                            AND Item = @Item";
+                    SELECT 
+                        ISNULL(SUM(Quantity), 0) as TotalSobrantes,
+                        (SELECT TOP 1 Location 
+                         FROM Es_socks.dbo.pmc_InventoryOverstock 
+                         WHERE Saca = @Saca AND Item = @Item 
+                         ORDER BY Id DESC) as Ubicacion -- Nueva consulta para ubicación
+                    FROM dbo.pmc_InventoryOverstock 
+                    WHERE Saca = @Saca 
+                    AND Item = @Item";
 
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
                             command.Parameters.AddWithValue("@Saca", sacaActual);
                             command.Parameters.AddWithValue("@Item", itemCode);
 
-                            object result = command.ExecuteScalar();
-                            decimal totalSobrantes = result != null ? Convert.ToDecimal(result) : 0m;
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    decimal totalSobrantes = reader["TotalSobrantes"] != DBNull.Value ?
+                                        Convert.ToDecimal(reader["TotalSobrantes"]) : 0m;
+                                    string ubicacion = reader["Ubicacion"]?.ToString() ?? "No ubicado";
 
-                            if (totalSobrantes > 0)
-                            {
-                                row["SobrantesDisponibles"] = Math.Round(totalSobrantes).ToString("N0");
+                                    if (totalSobrantes > 0)
+                                    {
+                                        row["SobrantesDisponibles"] = Math.Round(totalSobrantes).ToString("N0");
+                                        // Actualizar la ubicación con la de sobrantes
+                                        row["Ubicacion"] = ubicacion;
+                                    }
+                                    else
+                                    {
+                                        row["SobrantesDisponibles"] = "No Disponible";
+                                    }
+                                    row["DescontarSobrantes"] = 0m;
+                                }
+                                else
+                                {
+                                    row["SobrantesDisponibles"] = "No Disponible";
+                                    row["DescontarSobrantes"] = 0m;
+                                }
+                                reader.Close();
                             }
-                            else
-                            {
-                                row["SobrantesDisponibles"] = "No Disponible";
-                            }
-                            row["DescontarSobrantes"] = 0m;
                         }
                     }
                 }
@@ -1739,7 +2431,7 @@ namespace Rmc.MaterialEmpaque.Ventana
             // COLUMNA INVENTARIO
             var inventoryColumn = new GridViewTextBoxColumn();
             inventoryColumn.FieldName = "InventoryDisplay";
-            inventoryColumn.HeaderText = "Inventario VENT";
+            inventoryColumn.HeaderText = "Inventario";
             inventoryColumn.Name = "Inventory";
             inventoryColumn.Width = 100;
             inventoryColumn.ReadOnly = true;
@@ -1747,13 +2439,6 @@ namespace Rmc.MaterialEmpaque.Ventana
             GridItemsOut.MasterTemplate.Columns.Add(inventoryColumn);
 
             // COLUMNA LOCALIDAD
-            var locationColumn = new GridViewTextBoxColumn();
-            locationColumn.FieldName = "Location";
-            locationColumn.HeaderText = "Localidad";
-            locationColumn.Name = "Location";
-            locationColumn.Width = 100;
-            locationColumn.ReadOnly = true;
-            GridItemsOut.MasterTemplate.Columns.Add(locationColumn);
 
             // COLUMNA ESTADO
             var confirmationStatusColumn = new GridViewTextBoxColumn();
@@ -1774,6 +2459,14 @@ namespace Rmc.MaterialEmpaque.Ventana
             descontarSobrantesColumn.ReadOnly = false;
             descontarSobrantesColumn.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             GridItemsOut.MasterTemplate.Columns.Add(descontarSobrantesColumn);
+
+            var ubicacionColumn = new GridViewTextBoxColumn();
+            ubicacionColumn.FieldName = "Ubicacion"; // Cambiado de "Location" a "Ubicacion"
+            ubicacionColumn.HeaderText = "Ubicación"; // Cambiado de "Localidad" a "Ubicación"
+            ubicacionColumn.Name = "Ubicacion"; // Cambiado de "Location" a "Ubicacion"
+            ubicacionColumn.Width = 100;
+            ubicacionColumn.ReadOnly = true;
+            GridItemsOut.MasterTemplate.Columns.Add(ubicacionColumn);
 
             // COLUMNA: SOBRANTES DISPONIBLES
             var sobrantesDisponiblesColumn = new GridViewTextBoxColumn();
@@ -1923,19 +2616,42 @@ namespace Rmc.MaterialEmpaque.Ventana
             {
                 var existenciaCell = row.Cells["Existencia"];
                 var inventoryCell = row.Cells["InventoryDisplay"];
+                var sobrantesCell = row.Cells["SobrantesDisponibles"];
 
+                bool tieneSobrantes = false;
+                decimal cantidadSobrantes = 0;
+                if (sobrantesCell != null && sobrantesCell.Value != null &&
+                    sobrantesCell.Value.ToString() != "No Disponible")
+                {
+                    if (decimal.TryParse(sobrantesCell.Value.ToString().Replace(",", ""), out decimal sobrantes) && sobrantes > 0)
+                    {
+                        tieneSobrantes = true;
+                        cantidadSobrantes = sobrantes;
+                    }
+                }
+
+                // Permitir edición SI hay sobrantes disponibles (aunque no haya existencia)
                 if (existenciaCell != null && existenciaCell.Value != null &&
-                    existenciaCell.Value.ToString() == "No Disponible")
+                    existenciaCell.Value.ToString() == "No Disponible" && !tieneSobrantes)
                 {
                     e.Cancel = true;
-                    ShowStatusMessage("No se puede editar - Item sin inventario disponible en VENTANA", true);
+                    ShowStatusMessage("No se puede editar - Item sin inventario disponible en VENTANA ni sobrantes", true);
                     return;
                 }
 
-                if (inventoryCell != null && inventoryCell.Value != null &&
+                if (!tieneSobrantes && inventoryCell != null && inventoryCell.Value != null &&
                     inventoryCell.Value.ToString() == "Insuficiente")
                 {
                     ShowStatusMessage("Inventario insuficiente, pero puede usar sobrantes si están disponibles", false, true);
+                }
+                else if (tieneSobrantes)
+                {
+                    ShowStatusMessage($"Sobrantes disponibles: {Math.Round(cantidadSobrantes)} unidades", false, true);
+                }
+                else if (inventoryCell != null && inventoryCell.Value != null &&
+                         inventoryCell.Value.ToString() == "No Disponible")
+                {
+                    ShowStatusMessage("Item no disponible en ventana", false, true);
                 }
             }
 
@@ -2322,7 +3038,7 @@ namespace Rmc.MaterialEmpaque.Ventana
         {
             if (Controls.Find("lblNameID", true).FirstOrDefault() is Control lblNameID)
             {
-                string tipoID = buscarPorTraceID ? "TRACE ID" : "RELATED ID";
+                string tipoID = buscarPorTraceID ? "TRACER ID" : "TRACER ID";
                 lblNameID.Text = $"{tipoID}: {traceIDText}";
 
                 if (!buscarPorTraceID && currentTraceId > 0)
@@ -2447,12 +3163,6 @@ namespace Rmc.MaterialEmpaque.Ventana
             var inventoryCell = row.Cells["InventoryDisplay"];
             var sobrantesCell = row.Cells["SobrantesDisponibles"];
 
-            if (existenciaCell != null && existenciaCell.Value != null &&
-                existenciaCell.Value.ToString() == "No Disponible")
-            {
-                return false;
-            }
-
             bool tieneSobrantes = false;
             if (sobrantesCell != null && sobrantesCell.Value != null &&
                 sobrantesCell.Value.ToString() != "No Disponible")
@@ -2463,10 +3173,17 @@ namespace Rmc.MaterialEmpaque.Ventana
                 }
             }
 
-            if (inventoryCell != null && inventoryCell.Value != null &&
-                inventoryCell.Value.ToString() == "Insuficiente" && tieneSobrantes)
+            // SI hay sobrantes disponibles, la fila SI es editable aunque no haya existencia
+            if (tieneSobrantes)
             {
                 return true;
+            }
+
+            // Si no hay sobrantes, usar la lógica original
+            if (existenciaCell != null && existenciaCell.Value != null &&
+                existenciaCell.Value.ToString() == "No Disponible")
+            {
+                return false;
             }
 
             if (inventoryCell != null && inventoryCell.Value != null &&
@@ -2773,6 +3490,7 @@ namespace Rmc.MaterialEmpaque.Ventana
                 string existencia = row.Cells["Existencia"]?.Value?.ToString();
                 decimal quantityREAL = 0;
                 decimal inventory = 0;
+                bool tieneSobrantesDisponibles = false;
 
                 var quantityCell = row.Cells["QuantityBOM"]?.Value;
                 if (quantityCell != null)
@@ -2782,16 +3500,45 @@ namespace Rmc.MaterialEmpaque.Ventana
                 if (inventoryCell != null)
                     decimal.TryParse(inventoryCell.ToString(), out inventory);
 
-                if (existencia == "No Disponible")
+                // Verificar si hay sobrantes disponibles
+                var sobrantesCell = row.Cells["SobrantesDisponibles"]?.Value;
+                if (sobrantesCell != null && sobrantesCell != DBNull.Value)
+                {
+                    string sobrantesValue = sobrantesCell.ToString();
+                    if (sobrantesValue != "No Disponible")
+                    {
+                        if (decimal.TryParse(sobrantesValue.Replace(",", ""), out decimal sobrantes))
+                        {
+                            tieneSobrantesDisponibles = sobrantes > 0;
+                        }
+                    }
+                }
+
+                // SOLO poner en rojo si NO hay existencia Y NO hay sobrantes disponibles
+                if (existencia == "No Disponible" && !tieneSobrantesDisponibles)
                 {
                     e.RowElement.BackColor = Color.FromArgb(255, 255, 204, 204); // Rojo
                     e.RowElement.ForeColor = Color.Black;
                 }
-                else if (inventory < quantityREAL)
+                else if (inventory < quantityREAL && !tieneSobrantesDisponibles)
                 {
+                    // Solo mostrar amarillo si hay inventario insuficiente Y no hay sobrantes
                     e.RowElement.BackColor = Color.FromArgb(255, 255, 255, 204); // Amarillo
                     e.RowElement.ForeColor = Color.Black;
                 }
+                else if (existencia == "No Disponible" && tieneSobrantesDisponibles)
+                {
+                    // Si no hay existencia pero hay sobrantes, mostrar en color diferente (azul claro)
+                    e.RowElement.BackColor = Color.FromArgb(255, 204, 229, 255); // Azul claro
+                    e.RowElement.ForeColor = Color.Black;
+                }
+                else
+                {
+                    // Filas normales
+                    e.RowElement.ResetValue(LightVisualElement.BackColorProperty, Telerik.WinControls.ValueResetFlags.Local);
+                    e.RowElement.ResetValue(LightVisualElement.ForeColorProperty, Telerik.WinControls.ValueResetFlags.Local);
+                }
+
                 e.RowElement.GradientStyle = Telerik.WinControls.GradientStyles.Solid;
                 e.RowElement.DrawFill = true;
             }
@@ -3150,6 +3897,13 @@ namespace Rmc.MaterialEmpaque.Ventana
             {
                 bool modoBusquedaOriginal = buscarPorTraceID;
 
+                if (searchTimer != null)
+                {
+                    searchTimer.Stop();
+                    searchTimer.Dispose();
+                    searchTimer = null;
+                }
+
                 txtTraceID.Text = "";
                 txtSACA.Text = "";
                 txtSACAseg.Text = "";
@@ -3165,6 +3919,16 @@ namespace Rmc.MaterialEmpaque.Ventana
                 cmbDespMotivo.Items.Clear();
                 cmbDespMotivo.SelectedIndex = -1;
                 cmbDespMotivo.Enabled = false;
+
+                // AGREGAR LIMPIEZA DE CAMPOS DE ENTRADA
+                txtItemCodigo.Text = "";
+                txtCantidad.Text = "";
+                txtCarnetItem.Text = "";
+                txtIdCaja.Text = "";
+                txtLocalidad.Text = "";
+
+                ClearItemFields();
+                // FIN DE AGREGADO
 
                 if (itemsDataTable != null)
                 {
@@ -3199,7 +3963,7 @@ namespace Rmc.MaterialEmpaque.Ventana
                 ControlarCamposDesperdicio(true);
                 if (Controls.Find("lblNameID", true).FirstOrDefault() is Control lblNameID)
                 {
-                    string tipoID = buscarPorTraceID ? "TRACE ID" : "RELATED ID";
+                    string tipoID = buscarPorTraceID ? "TRACER ID" : "TRACER ID";
                     lblNameID.Text = $"{tipoID}:";
                 }
 

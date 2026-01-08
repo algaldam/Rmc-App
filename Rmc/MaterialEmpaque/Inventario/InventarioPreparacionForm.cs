@@ -577,7 +577,7 @@ namespace Rmc.MaterialEmpaque.Inventario
             AddGridColumn("Location", "UBICACIÓN", true, 125);
             AddGridColumn("BoxID", "CAJA", true, 120);
             AddGridColumn("CreatedDate", "FECHA REGISTRO", true, 210);
-            AddGridColumn("CreatedBy", "CARNET", true, 110);
+            AddGridColumn("ModifiedBy", "CARNET", true, 110);
             AddGridColumn("Name", "REGISTRADO POR", true, 200);
             AddGridColumn("ModifiedDate", "ÚLTIMA MODIFICACIÓN", true, 210);
 

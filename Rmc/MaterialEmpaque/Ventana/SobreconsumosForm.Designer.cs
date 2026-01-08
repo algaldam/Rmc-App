@@ -79,6 +79,7 @@
             this.lblMensaje = new Telerik.WinControls.UI.RadLabel();
             this.panelFormulario = new Telerik.WinControls.UI.RadPanel();
             this.panelCard = new Telerik.WinControls.UI.RadPanel();
+            this.checkID = new System.Windows.Forms.CheckBox();
             this.cmbCelulas = new Telerik.WinControls.UI.RadDropDownList();
             this.txtTraceID = new Telerik.WinControls.UI.RadTextBox();
             this.cmbMaquinas = new Telerik.WinControls.UI.RadDropDownList();
@@ -243,19 +244,25 @@
             this.panelGrid.Controls.Add(this.gridSolicitudes);
             this.panelGrid.Controls.Add(this.panelAccionesGrid);
             this.panelGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelGrid.Location = new System.Drawing.Point(372, 256);
+            this.panelGrid.Location = new System.Drawing.Point(366, 256);
             this.panelGrid.Name = "panelGrid";
-            this.panelGrid.Size = new System.Drawing.Size(1177, 531);
+            this.panelGrid.Size = new System.Drawing.Size(1183, 531);
             this.panelGrid.TabIndex = 2;
             // 
             // gridSolicitudes
             // 
+            this.gridSolicitudes.AutoScroll = true;
             this.gridSolicitudes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridSolicitudes.EnableCustomFiltering = true;
+            this.gridSolicitudes.EnableCustomGrouping = true;
+            this.gridSolicitudes.EnableCustomSorting = true;
             this.gridSolicitudes.Location = new System.Drawing.Point(0, 0);
             // 
             // 
             // 
             this.gridSolicitudes.MasterTemplate.AllowAddNewRow = false;
+            this.gridSolicitudes.MasterTemplate.AllowDeleteRow = false;
+            this.gridSolicitudes.MasterTemplate.AllowEditRow = false;
             gridViewTextBoxColumn1.HeaderText = "SobreConsumosID";
             gridViewTextBoxColumn1.Name = "Sobreconsumos";
             gridViewTextBoxColumn1.Width = 200;
@@ -301,12 +308,16 @@
             gridViewTextBoxColumn9,
             gridViewTextBoxColumn10,
             gridViewTextBoxColumn11});
+            this.gridSolicitudes.MasterTemplate.EnableCustomFiltering = true;
+            this.gridSolicitudes.MasterTemplate.EnableCustomGrouping = true;
+            this.gridSolicitudes.MasterTemplate.EnableCustomSorting = true;
+            this.gridSolicitudes.MasterTemplate.EnableFiltering = true;
             this.gridSolicitudes.MasterTemplate.ShowRowHeaderColumn = false;
             this.gridSolicitudes.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gridSolicitudes.Name = "gridSolicitudes";
             this.gridSolicitudes.ReadOnly = true;
             this.gridSolicitudes.ShowGroupPanel = false;
-            this.gridSolicitudes.Size = new System.Drawing.Size(1177, 473);
+            this.gridSolicitudes.Size = new System.Drawing.Size(1183, 473);
             this.gridSolicitudes.TabIndex = 0;
             // 
             // panelAccionesGrid
@@ -315,7 +326,7 @@
             this.panelAccionesGrid.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelAccionesGrid.Location = new System.Drawing.Point(0, 473);
             this.panelAccionesGrid.Name = "panelAccionesGrid";
-            this.panelAccionesGrid.Size = new System.Drawing.Size(1177, 58);
+            this.panelAccionesGrid.Size = new System.Drawing.Size(1183, 58);
             this.panelAccionesGrid.TabIndex = 1;
             // 
             // btnActualizar
@@ -342,7 +353,7 @@
             this.lblTituloGrid.ForeColor = System.Drawing.Color.Black;
             this.lblTituloGrid.Location = new System.Drawing.Point(0, 144);
             this.lblTituloGrid.Name = "lblTituloGrid";
-            this.lblTituloGrid.Size = new System.Drawing.Size(1177, 32);
+            this.lblTituloGrid.Size = new System.Drawing.Size(1183, 32);
             this.lblTituloGrid.TabIndex = 4;
             this.lblTituloGrid.Text = "Pendientes de Entrega";
             // 
@@ -364,9 +375,9 @@
             this.GridHeader.Controls.Add(this.panel1);
             this.GridHeader.Controls.Add(this.lblTituloGrid);
             this.GridHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.GridHeader.Location = new System.Drawing.Point(372, 80);
+            this.GridHeader.Location = new System.Drawing.Point(366, 80);
             this.GridHeader.Name = "GridHeader";
-            this.GridHeader.Size = new System.Drawing.Size(1177, 176);
+            this.GridHeader.Size = new System.Drawing.Size(1183, 176);
             this.GridHeader.TabIndex = 3;
             // 
             // txtUltimaHora
@@ -495,7 +506,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1177, 29);
+            this.panel1.Size = new System.Drawing.Size(1183, 29);
             this.panel1.TabIndex = 5;
             // 
             // radLabel12
@@ -505,7 +516,7 @@
             this.radLabel12.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.radLabel12.Location = new System.Drawing.Point(0, 0);
             this.radLabel12.Name = "radLabel12";
-            this.radLabel12.Size = new System.Drawing.Size(213, 29);
+            this.radLabel12.Size = new System.Drawing.Size(213, 25);
             this.radLabel12.TabIndex = 2;
             this.radLabel12.Text = "Última solicitud entregada";
             // 
@@ -527,12 +538,13 @@
             this.panelFormulario.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelFormulario.Location = new System.Drawing.Point(0, 80);
             this.panelFormulario.Name = "panelFormulario";
-            this.panelFormulario.Size = new System.Drawing.Size(372, 707);
+            this.panelFormulario.Size = new System.Drawing.Size(366, 707);
             this.panelFormulario.TabIndex = 1;
             // 
             // panelCard
             // 
             this.panelCard.BackColor = System.Drawing.Color.White;
+            this.panelCard.Controls.Add(this.checkID);
             this.panelCard.Controls.Add(this.cmbCelulas);
             this.panelCard.Controls.Add(this.txtTraceID);
             this.panelCard.Controls.Add(this.cmbMaquinas);
@@ -550,6 +562,16 @@
             this.panelCard.Name = "panelCard";
             this.panelCard.Size = new System.Drawing.Size(328, 629);
             this.panelCard.TabIndex = 0;
+            // 
+            // checkID
+            // 
+            this.checkID.AutoSize = true;
+            this.checkID.Location = new System.Drawing.Point(146, 51);
+            this.checkID.Name = "checkID";
+            this.checkID.Size = new System.Drawing.Size(66, 17);
+            this.checkID.TabIndex = 11;
+            this.checkID.Text = "TracerID";
+            this.checkID.UseVisualStyleBackColor = true;
             // 
             // cmbCelulas
             // 
@@ -679,6 +701,7 @@
         private Telerik.WinControls.UI.RadTextBox txtUltimaMaquina;
         private Telerik.WinControls.UI.RadTextBox txtUltimoSaca;
         private Telerik.WinControls.UI.RadTextBox txtUltimoTraceId;
+        private System.Windows.Forms.CheckBox checkID;
     }
 }
 

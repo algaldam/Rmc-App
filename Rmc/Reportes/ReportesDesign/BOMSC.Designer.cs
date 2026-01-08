@@ -669,9 +669,9 @@ namespace Rmc.Reportes.ReportesDesign
             // textBox34
             // 
             this.textBox34.Angle = 0D;
-            this.textBox34.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(2.9D), Telerik.Reporting.Drawing.Unit.Inch(1.652D));
+            this.textBox34.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(2.7D), Telerik.Reporting.Drawing.Unit.Inch(1.652D));
             this.textBox34.Name = "textBox34";
-            this.textBox34.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(0.9D), Telerik.Reporting.Drawing.Unit.Inch(0.17D));
+            this.textBox34.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.3D), Telerik.Reporting.Drawing.Unit.Inch(0.17D));
             this.textBox34.Style.BackgroundColor = System.Drawing.Color.White;
             this.textBox34.Style.BorderColor.Default = System.Drawing.Color.Gray;
             this.textBox34.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;

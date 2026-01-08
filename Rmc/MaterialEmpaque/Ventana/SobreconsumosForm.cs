@@ -14,7 +14,9 @@ namespace Rmc.MaterialEmpaque.Ventana
     public partial class SobreconsumosForm : Telerik.WinControls.UI.RadForm
     {
         private string connectionString = Properties.Settings.Default.TracerConnectionString;
+        private string connectionStringES_SOCKS = Properties.Settings.Default.ES_SOCKSConnectionString;
         private Timer timerRefresco;
+        private bool buscarPorTraceID = true; // Variable para controlar el modo de búsqueda
 
         public SobreconsumosForm()
         {
@@ -25,6 +27,45 @@ namespace Rmc.MaterialEmpaque.Ventana
             CargarSolicitudes();
             CargarUltimoSobreconsumo();
             ConfigurarEventosFormulario();
+            ConfigurarModoBusqueda(); // Nuevo método
+        }
+
+        private void ConfigurarModoBusqueda()
+        {
+            // Configurar el checkbox para cambiar entre modos
+            if (checkID != null)
+            {
+                checkID.Checked = true; // Por defecto busca por TraceID
+                buscarPorTraceID = checkID.Checked;
+
+                // Actualizar texto del checkbox
+                checkID.Text = buscarPorTraceID ? "Buscar por TraceID Knitting/Dye" : "Buscar por TraceID Finishing";
+
+                // Configurar evento cuando cambie el estado
+                checkID.CheckedChanged += CheckID_CheckedChanged;
+
+                // Configurar evento para actualizar texto
+                checkID.CheckStateChanged += (s, e) =>
+                {
+                    checkID.Text = checkID.Checked ? "Buscar por TraceID Knitting/Dye" : "Buscar por TraceID Finishing";
+                };
+            }
+        }
+
+        private void CheckID_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkID != null)
+            {
+                buscarPorTraceID = checkID.Checked;
+
+                // Mostrar mensaje de estado
+                string modoBusqueda = buscarPorTraceID ? "TraceID Knitting/Dye" : "TraceID Finishing";
+                MostrarMensaje($"Modo de búsqueda: {modoBusqueda}", true);
+
+                // Enfocar el campo de TraceID
+                txtTraceID.Focus();
+                txtTraceID.SelectAll();
+            }
         }
 
         private void ConfigurarTimer()
@@ -49,22 +90,23 @@ namespace Rmc.MaterialEmpaque.Ventana
                 {
                     string query = @"
                    SELECT TOP(1)
-	                    T.TraceID AS SobreconsumoID,
-                        CONCAT(T.TraceIDBase, '-', T.SobreconsumoNumber) AS TraceID,
-                        T.SACA,
-                        T.MachineCode AS Maquina,
-                        T.Celula,
-                        FORMAT(K.StartDate, 'hh:mm tt', 'en-US') AS Hora,
-                        FORMAT(k.StartDate, 'dd MMM yyyy', 'en-US') AS Fecha
-                    FROM ES_SOCKS.dbo.pmc_Transactions T
-                    INNER JOIN ES_SOCKS.dbo.pmc_Status S ON T.StatusID = S.StatusID
-                    LEFT JOIN es_socks.dbo.mst_Empleados E ON T.Badge = E.Emp_ID
-                    LEFT JOIN ES_SOCKS.dbo.pmc_StatusTracking K ON T.ID = K.TransactionID
-                    WHERE T.IsSobreconsumo = 1
-                      AND T.StatusID IN (5)
-                    ORDER BY 
-                        K.StartDate DESC,
-	                    K.StatusID DESC";
+                         T.TraceID AS SobreconsumoID,
+                         CONCAT(T.TraceIDBase, '-', T.SobreconsumoNumber) AS TraceID,
+                         T.SACA,
+                         T.MachineCode AS Maquina,
+                         T.Celula,
+	                     T.TableNumber,
+                         FORMAT(K.StartDate, 'hh:mm tt', 'en-US') AS Hora,
+                         FORMAT(k.StartDate, 'dd MMM yyyy', 'en-US') AS Fecha
+                     FROM ES_SOCKS.dbo.pmc_Transactions T
+                     INNER JOIN ES_SOCKS.dbo.pmc_Status S ON T.StatusID = S.StatusID
+                     LEFT JOIN es_socks.dbo.mst_Empleados E ON T.Badge = E.Emp_ID
+                     LEFT JOIN ES_SOCKS.dbo.pmc_StatusTracking K ON T.ID = K.TransactionID
+                     WHERE T.IsSobreconsumo = 1
+                       AND T.StatusID IN (5)
+                     ORDER BY 
+                         K.StartDate DESC,
+                         K.StatusID DESC";
 
                     using (SqlCommand cmd = new SqlCommand(query, connection))
                     {
@@ -325,6 +367,169 @@ namespace Rmc.MaterialEmpaque.Ventana
             return true;
         }
 
+        private bool ValidarTraceIDEnBaseDatos(long traceID)
+        {
+            try
+            {
+                int traceIdReal = 0;
+
+                if (buscarPorTraceID)
+                {
+                    // Modo TraceID - Buscar directamente
+                    traceIdReal = (int)traceID;
+
+                    using (SqlConnection connection = new SqlConnection(connectionStringES_SOCKS))
+                    {
+                        string query = @"
+                            SELECT COUNT(*) 
+                            FROM ES_SOCKS.dbo.pmc_Transactions 
+                            WHERE TraceID = @TraceID 
+                            AND IsSobreconsumo = 0";
+
+                        using (SqlCommand cmd = new SqlCommand(query, connection))
+                        {
+                            cmd.Parameters.AddWithValue("@TraceID", traceIdReal);
+                            connection.Open();
+                            int count = Convert.ToInt32(cmd.ExecuteScalar());
+
+                            if (count > 0)
+                            {
+                                MostrarMensaje($"TraceID encontrado: {traceIdReal}", true);
+                                return true;
+                            }
+                            else
+                            {
+                                MostrarMensaje($"TraceID {traceIdReal} no encontrado", false);
+                                return false;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    // Modo RelatedID (Finishing) - Convertir a TraceID
+                    traceIdReal = ObtenerTraceIDDesdeRelatedID((int)traceID);
+
+                    if (traceIdReal > 0)
+                    {
+                        MostrarMensaje($"FinishingID {traceID} -> TraceID {traceIdReal}", true);
+                        return true;
+                    }
+                    else
+                    {
+                        MostrarMensaje($"No se encontró relación para FinishingID {traceID}", false);
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje($"Error validando ID: {ex.Message}", false);
+                return false;
+            }
+        }
+
+        private int ObtenerTraceIDDesdeRelatedID(int relatedID)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // ESCENARIO 1: Buscar si el ID ingresado es un RelatedID (Finishing)
+                    string query = @"
+                        SELECT TOP 1 TraceID 
+                        FROM CheckPointTrans 
+                        WHERE RelatedID = @RelatedID
+                        AND ChkID = 'FIN-BASC'";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@RelatedID", relatedID);
+                        var result = command.ExecuteScalar();
+
+                        if (result != null && result != DBNull.Value)
+                        {
+                            int traceID = Convert.ToInt32(result);
+                            if (traceID > 0)
+                            {
+                                // Verificar que el TraceID existe en transacciones
+                                if (TraceIDExisteEnTransacciones(traceID))
+                                {
+                                    return traceID;
+                                }
+                            }
+                        }
+                    }
+
+                    // ESCENARIO 2: Verificar si el ID es un TraceID (modo inverso)
+                    query = @"
+                        SELECT TOP 1 RelatedID 
+                        FROM CheckPointTrans 
+                        WHERE TraceID = @RelatedID
+                        AND ChkID = 'FIN-BASC'
+                        AND RelatedID IS NOT NULL
+                        AND RelatedID > 0";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@RelatedID", relatedID);
+                        var result = command.ExecuteScalar();
+
+                        if (result != null && result != DBNull.Value)
+                        {
+                            int traceID = Convert.ToInt32(result);
+                            if (traceID > 0)
+                            {
+                                // Verificar que el TraceID existe en transacciones
+                                if (TraceIDExisteEnTransacciones(traceID))
+                                {
+                                    MostrarMensaje("Usando búsqueda inversa", false);
+                                    return traceID;
+                                }
+                            }
+                        }
+                    }
+
+                    MostrarMensaje($"No se encontró relación para ID {relatedID}", false);
+                    return 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje($"Error al obtener TraceID: {ex.Message}", false);
+                return 0;
+            }
+        }
+
+        private bool TraceIDExisteEnTransacciones(int traceID)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionStringES_SOCKS))
+                {
+                    string query = @"
+                        SELECT COUNT(*) 
+                        FROM ES_SOCKS.dbo.pmc_Transactions 
+                        WHERE TraceID = @TraceID 
+                        AND IsSobreconsumo = 0";
+
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@TraceID", traceID);
+                        connection.Open();
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        return count > 0;
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         private void MostrarMensaje(string mensaje, bool esExito = true)
         {
             lblMensaje.Text = mensaje;
@@ -359,15 +564,44 @@ namespace Rmc.MaterialEmpaque.Ventana
             try
             {
                 // Obtener valores del formulario
-                long traceIDBase = long.Parse(txtTraceID.Text);
-
+                long idBuscado = long.Parse(txtTraceID.Text);
                 decimal dozens = decimal.Parse(txtDocenas.Text);
                 string badge = txtCarnet.Text;
                 string machineCode = cmbMaquinas.SelectedItem.ToString();
                 string celula = cmbCelulas.SelectedItem.ToString();
 
+                // Determinar el TraceIDBase según el modo de búsqueda
+                int traceIDBase = 0;
+
+                if (buscarPorTraceID)
+                {
+                    // Modo TraceID - usar directamente
+                    traceIDBase = (int)idBuscado;
+                    MostrarMensaje($"Creando sobreconsumo para TraceID: {traceIDBase}", true);
+                }
+                else
+                {
+                    // Modo RelatedID - obtener el TraceID asociado
+                    traceIDBase = ObtenerTraceIDDesdeRelatedID((int)idBuscado);
+
+                    if (traceIDBase == 0)
+                    {
+                        MostrarMensaje($"No se pudo obtener el TraceID para FinishingID {idBuscado}", false);
+                        return;
+                    }
+
+                    MostrarMensaje($"Creando sobreconsumo para FinishingID {idBuscado} -> TraceID {traceIDBase}", true);
+                }
+
+                // Validar que no exista ya un sobreconsumo para este TraceID
+                if (ExisteSobreconsumoParaTraceID(traceIDBase))
+                {
+                    MostrarMensaje($"Ya existe un sobreconsumo activo", false);
+                    return;
+                }
+
                 // Ejecutar stored procedure
-                using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ES_SOCKSConnectionString))
+                using (SqlConnection connection = new SqlConnection(connectionStringES_SOCKS))
                 {
                     connection.Open();
                     using (SqlCommand command = new SqlCommand("dbo.sp_CreateSobreconsumoTransaction", connection))
@@ -384,15 +618,15 @@ namespace Rmc.MaterialEmpaque.Ventana
                 }
 
                 // Mostrar mensaje de éxito
-                MostrarMensaje("Solicitud creada exitosamente", true);
+                string tipoID = buscarPorTraceID ? "TraceID" : "FinishingID";
+                MostrarMensaje($"Solicitud creada exitosamente ({tipoID}: {idBuscado} -> TraceID: {traceIDBase})", true);
 
                 LimpiarFormulario();
                 CargarSolicitudes();
                 CargarUltimoSobreconsumo();
 
-                RadMessageBox.Show("Solicitud de sobreconsumo creada exitosamente", "Éxito",
-                    MessageBoxButtons.OK, RadMessageIcon.Info);
-
+                RadMessageBox.Show($"Solicitud de sobreconsumo creada exitosamente\n{tipoID}: {idBuscado}\nTraceID Base: {traceIDBase}",
+                    "Éxito", MessageBoxButtons.OK, RadMessageIcon.Info);
             }
             catch (SqlException sqlEx)
             {
@@ -423,7 +657,7 @@ namespace Rmc.MaterialEmpaque.Ventana
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ES_SOCKSConnectionString))
+                using (SqlConnection connection = new SqlConnection(connectionStringES_SOCKS))
                 {
                     string query = @"
                 SELECT COUNT(*) 
@@ -475,7 +709,7 @@ namespace Rmc.MaterialEmpaque.Ventana
             sobreConsumoIDColumn.Name = "SobreConsumoID";
             sobreConsumoIDColumn.FieldName = "SobreConsumoID";
             sobreConsumoIDColumn.HeaderText = "SOBRECONSUMO ID";
-            sobreConsumoIDColumn.Width = 170;
+            sobreConsumoIDColumn.Width = 160;
             sobreConsumoIDColumn.TextAlignment = ContentAlignment.MiddleCenter;
             sobreConsumoIDColumn.HeaderTextAlignment = ContentAlignment.MiddleCenter;
             sobreConsumoIDColumn.IsVisible = true;
@@ -492,7 +726,7 @@ namespace Rmc.MaterialEmpaque.Ventana
             traceIDColumn.Name = "TraceID";
             traceIDColumn.FieldName = "TraceID";
             traceIDColumn.HeaderText = "TRACE ID";
-            traceIDColumn.Width = 130;
+            traceIDColumn.Width = 110;
             traceIDColumn.TextAlignment = ContentAlignment.MiddleCenter;
             traceIDColumn.HeaderTextAlignment = ContentAlignment.MiddleCenter;
 
@@ -544,6 +778,15 @@ namespace Rmc.MaterialEmpaque.Ventana
             nombreColumn.TextAlignment = ContentAlignment.MiddleLeft;
             nombreColumn.HeaderTextAlignment = ContentAlignment.MiddleCenter;
 
+            // COLUMNA MESA
+            GridViewTextBoxColumn mesaColumn = new GridViewTextBoxColumn();
+            mesaColumn.Name = "TableNumber";
+            mesaColumn.FieldName = "TableNumber";
+            mesaColumn.HeaderText = "MESA";
+            mesaColumn.Width = 80;
+            mesaColumn.TextAlignment = ContentAlignment.MiddleCenter;
+            mesaColumn.HeaderTextAlignment = ContentAlignment.MiddleCenter;
+
             GridViewTextBoxColumn horaColumn = new GridViewTextBoxColumn();
             horaColumn.Name = "Hora";
             horaColumn.FieldName = "Hora";
@@ -568,7 +811,7 @@ namespace Rmc.MaterialEmpaque.Ventana
             estadoColumn.TextAlignment = ContentAlignment.MiddleCenter;
             estadoColumn.HeaderTextAlignment = ContentAlignment.MiddleCenter;
 
-            // Columna de Acción con botón - CON ESTILO MEJORADO
+            // Columna de Acción con botón
             GridViewCommandColumn accionColumn = new GridViewCommandColumn();
             accionColumn.Name = "Accion";
             accionColumn.HeaderText = "CERRAR";
@@ -578,10 +821,11 @@ namespace Rmc.MaterialEmpaque.Ventana
             accionColumn.TextAlignment = ContentAlignment.MiddleCenter;
             accionColumn.HeaderTextAlignment = ContentAlignment.MiddleCenter;
 
+            // IMPORTANTE: Incluir mesaColumn en el AddRange
             gridSolicitudes.MasterTemplate.Columns.AddRange(
                 sobreConsumoIDColumn, docenasColumn, traceIDColumn, sacaColumn, sacaSegColumn,
-                maquinaColumn, celulaColumn, carnetColumn, nombreColumn, horaColumn, fechaColumn,
-                estadoColumn, accionColumn
+                maquinaColumn, celulaColumn, carnetColumn, nombreColumn, mesaColumn, // AQUÍ ESTÁ LA COLUMNA MESA
+                horaColumn, fechaColumn, estadoColumn, accionColumn
             );
 
             gridSolicitudes.MasterTemplate.EnableFiltering = true;
@@ -691,6 +935,28 @@ namespace Rmc.MaterialEmpaque.Ventana
                 e.CellElement.BorderBoxStyle = BorderBoxStyle.SingleBorder;
             }
 
+            // Ocultar/Mostrar columna MESA según el estado
+            if (e.CellElement.ColumnInfo.Name == "TableNumber")
+            {
+                int statusID = ObtenerStatusIDDeFila(e.Row);
+
+                if (statusID == 3) // Estado "Mesa"
+                {
+                    e.CellElement.Visibility = ElementVisibility.Visible;
+
+                    // Si quieres que el contenido sea visible
+                    if (e.CellElement.Value != null)
+                    {
+                        e.CellElement.Text = e.CellElement.Value.ToString();
+                    }
+                }
+                else // Estados 1 y 2
+                {
+                    e.CellElement.Visibility = ElementVisibility.Hidden;
+                    e.CellElement.Text = ""; // Opcional: limpiar el texto
+                }
+            }
+
             if (e.CellElement.ColumnInfo.Name == "Accion")
             {
                 int statusID = ObtenerStatusIDDeFila(e.Row);
@@ -724,6 +990,7 @@ namespace Rmc.MaterialEmpaque.Ventana
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
+                    // CONSULTA MODIFICADA: Incluye TableNumber
                     string query = @"
                     SELECT 
                         T.TraceID AS SobreConsumoID,
@@ -736,6 +1003,7 @@ namespace Rmc.MaterialEmpaque.Ventana
                         T.Badge AS Carnet,
                         LEFT(E.Emp_Nombres, CHARINDEX(' ', E.Emp_Nombres + ' ') - 1) + ' ' + 
                         LEFT(E.Emp_Apellidos, CHARINDEX(' ', E.Emp_Apellidos + ' ') - 1) AS Nombre,
+                        T.TableNumber, -- NUEVO: Campo de mesa
                         FORMAT(T.CreatedDate, 'hh:mm tt', 'en-US') AS Hora,
                         FORMAT(T.CreatedDate, 'dd MMM yyyy', 'en-US') AS Fecha,
                         S.statusName AS Estado,
@@ -830,7 +1098,7 @@ namespace Rmc.MaterialEmpaque.Ventana
             {
                 string badge = Environment.UserName;
 
-                using (SqlConnection connectionES_SOCKS = new SqlConnection(Properties.Settings.Default.ES_SOCKSConnectionString))
+                using (SqlConnection connectionES_SOCKS = new SqlConnection(connectionStringES_SOCKS))
                 {
                     connectionES_SOCKS.Open();
                     using (SqlCommand command = new SqlCommand("sp_ChangeTransactionStatus", connectionES_SOCKS))
@@ -892,39 +1160,11 @@ namespace Rmc.MaterialEmpaque.Ventana
             cmbCelulas.AutoCompleteDataSource = AutoCompleteSource.ListItems;
         }
 
-        private bool ValidarTraceIDEnBaseDatos(long traceID)
-        {
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ES_SOCKSConnectionString))
-                {
-                    string query = @"
-                SELECT COUNT(*) 
-                FROM ES_SOCKS.dbo.pmc_Transactions 
-                WHERE TraceID = @TraceIDBase 
-                AND IsSobreconsumo = 0";
-
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@TraceIDBase", traceID);
-                        connection.Open();
-                        int count = Convert.ToInt32(cmd.ExecuteScalar());
-                        return count > 0;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error al validar TraceID: {ex.Message}");
-                return false;
-            }
-        }
-
         private bool ValidarCarnetEnBaseDatos(string badge)
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ES_SOCKSConnectionString))
+                using (SqlConnection connection = new SqlConnection(connectionStringES_SOCKS))
                 {
                     string query = @"
                 SELECT COUNT(*) 

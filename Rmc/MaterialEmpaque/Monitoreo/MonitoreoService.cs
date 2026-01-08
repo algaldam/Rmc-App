@@ -248,7 +248,8 @@ namespace Rmc.MaterialEmpaque.Monitoreo
                 var completadas = connection.ExecuteScalar<int>(@"
                     SELECT COUNT(*) 
                     FROM pmc_AsignacionTraceIDs
-                    WHERE Status IN ('Completado', 'Completado (M)')");
+                    WHERE Status IN ('Completado', 'Completado (M)') 
+                      AND YEAR(AssignmentDate) = YEAR(GETDATE())");
 
                 return completadas;
             }

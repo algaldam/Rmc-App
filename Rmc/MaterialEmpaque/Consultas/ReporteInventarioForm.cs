@@ -4,6 +4,9 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
+using System.Collections.Concurrent;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Rmc.MaterialEmpaque.Consultas
 {
@@ -16,9 +19,85 @@ namespace Rmc.MaterialEmpaque.Consultas
         private int totalEntradas = 0;
         private int totalTransferencias = 0;
 
-        // Nuevas constantes para optimización
-        private const int TOP_INICIAL = 300;
+        private const int TOP_INICIAL = 10000;
+        private const int TOP_FILTRADO = 20000;
         private bool filtrosFechaAplicados = false;
+
+        // Clase para cache de descripciones
+        private static class DescripcionCache
+        {
+            private static ConcurrentDictionary<string, string> _cache = new ConcurrentDictionary<string, string>();
+            private static DateTime _ultimaActualizacion = DateTime.MinValue;
+            private static readonly TimeSpan _tiempoVidaCache = TimeSpan.FromHours(4);
+            private static readonly object _lock = new object();
+
+            public static string ObtenerDescripcion(string codigo, string connectionString)
+            {
+                if (string.IsNullOrEmpty(codigo))
+                    return string.Empty;
+
+                // Limpiar cache si está expirado
+                if (DateTime.Now - _ultimaActualizacion > _tiempoVidaCache)
+                {
+                    lock (_lock)
+                    {
+                        if (DateTime.Now - _ultimaActualizacion > _tiempoVidaCache)
+                        {
+                            _cache.Clear();
+                            _ultimaActualizacion = DateTime.Now;
+                        }
+                    }
+                }
+
+                if (_cache.TryGetValue(codigo, out string descripcion))
+                    return descripcion;
+
+                descripcion = ObtenerDeBD(codigo, connectionString);
+                _cache[codigo] = descripcion ?? string.Empty;
+
+                return descripcion;
+            }
+
+            private static string ObtenerDeBD(string codigo, string connectionString)
+            {
+                try
+                {
+                    string query = @"
+                        SELECT TOP 1 sub_descripcion 
+                        FROM pmc_Subida_BOM WITH (NOLOCK) 
+                        WHERE sub_producto = @codigo";
+
+                    using (SqlConnection con = new SqlConnection(connectionString))
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@codigo", codigo);
+                        con.Open();
+                        return cmd.ExecuteScalar()?.ToString() ?? string.Empty;
+                    }
+                }
+                catch
+                {
+                    return string.Empty;
+                }
+            }
+
+            public static void PrecargarDescripciones(IEnumerable<string> codigos, string connectionString)
+            {
+                Parallel.ForEach(codigos, codigo =>
+                {
+                    if (!string.IsNullOrEmpty(codigo) && !_cache.ContainsKey(codigo))
+                    {
+                        ObtenerDescripcion(codigo, connectionString);
+                    }
+                });
+            }
+
+            public static void LimpiarCache()
+            {
+                _cache.Clear();
+                _ultimaActualizacion = DateTime.MinValue;
+            }
+        }
 
         public ReporteInventarioForm()
         {
@@ -27,11 +106,45 @@ namespace Rmc.MaterialEmpaque.Consultas
             ConfigurarEstilos();
             ConfigurarFiltrosMovimientos();
             ConfigurarFiltrosHora();
+
+            Task.Run(() => PrecargarCacheInicial());
+        }
+
+        private async void PrecargarCacheInicial()
+        {
+            try
+            {
+                string query = @"
+                    SELECT DISTINCT TOP 1000 Code 
+                    FROM pmc_InventoryMovements WITH (NOLOCK)
+                    WHERE CreatedDate >= DATEADD(MONTH, -1, GETDATE())
+                    UNION
+                    SELECT DISTINCT TOP 1000 Code 
+                    FROM pmc_InventoryTransfers WITH (NOLOCK)
+                    WHERE CreatedDate >= DATEADD(MONTH, -1, GETDATE())";
+
+                List<string> codigos = new List<string>();
+
+                using (SqlConnection con = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    await con.OpenAsync();
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            codigos.Add(reader["Code"].ToString());
+                        }
+                    }
+                }
+
+                Task.Run(() => DescripcionCache.PrecargarDescripciones(codigos, connectionString));
+            }
+            catch { /* Ignorar errores en precarga */ }
         }
 
         private void ConfigurarFiltrosHora()
         {
-            // Configurar DateTimePickers para horas
             dtpHoraDesde.Format = DateTimePickerFormat.Time;
             dtpHoraDesde.ShowUpDown = true;
             dtpHoraDesde.Value = DateTime.Today;
@@ -45,7 +158,6 @@ namespace Rmc.MaterialEmpaque.Consultas
         {
             dtpDesde.Value = DateTime.Now.AddDays(-7);
             dtpHasta.Value = DateTime.Now;
-
             CargarSalidasPorDefecto();
             ActualizarKPIs();
         }
@@ -60,7 +172,7 @@ namespace Rmc.MaterialEmpaque.Consultas
         private void ConfigurarFiltrosMovimientos()
         {
             cbFiltroMovimiento.Items.AddRange(new string[] { "TODOS", "SALIDAS", "ENTRADAS" });
-            cbFiltroMovimiento.SelectedIndex = 0; // TODOS por defecto
+            cbFiltroMovimiento.SelectedIndex = 0;
             cbFiltroMovimiento.SelectedIndexChanged += CbFiltroMovimiento_SelectedIndexChanged;
         }
 
@@ -90,20 +202,29 @@ namespace Rmc.MaterialEmpaque.Consultas
                 tipoMovimiento = "IN";
 
             string query = @"
-                    SELECT DISTINCT TOP {0}
+                SELECT TOP {0}
+                    MovementID,
+                    ItemCode,
+                    TipoMovimiento,
+                    Cantidad,
+                    Descripcion,
+                    LocalidadCode,
+                    LocalidadName,
+                    Carnet,
+                    Nombre,
+                    Fecha,
+                    CreatedDate
+                FROM (
+                    SELECT 
                         mov.MovementID,
                         mov.Code AS ItemCode,
-                        sb.sub_descripcion,
                         CASE 
                             WHEN mov.MovementType = 'OUT' THEN 'Salida'
                             WHEN mov.MovementType = 'IN' THEN 'Entrada'
                             WHEN mov.MovementType = 'OUT_SOBRANTES' THEN 'Salida/Sobrantes'
                             ELSE 'Otro Movimiento'
                         END AS TipoMovimiento,
-                        CASE 
-                            WHEN mov.MovementType = 'OUT' THEN mov.Quantity
-                            ELSE mov.Quantity
-                        END AS Cantidad,
+                        mov.Quantity AS Cantidad,
                         mov.Description AS Descripcion,
                         mov.Warehouse AS LocalidadCode,
                         wh.WarehouseName AS LocalidadName,
@@ -111,26 +232,23 @@ namespace Rmc.MaterialEmpaque.Consultas
                         LEFT(emp.Emp_Nombres, CHARINDEX(' ', emp.Emp_Nombres + ' ') - 1) + ' ' + 
                         LEFT(emp.Emp_Apellidos, CHARINDEX(' ', emp.Emp_Apellidos + ' ') - 1) AS Nombre,
                         FORMAT(mov.CreatedDate, 'dd-MMM-yyyy hh:mm tt') AS Fecha,
-                        mov.CreatedDate
-                    FROM pmc_InventoryMovements mov
-                    LEFT JOIN pmc_InventoryPreparation inv 
-                        ON mov.Code = inv.Code AND mov.Warehouse = inv.Location
-                    LEFT JOIN pmc_Warehouse wh 
+                        mov.CreatedDate,
+                        ROW_NUMBER() OVER (
+                            PARTITION BY mov.Code, mov.CreatedDate, mov.MovementType, mov.Warehouse, mov.CreatedBy
+                            ORDER BY mov.MovementID DESC
+                        ) as rn
+                    FROM pmc_InventoryMovements mov WITH (NOLOCK)
+                    LEFT JOIN pmc_Warehouse wh WITH (NOLOCK)
                         ON mov.Warehouse = wh.WarehouseCode
-                    LEFT JOIN mst_Empleados emp 
+                    LEFT JOIN mst_Empleados emp WITH (NOLOCK)
                         ON mov.CreatedBy = emp.Emp_ID
-                    LEFT JOIN pmc_Subida_BOM sb
-                        ON mov.Code = sb.sub_producto
-                    WHERE mov.MovementType IS NOT NULL";
+                    WHERE mov.MovementType IS NOT NULL
+                        AND (@tipoMovimiento IS NULL OR mov.MovementType = @tipoMovimiento)
+                ) as ranked
+                WHERE rn = 1
+                ORDER BY CreatedDate DESC";
 
-            if (!string.IsNullOrEmpty(tipoMovimiento))
-            {
-                query += " AND mov.MovementType = @tipoMovimiento";
-            }
-
-            query += " ORDER BY mov.CreatedDate DESC";
-
-            CargarDatos(string.Format(query, TOP_INICIAL), "Salidas", false, tipoMovimiento);
+            CargarDatosConCache(string.Format(query, TOP_INICIAL), "Salidas", false, tipoMovimiento);
             filtrosFechaAplicados = false;
         }
 
@@ -138,18 +256,13 @@ namespace Rmc.MaterialEmpaque.Consultas
         {
             if (vistaActualEsSalidas)
             {
-                if (cbFiltroMovimiento.SelectedIndex == 0)
-                {
-                    CargarSalidasConFiltros();
-                }
-                else if (cbFiltroMovimiento.SelectedIndex == 1)
-                {
-                    CargarSalidasConFiltros("OUT");
-                }
+                string tipoMovimiento = null;
+                if (cbFiltroMovimiento.SelectedIndex == 1)
+                    tipoMovimiento = "OUT";
                 else if (cbFiltroMovimiento.SelectedIndex == 2)
-                {
-                    CargarSalidasConFiltros("IN");
-                }
+                    tipoMovimiento = "IN";
+
+                CargarSalidasConFiltros(tipoMovimiento);
             }
         }
 
@@ -224,41 +337,52 @@ namespace Rmc.MaterialEmpaque.Consultas
             MostrarProgreso("Cargando últimos movimientos...");
 
             string query = @"
-                SELECT DISTINCT TOP {0}
-                    mov.MovementID,
-                    mov.Code AS ItemCode,
-                    sb.sub_descripcion,
-                    CASE 
-                        WHEN mov.MovementType = 'OUT' THEN 'Salida'
-                        WHEN mov.MovementType = 'IN' THEN 'Entrada'
-                        WHEN mov.MovementType = 'OUT_SOBRANTES' THEN 'Salida/Sobrantes'
-                        ELSE 'Otro Movimiento'
-                    END AS TipoMovimiento,
-                    CASE 
-                        WHEN mov.MovementType = 'OUT' THEN mov.Quantity
-                        ELSE mov.Quantity
-                    END AS Cantidad,
-                    mov.Description AS Descripcion,
-                    mov.Warehouse AS LocalidadCode,
-                    wh.WarehouseName AS LocalidadName,
-                    mov.CreatedBy AS Carnet,
-                    LEFT(emp.Emp_Nombres, CHARINDEX(' ', emp.Emp_Nombres + ' ') - 1) + ' ' + 
-                    LEFT(emp.Emp_Apellidos, CHARINDEX(' ', emp.Emp_Apellidos + ' ') - 1) AS Nombre,
-                    FORMAT(mov.CreatedDate, 'dd-MMM-yyyy hh:mm tt') AS Fecha,
-                    mov.CreatedDate
-                FROM pmc_InventoryMovements mov
-                LEFT JOIN pmc_InventoryPreparation inv 
-                    ON mov.Code = inv.Code AND mov.Warehouse = inv.Location
-                LEFT JOIN pmc_Warehouse wh 
-                    ON mov.Warehouse = wh.WarehouseCode
-                LEFT JOIN mst_Empleados emp 
-                    ON mov.CreatedBy = emp.Emp_ID
-                LEFT JOIN pmc_Subida_BOM sb
-                    ON mov.Code = sb.sub_producto
-                WHERE mov.MovementType IS NOT NULL
-                ORDER BY mov.CreatedDate DESC";
+                SELECT TOP {0}
+                    MovementID,
+                    ItemCode,
+                    TipoMovimiento,
+                    Cantidad,
+                    Descripcion,
+                    LocalidadCode,
+                    LocalidadName,
+                    Carnet,
+                    Nombre,
+                    Fecha,
+                    CreatedDate
+                FROM (
+                    SELECT 
+                        mov.MovementID,
+                        mov.Code AS ItemCode,
+                        CASE 
+                            WHEN mov.MovementType = 'OUT' THEN 'Salida'
+                            WHEN mov.MovementType = 'IN' THEN 'Entrada'
+                            WHEN mov.MovementType = 'OUT_SOBRANTES' THEN 'Salida/Sobrantes'
+                            ELSE 'Otro Movimiento'
+                        END AS TipoMovimiento,
+                        mov.Quantity AS Cantidad,
+                        mov.Description AS Descripcion,
+                        mov.Warehouse AS LocalidadCode,
+                        wh.WarehouseName AS LocalidadName,
+                        mov.CreatedBy AS Carnet,
+                        LEFT(emp.Emp_Nombres, CHARINDEX(' ', emp.Emp_Nombres + ' ') - 1) + ' ' + 
+                        LEFT(emp.Emp_Apellidos, CHARINDEX(' ', emp.Emp_Apellidos + ' ') - 1) AS Nombre,
+                        FORMAT(mov.CreatedDate, 'dd-MMM-yyyy hh:mm tt') AS Fecha,
+                        mov.CreatedDate,
+                        ROW_NUMBER() OVER (
+                            PARTITION BY mov.Code, mov.CreatedDate, mov.MovementType, mov.Warehouse, mov.CreatedBy
+                            ORDER BY mov.MovementID DESC
+                        ) as rn
+                    FROM pmc_InventoryMovements mov WITH (NOLOCK)
+                    LEFT JOIN pmc_Warehouse wh WITH (NOLOCK)
+                        ON mov.Warehouse = wh.WarehouseCode
+                    LEFT JOIN mst_Empleados emp WITH (NOLOCK)
+                        ON mov.CreatedBy = emp.Emp_ID
+                    WHERE mov.MovementType IS NOT NULL
+                ) as ranked
+                WHERE rn = 1
+                ORDER BY CreatedDate DESC";
 
-            CargarDatos(string.Format(query, TOP_INICIAL), "Salidas", false);
+            CargarDatosConCache(string.Format(query, TOP_INICIAL), "Salidas", false);
             filtrosFechaAplicados = false;
         }
 
@@ -267,139 +391,68 @@ namespace Rmc.MaterialEmpaque.Consultas
             MostrarProgreso("Cargando transferencias...");
 
             string query = @"
-                SELECT DISTINCT
-                    trans.TransferID,
-                    trans.Code AS ItemCode,
-                    sb.sub_descripcion,
-                    'Transferencia' AS TipoMovimiento,
-                    trans.Quantity AS Cantidad,
-                    trans.Origin AS OrigenName,
-                    trans.Destination AS DestinoName,
-                    trans.Description AS Descripcion,
-                    trans.CreatedBy AS Carnet,
-                    LEFT(emp.Emp_Nombres, CHARINDEX(' ', emp.Emp_Nombres + ' ') - 1) + ' ' + 
-                    LEFT(emp.Emp_Apellidos, CHARINDEX(' ', emp.Emp_Apellidos + ' ') - 1) AS Nombre,
-                    FORMAT(trans.CreatedDate, 'dd-MMM-yyyy hh:mm tt') AS FechaFormateada,
-                    trans.CreatedDate
-                FROM pmc_InventoryTransfers trans
-                LEFT JOIN pmc_Warehouse orig_wh 
-                    ON trans.Origin = orig_wh.WarehouseCode
-                LEFT JOIN pmc_Warehouse dest_wh 
-                    ON trans.Destination = dest_wh.WarehouseCode
-                LEFT JOIN mst_Empleados emp 
-                    ON trans.CreatedBy = emp.Emp_ID
-                LEFT JOIN pmc_Subida_BOM sb
-                    ON trans.Code = sb.sub_producto
-                WHERE trans.Quantity > 0
-                ORDER BY trans.CreatedDate DESC";
+                SELECT TOP {0}
+                    TransferID,
+                    ItemCode,
+                    TipoMovimiento,
+                    Cantidad,
+                    OrigenName,
+                    DestinoName,
+                    Descripcion,
+                    Carnet,
+                    Nombre,
+                    FechaFormateada,
+                    CreatedDate
+                FROM (
+                    SELECT 
+                        trans.TransferID,
+                        trans.Code AS ItemCode,
+                        'Transferencia' AS TipoMovimiento,
+                        trans.Quantity AS Cantidad,
+                        trans.Origin AS OrigenName,
+                        trans.Destination AS DestinoName,
+                        trans.Description AS Descripcion,
+                        trans.CreatedBy AS Carnet,
+                        LEFT(emp.Emp_Nombres, CHARINDEX(' ', emp.Emp_Nombres + ' ') - 1) + ' ' + 
+                        LEFT(emp.Emp_Apellidos, CHARINDEX(' ', emp.Emp_Apellidos + ' ') - 1) AS Nombre,
+                        FORMAT(trans.CreatedDate, 'dd-MMM-yyyy hh:mm tt') AS FechaFormateada,
+                        trans.CreatedDate,
+                        ROW_NUMBER() OVER (
+                            PARTITION BY trans.Code, trans.CreatedDate, trans.Origin, trans.Destination, trans.CreatedBy
+                            ORDER BY trans.TransferID DESC
+                        ) as rn
+                    FROM pmc_InventoryTransfers trans WITH (NOLOCK)
+                    LEFT JOIN pmc_Warehouse orig_wh WITH (NOLOCK)
+                        ON trans.Origin = orig_wh.WarehouseCode
+                    LEFT JOIN pmc_Warehouse dest_wh WITH (NOLOCK)
+                        ON trans.Destination = dest_wh.WarehouseCode
+                    LEFT JOIN mst_Empleados emp WITH (NOLOCK)
+                        ON trans.CreatedBy = emp.Emp_ID
+                    WHERE trans.Quantity > 0
+                ) as ranked
+                WHERE rn = 1
+                ORDER BY CreatedDate DESC";
 
-            CargarDatos(query, "Transferencias", false);
+            CargarDatosConCache(string.Format(query, TOP_INICIAL), "Transferencias", false);
             filtrosFechaAplicados = false;
         }
 
-        private void CargarSalidasConFiltros(string tipoMovimiento = null)
-        {
-            MostrarProgreso("Aplicando filtros a movimientos...");
-
-            DateTime fechaDesde = dtpDesde.Value.Date + dtpHoraDesde.Value.TimeOfDay;
-            DateTime fechaHasta = dtpHasta.Value.Date + dtpHoraHasta.Value.TimeOfDay;
-
-            string query = @"
-                SELECT DISTINCT
-                    mov.MovementID,
-                    mov.Code AS ItemCode,
-                    sb.sub_descripcion,
-                    CASE 
-                        WHEN mov.MovementType = 'OUT' THEN 'Salida'
-                        WHEN mov.MovementType = 'IN' THEN 'Entrada'
-                        WHEN mov.MovementType = 'OUT_SOBRANTES' THEN 'Salida/Sobrantes'
-                        ELSE 'Otro Movimiento'
-                    END AS TipoMovimiento,
-                    CASE 
-                        WHEN mov.MovementType = 'OUT' THEN mov.Quantity
-                        ELSE mov.Quantity
-                    END AS Cantidad,
-                    mov.Description AS Descripcion,
-                    mov.Warehouse AS LocalidadCode,
-                    wh.WarehouseName AS LocalidadName,
-                    mov.CreatedBy AS Carnet,
-                    LEFT(emp.Emp_Nombres, CHARINDEX(' ', emp.Emp_Nombres + ' ') - 1) + ' ' + 
-                    LEFT(emp.Emp_Apellidos, CHARINDEX(' ', emp.Emp_Apellidos + ' ') - 1) AS Nombre,
-                    FORMAT(mov.CreatedDate, 'dd-MMM-yyyy hh:mm tt') AS Fecha,
-                    mov.CreatedDate
-                FROM pmc_InventoryMovements mov
-                LEFT JOIN pmc_InventoryPreparation inv 
-                    ON mov.Code = inv.Code AND mov.Warehouse = inv.Location
-                LEFT JOIN pmc_Warehouse wh 
-                    ON mov.Warehouse = wh.WarehouseCode
-                LEFT JOIN mst_Empleados emp 
-                    ON mov.CreatedBy = emp.Emp_ID
-                LEFT JOIN pmc_Subida_BOM sb
-                    ON mov.Code = sb.sub_producto
-                WHERE mov.MovementType IS NOT NULL
-                AND mov.CreatedDate BETWEEN @desde AND @hasta";
-
-            if (!string.IsNullOrEmpty(tipoMovimiento))
-            {
-                query += " AND mov.MovementType = @tipoMovimiento";
-            }
-
-            query += " ORDER BY mov.CreatedDate DESC";
-
-            CargarDatos(query, "Salidas", true, tipoMovimiento, fechaDesde, fechaHasta);
-            filtrosFechaAplicados = true;
-        }
-
-        private void CargarTransferenciasConFiltros()
-        {
-            MostrarProgreso("Aplicando filtros a transferencias...");
-
-            DateTime fechaDesde = dtpDesde.Value.Date + dtpHoraDesde.Value.TimeOfDay;
-            DateTime fechaHasta = dtpHasta.Value.Date + dtpHoraHasta.Value.TimeOfDay;
-
-            string query = @"
-                SELECT DISTINCT
-                    trans.TransferID,
-                    trans.Code AS ItemCode,
-                    sb.sub_descripcion,
-                    'Transferencia' AS TipoMovimiento,
-                    trans.Quantity AS Cantidad,
-                    trans.Origin AS OrigenName,
-                    trans.Destination AS DestinoName,
-                    trans.Description AS Descripcion,
-                    trans.CreatedBy AS Carnet,
-                    LEFT(emp.Emp_Nombres, CHARINDEX(' ', emp.Emp_Nombres + ' ') - 1) + ' ' + 
-                    LEFT(emp.Emp_Apellidos, CHARINDEX(' ', emp.Emp_Apellidos + ' ') - 1) AS Nombre,
-                    FORMAT(trans.CreatedDate, 'dd-MMM-yyyy hh:mm tt') AS FechaFormateada,
-                    trans.CreatedDate
-                FROM pmc_InventoryTransfers trans
-                LEFT JOIN pmc_Warehouse orig_wh 
-                    ON trans.Origin = orig_wh.WarehouseCode
-                LEFT JOIN pmc_Warehouse dest_wh 
-                    ON trans.Destination = dest_wh.WarehouseCode
-                LEFT JOIN mst_Empleados emp 
-                    ON trans.CreatedBy = emp.Emp_ID
-                LEFT JOIN pmc_Subida_BOM sb
-                    ON trans.Code = sb.sub_producto
-                WHERE trans.Quantity > 0
-                AND trans.CreatedDate BETWEEN @desde AND @hasta
-                ORDER BY trans.CreatedDate DESC";
-
-            CargarDatos(query, "Transferencias", true, null, fechaDesde, fechaHasta);
-            filtrosFechaAplicados = true;
-        }
-
-        private void CargarDatos(string query, string tipoVista, bool aplicarFiltrosFecha,
-                               string tipoMovimiento = null, DateTime? fechaDesde = null, DateTime? fechaHasta = null)
+        private async void CargarDatosConCache(string query, string tipoVista, bool aplicarFiltrosFecha,
+                                             string tipoMovimiento = null, DateTime? fechaDesde = null, DateTime? fechaHasta = null)
         {
             try
             {
                 cargandoDatos = true;
 
-                using (SqlConnection con = new SqlConnection(connectionString))
+                MostrarProgreso("Cargando datos...");
+
+                DataTable dt = await Task.Run(() =>
                 {
+                    using (SqlConnection con = new SqlConnection(connectionString))
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
+                        cmd.CommandTimeout = 120;
+
                         if (aplicarFiltrosFecha && fechaDesde.HasValue && fechaHasta.HasValue)
                         {
                             cmd.Parameters.AddWithValue("@desde", fechaDesde.Value);
@@ -410,29 +463,197 @@ namespace Rmc.MaterialEmpaque.Consultas
                         {
                             cmd.Parameters.AddWithValue("@tipoMovimiento", tipoMovimiento);
                         }
+                        else
+                        {
+                            cmd.Parameters.Add("@tipoMovimiento", SqlDbType.VarChar, 20).Value = DBNull.Value;
+                        }
 
+                        con.Open();
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
+                        DataTable dataTable = new DataTable();
+                        da.Fill(dataTable);
+                        return dataTable;
+                    }
+                });
 
-                        gridMovimientos.DataSource = dt;
+                if (!dt.Columns.Contains("sub_descripcion"))
+                {
+                    dt.Columns.Add("sub_descripcion", typeof(string));
+                }
 
-                        ConfigurarColumnasGrid(tipoVista);
+                MostrarProgreso("Obteniendo descripciones...");
 
-                        ActualizarKPIs();
+                var codigosUnicos = new HashSet<string>();
+                foreach (DataRow row in dt.Rows)
+                {
+                    string codigo = row["ItemCode"]?.ToString();
+                    if (!string.IsNullOrEmpty(codigo))
+                        codigosUnicos.Add(codigo);
+                }
 
-                        string estado = aplicarFiltrosFecha ? "filtrados" : "últimos";
-                        MostrarInfoResultados(dt.Rows.Count, estado);
+                await Task.Run(() =>
+                {
+                    DescripcionCache.PrecargarDescripciones(codigosUnicos, connectionString);
+                });
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    string codigo = row["ItemCode"]?.ToString();
+                    if (!string.IsNullOrEmpty(codigo))
+                    {
+                        row["sub_descripcion"] = DescripcionCache.ObtenerDescripcion(codigo, connectionString);
                     }
                 }
+
+                this.Invoke(new Action(() =>
+                {
+                    gridMovimientos.DataSource = dt;
+                    ConfigurarColumnasGrid(tipoVista);
+                    ActualizarKPIs();
+
+                    string estado = aplicarFiltrosFecha ? "filtrados" : "últimos";
+                    MostrarInfoResultados(dt.Rows.Count, estado);
+                }));
             }
             catch (Exception ex)
             {
-                RadMessageBox.Show("Error al cargar datos: " + ex.Message, "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                this.Invoke(new Action(() =>
+                {
+                    RadMessageBox.Show("Error al cargar datos: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, RadMessageIcon.Error);
+                }));
             }
             finally
             {
                 cargandoDatos = false;
+                OcultarProgreso();
+            }
+        }
+
+        private void CargarSalidasConFiltros(string tipoMovimiento = null)
+        {
+            try
+            {
+                MostrarProgreso("Aplicando filtros a movimientos...");
+
+                DateTime fechaDesde = dtpDesde.Value.Date + dtpHoraDesde.Value.TimeOfDay;
+                DateTime fechaHasta = dtpHasta.Value.Date + dtpHoraHasta.Value.TimeOfDay;
+
+                string query = @"
+                    SELECT TOP {0}
+                        MovementID,
+                        ItemCode,
+                        TipoMovimiento,
+                        Cantidad,
+                        Descripcion,
+                        LocalidadCode,
+                        LocalidadName,
+                        Carnet,
+                        Nombre,
+                        Fecha,
+                        CreatedDate
+                    FROM (
+                        SELECT 
+                            mov.MovementID,
+                            mov.Code AS ItemCode,
+                            CASE 
+                                WHEN mov.MovementType = 'OUT' THEN 'Salida'
+                                WHEN mov.MovementType = 'IN' THEN 'Entrada'
+                                WHEN mov.MovementType = 'OUT_SOBRANTES' THEN 'Salida/Sobrantes'
+                                ELSE 'Otro Movimiento'
+                            END AS TipoMovimiento,
+                            mov.Quantity AS Cantidad,
+                            mov.Description AS Descripcion,
+                            mov.Warehouse AS LocalidadCode,
+                            wh.WarehouseName AS LocalidadName,
+                            mov.CreatedBy AS Carnet,
+                            LEFT(emp.Emp_Nombres, CHARINDEX(' ', emp.Emp_Nombres + ' ') - 1) + ' ' + 
+                            LEFT(emp.Emp_Apellidos, CHARINDEX(' ', emp.Emp_Apellidos + ' ') - 1) AS Nombre,
+                            FORMAT(mov.CreatedDate, 'dd-MMM-yyyy hh:mm tt') AS Fecha,
+                            mov.CreatedDate,
+                            ROW_NUMBER() OVER (
+                                PARTITION BY mov.Code, mov.CreatedDate, mov.MovementType, mov.Warehouse, mov.CreatedBy
+                                ORDER BY mov.MovementID DESC
+                            ) as rn
+                        FROM pmc_InventoryMovements mov WITH (NOLOCK)
+                        LEFT JOIN pmc_Warehouse wh WITH (NOLOCK)
+                            ON mov.Warehouse = wh.WarehouseCode
+                        LEFT JOIN mst_Empleados emp WITH (NOLOCK)
+                            ON mov.CreatedBy = emp.Emp_ID
+                        WHERE mov.MovementType IS NOT NULL
+                            AND mov.CreatedDate BETWEEN @desde AND @hasta
+                            AND (@tipoMovimiento IS NULL OR mov.MovementType = @tipoMovimiento)
+                    ) as ranked
+                    WHERE rn = 1
+                    ORDER BY CreatedDate DESC";
+
+                CargarDatosConCache(string.Format(query, TOP_FILTRADO), "Salidas", true, tipoMovimiento, fechaDesde, fechaHasta);
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
+                OcultarProgreso();
+            }
+        }
+
+        private void CargarTransferenciasConFiltros()
+        {
+            try
+            {
+                MostrarProgreso("Aplicando filtros a transferencias...");
+
+                DateTime fechaDesde = dtpDesde.Value.Date + dtpHoraDesde.Value.TimeOfDay;
+                DateTime fechaHasta = dtpHasta.Value.Date + dtpHoraHasta.Value.TimeOfDay;
+
+                string query = @"
+                    SELECT TOP {0}
+                        TransferID,
+                        ItemCode,
+                        TipoMovimiento,
+                        Cantidad,
+                        OrigenName,
+                        DestinoName,
+                        Descripcion,
+                        Carnet,
+                        Nombre,
+                        FechaFormateada,
+                        CreatedDate
+                    FROM (
+                        SELECT 
+                            trans.TransferID,
+                            trans.Code AS ItemCode,
+                            'Transferencia' AS TipoMovimiento,
+                            trans.Quantity AS Cantidad,
+                            trans.Origin AS OrigenName,
+                            trans.Destination AS DestinoName,
+                            trans.Description AS Descripcion,
+                            trans.CreatedBy AS Carnet,
+                            LEFT(emp.Emp_Nombres, CHARINDEX(' ', emp.Emp_Nombres + ' ') - 1) + ' ' + 
+                            LEFT(emp.Emp_Apellidos, CHARINDEX(' ', emp.Emp_Apellidos + ' ') - 1) AS Nombre,
+                            FORMAT(trans.CreatedDate, 'dd-MMM-yyyy hh:mm tt') AS FechaFormateada,
+                            trans.CreatedDate,
+                            ROW_NUMBER() OVER (
+                                PARTITION BY trans.Code, trans.CreatedDate, trans.Origin, trans.Destination, trans.CreatedBy
+                                ORDER BY trans.TransferID DESC
+                            ) as rn
+                        FROM pmc_InventoryTransfers trans WITH (NOLOCK)
+                        LEFT JOIN pmc_Warehouse orig_wh WITH (NOLOCK)
+                            ON trans.Origin = orig_wh.WarehouseCode
+                        LEFT JOIN pmc_Warehouse dest_wh WITH (NOLOCK)
+                            ON trans.Destination = dest_wh.WarehouseCode
+                        LEFT JOIN mst_Empleados emp WITH (NOLOCK)
+                            ON trans.CreatedBy = emp.Emp_ID
+                        WHERE trans.Quantity > 0
+                            AND trans.CreatedDate BETWEEN @desde AND @hasta
+                    ) as ranked
+                    WHERE rn = 1
+                    ORDER BY CreatedDate DESC";
+
+                CargarDatosConCache(string.Format(query, TOP_FILTRADO), "Transferencias", true, null, fechaDesde, fechaHasta);
+            }
+            catch (Exception ex)
+            {
+                RadMessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, RadMessageIcon.Error);
                 OcultarProgreso();
             }
         }
@@ -480,10 +701,8 @@ namespace Rmc.MaterialEmpaque.Consultas
             columna.Width = width;
             columna.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             columna.HeaderTextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-
             columna.FormatString = "{0:N0}";
             columna.FormatInfo = System.Globalization.CultureInfo.CurrentCulture;
-
             gridMovimientos.Columns.Add(columna);
         }
 
@@ -508,10 +727,8 @@ namespace Rmc.MaterialEmpaque.Consultas
         {
             string tipoVista = vistaActualEsSalidas ? "Movimientos" : "Transferencias";
             string prefijo = estado == "últimos" ? "últimos" : "registros";
-
             lblEstado.Text = $"{cantidad:N0} {prefijo} {estado} en {tipoVista}";
             lblEstado.Visible = true;
-
             lblUltimaActualizacion.Text = $"Última actualización: {DateTime.Now:HH:mm:ss}";
         }
 
@@ -519,7 +736,7 @@ namespace Rmc.MaterialEmpaque.Consultas
         {
             try
             {
-                await System.Threading.Tasks.Task.Run(() =>
+                await Task.Run(() =>
                 {
                     CargarEstadisticasSalidas();
                     CargarEstadisticasTransferencias();
@@ -533,10 +750,7 @@ namespace Rmc.MaterialEmpaque.Consultas
                     lblValorTransferencias.Text = totalTransferencias.ToString("N0");
                 }));
             }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"Error actualizando KPIs: {ex.Message}");
-            }
+            catch { }
         }
 
         private void CargarEstadisticasSalidas()
@@ -548,8 +762,9 @@ namespace Rmc.MaterialEmpaque.Consultas
                         COUNT(*) as Total,
                         SUM(CASE WHEN MovementType = 'OUT' THEN 1 ELSE 0 END) as Salidas,
                         SUM(CASE WHEN MovementType = 'IN' THEN 1 ELSE 0 END) as Entradas
-                    FROM pmc_InventoryMovements 
-                    WHERE MovementType IS NOT NULL";
+                    FROM pmc_InventoryMovements WITH (NOLOCK)
+                    WHERE MovementType IS NOT NULL
+                        AND YEAR(CreatedDate) = YEAR(GETDATE())";
 
                 using (SqlConnection con = new SqlConnection(connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))
@@ -565,18 +780,14 @@ namespace Rmc.MaterialEmpaque.Consultas
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"Error cargando estadísticas de salidas: {ex.Message}");
-            }
+            catch { }
         }
 
         private void CargarEstadisticasTransferencias()
         {
             try
             {
-                string query = "SELECT COUNT(*) FROM pmc_InventoryTransfers WHERE Quantity > 0";
-
+                string query = "SELECT COUNT(*) FROM pmc_InventoryTransfers WITH (NOLOCK) WHERE Quantity > 0 AND YEAR(CreatedDate) = YEAR(GETDATE())";
                 using (SqlConnection con = new SqlConnection(connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
@@ -584,51 +795,66 @@ namespace Rmc.MaterialEmpaque.Consultas
                     totalTransferencias = (int)cmd.ExecuteScalar();
                 }
             }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"Error cargando estadísticas de transferencias: {ex.Message}");
-            }
+            catch { }
         }
 
         private void MostrarProgreso(string mensaje)
         {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(() => MostrarProgreso(mensaje)));
+                return;
+            }
+
             progressCarga.Visible = true;
-            progressCarga.Value1 = 0;
             lblEstado.Text = mensaje;
             lblEstado.Visible = true;
-
-            // Simular progreso
-            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
-            timer.Interval = 50;
-            timer.Tick += (s, e) =>
-            {
-                if (progressCarga.Value1 < 80)
-                    progressCarga.Value1 += 5;
-                else
-                    timer.Stop();
-            };
-            timer.Start();
+            btnFiltrar.Enabled = false;
+            btnUltimosMovimientos.Enabled = false;
+            btnLimpiarFiltros.Enabled = false;
+            btnVerSalidas.Enabled = false;
+            btnVerTransferencias.Enabled = false;
+            cbFiltroMovimiento.Enabled = false;
         }
 
         private void OcultarProgreso()
         {
-            progressCarga.Value1 = 100;
-            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
-            timer.Interval = 300;
-            timer.Tick += (s, e) =>
+            if (this.InvokeRequired)
             {
-                progressCarga.Visible = false;
-                timer.Stop();
-            };
-            timer.Start();
+                this.Invoke(new Action(() => OcultarProgreso()));
+                return;
+            }
+
+            progressCarga.Visible = false;
+            btnFiltrar.Enabled = true;
+            btnUltimosMovimientos.Enabled = true;
+            btnLimpiarFiltros.Enabled = true;
+            btnVerSalidas.Enabled = true;
+            btnVerTransferencias.Enabled = true;
+            cbFiltroMovimiento.Enabled = vistaActualEsSalidas;
         }
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
+            TimeSpan diferencia = dtpHasta.Value - dtpDesde.Value;
+
+            if (diferencia.TotalDays > 60)
+            {
+                DialogResult result = RadMessageBox.Show(
+                    $"Está solicitando {diferencia.TotalDays:N0} días de datos. " +
+                    "Esto puede tomar mucho tiempo y mostrará solo los primeros 20,000 registros. ¿Desea continuar?",
+                    "Advertencia",
+                    MessageBoxButtons.YesNo,
+                    RadMessageIcon.Exclamation);
+
+                if (result == DialogResult.No)
+                    return;
+            }
+
             if (dtpDesde.Value.Date > dtpHasta.Value.Date)
             {
-                RadMessageBox.Show("La fecha 'Desde' no puede ser mayor que la fecha 'Hasta'", "Error en fechas",
-                    MessageBoxButtons.OK, RadMessageIcon.Error);
+                RadMessageBox.Show("La fecha 'Desde' no puede ser mayor que la fecha 'Hasta'",
+                    "Error en fechas", MessageBoxButtons.OK, RadMessageIcon.Error);
                 return;
             }
 
@@ -640,41 +866,46 @@ namespace Rmc.MaterialEmpaque.Consultas
                 return;
             }
 
-            if (vistaActualEsSalidas)
+            bool esSalidas = vistaActualEsSalidas;
+            string tipoMovimiento = null;
+
+            if (esSalidas)
             {
-                AplicarFiltrosMovimientos();
+                if (cbFiltroMovimiento.SelectedIndex == 1)
+                    tipoMovimiento = "OUT";
+                else if (cbFiltroMovimiento.SelectedIndex == 2)
+                    tipoMovimiento = "IN";
             }
-            else
+
+            DateTime fechaDesde = dtpDesde.Value.Date + dtpHoraDesde.Value.TimeOfDay;
+            DateTime fechaHasta = dtpHasta.Value.Date + dtpHoraHasta.Value.TimeOfDay;
+
+            Task.Run(() =>
             {
-                CargarTransferenciasConFiltros();
-            }
+                if (esSalidas)
+                    CargarSalidasConFiltros(tipoMovimiento);
+                else
+                    CargarTransferenciasConFiltros();
+            });
         }
 
         private void btnUltimosMovimientos_Click(object sender, EventArgs e)
         {
             if (vistaActualEsSalidas)
-            {
                 CargarUltimosMovimientos();
-            }
             else
-            {
                 CargarTransferenciasSinFiltros();
-            }
         }
 
         private void btnLimpiarFiltros_Click(object sender, EventArgs e)
         {
             dtpDesde.Value = DateTime.Now.AddDays(-7);
             dtpHasta.Value = DateTime.Now;
-
-            // Resetear horas
             dtpHoraDesde.Value = DateTime.Today;
             dtpHoraHasta.Value = DateTime.Today.AddHours(23).AddMinutes(59);
 
             if (vistaActualEsSalidas)
-            {
                 cbFiltroMovimiento.SelectedIndex = 0;
-            }
 
             gridMovimientos.FilterDescriptors.Clear();
             gridMovimientos.GroupDescriptors.Clear();
@@ -695,9 +926,7 @@ namespace Rmc.MaterialEmpaque.Consultas
         {
             base.OnResizeEnd(e);
             if (gridMovimientos.Columns.Count > 0)
-            {
                 gridMovimientos.BestFitColumns();
-            }
         }
     }
 }

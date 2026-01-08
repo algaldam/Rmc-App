@@ -28,28 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn20 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn21 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn22 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn23 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn24 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn25 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn26 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn27 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn28 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn29 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn30 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn31 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn32 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.HeaderPanel = new Telerik.WinControls.UI.RadPanel();
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
             this.InputPanel = new Telerik.WinControls.UI.RadPanel();
             this.cmbDespMotivo = new System.Windows.Forms.ComboBox();
+            this.checkID = new System.Windows.Forms.CheckBox();
             this.cmbDespArea = new System.Windows.Forms.ComboBox();
             this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
             this.radSeparator2 = new Telerik.WinControls.UI.RadSeparator();
@@ -58,15 +59,14 @@
             this.txtDespTraceID = new Telerik.WinControls.UI.RadTextBox();
             this.txtDespSaca = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
+            this.lblArea = new Telerik.WinControls.UI.RadLabel();
+            this.lblCarnet = new Telerik.WinControls.UI.RadLabel();
+            this.lblMotivo = new Telerik.WinControls.UI.RadLabel();
+            this.lblTraceIDs = new Telerik.WinControls.UI.RadLabel();
+            this.lblSaca = new Telerik.WinControls.UI.RadLabel();
             this.ContentPanel = new Telerik.WinControls.UI.RadPanel();
             this.datosGroup = new Telerik.WinControls.UI.RadGroupBox();
             this.btnReset = new System.Windows.Forms.Button();
-            this.checkID = new System.Windows.Forms.CheckBox();
             this.rmcStripStatus = new System.Windows.Forms.StatusStrip();
             this.infoToolStrip = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtCarnetDescontar = new Telerik.WinControls.UI.RadTextBox();
@@ -89,6 +89,17 @@
             this.gridContainerPanel = new Telerik.WinControls.UI.RadPanel();
             this.GridItemsOut = new Telerik.WinControls.UI.RadGridView();
             this.GridItemsDesperdicioOut = new Telerik.WinControls.UI.RadGridView();
+            this.txtLocalidad = new Telerik.WinControls.UI.RadTextBox();
+            this.txtCarnetItem = new Telerik.WinControls.UI.RadTextBox();
+            this.txtCantidad = new Telerik.WinControls.UI.RadTextBox();
+            this.txtItemCodigo = new Telerik.WinControls.UI.RadTextBox();
+            this.txtIdCaja = new Telerik.WinControls.UI.RadTextBox();
+            this.lblUbicacion = new Telerik.WinControls.UI.RadLabel();
+            this.lblCarnetItem = new Telerik.WinControls.UI.RadLabel();
+            this.lblCantidad = new Telerik.WinControls.UI.RadLabel();
+            this.lblProduct = new Telerik.WinControls.UI.RadLabel();
+            this.lblCaja = new Telerik.WinControls.UI.RadLabel();
+            this.checkEntry = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.HeaderPanel)).BeginInit();
             this.HeaderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
@@ -103,11 +114,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtDespTraceID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDespSaca)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblArea)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCarnet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblMotivo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTraceIDs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblSaca)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ContentPanel)).BeginInit();
             this.ContentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datosGroup)).BeginInit();
@@ -137,6 +148,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridItemsOut.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridItemsDesperdicioOut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridItemsDesperdicioOut.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLocalidad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCarnetItem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantidad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtItemCodigo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIdCaja)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblUbicacion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCarnetItem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCantidad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblProduct)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCaja)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -166,19 +187,30 @@
             // InputPanel
             // 
             this.InputPanel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.InputPanel.Controls.Add(this.txtLocalidad);
+            this.InputPanel.Controls.Add(this.checkEntry);
+            this.InputPanel.Controls.Add(this.txtCarnetItem);
             this.InputPanel.Controls.Add(this.cmbDespMotivo);
+            this.InputPanel.Controls.Add(this.lblCaja);
             this.InputPanel.Controls.Add(this.checkID);
+            this.InputPanel.Controls.Add(this.txtCantidad);
             this.InputPanel.Controls.Add(this.cmbDespArea);
+            this.InputPanel.Controls.Add(this.lblProduct);
             this.InputPanel.Controls.Add(this.radSeparator1);
+            this.InputPanel.Controls.Add(this.txtItemCodigo);
             this.InputPanel.Controls.Add(this.txtDespOperador);
+            this.InputPanel.Controls.Add(this.lblCantidad);
             this.InputPanel.Controls.Add(this.txtDespTraceID);
+            this.InputPanel.Controls.Add(this.txtIdCaja);
+            this.InputPanel.Controls.Add(this.lblCarnetItem);
             this.InputPanel.Controls.Add(this.txtDespSaca);
+            this.InputPanel.Controls.Add(this.lblUbicacion);
             this.InputPanel.Controls.Add(this.radLabel11);
-            this.InputPanel.Controls.Add(this.radLabel10);
-            this.InputPanel.Controls.Add(this.radLabel9);
-            this.InputPanel.Controls.Add(this.radLabel8);
-            this.InputPanel.Controls.Add(this.radLabel7);
-            this.InputPanel.Controls.Add(this.radLabel6);
+            this.InputPanel.Controls.Add(this.lblArea);
+            this.InputPanel.Controls.Add(this.lblCarnet);
+            this.InputPanel.Controls.Add(this.lblMotivo);
+            this.InputPanel.Controls.Add(this.lblTraceIDs);
+            this.InputPanel.Controls.Add(this.lblSaca);
             this.InputPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.InputPanel.Location = new System.Drawing.Point(0, 78);
             this.InputPanel.Name = "InputPanel";
@@ -198,6 +230,17 @@
             this.cmbDespMotivo.Name = "cmbDespMotivo";
             this.cmbDespMotivo.Size = new System.Drawing.Size(136, 28);
             this.cmbDespMotivo.TabIndex = 10;
+            // 
+            // checkID
+            // 
+            this.checkID.AutoSize = true;
+            this.checkID.Location = new System.Drawing.Point(54, 120);
+            this.checkID.Name = "checkID";
+            this.checkID.Size = new System.Drawing.Size(66, 17);
+            this.checkID.TabIndex = 10;
+            this.checkID.Text = "TracerID";
+            this.checkID.UseVisualStyleBackColor = true;
+            this.checkID.CheckedChanged += new System.EventHandler(this.CheckID_CheckedChanged);
             // 
             // cmbDespArea
             // 
@@ -271,50 +314,50 @@
             this.radLabel11.TabIndex = 5;
             this.radLabel11.Text = "ENTRADA/DESPERDICIO";
             // 
-            // radLabel10
+            // lblArea
             // 
-            this.radLabel10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel10.Location = new System.Drawing.Point(38, 320);
-            this.radLabel10.Name = "radLabel10";
-            this.radLabel10.Size = new System.Drawing.Size(51, 25);
-            this.radLabel10.TabIndex = 4;
-            this.radLabel10.Text = "AREA";
+            this.lblArea.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArea.Location = new System.Drawing.Point(38, 320);
+            this.lblArea.Name = "lblArea";
+            this.lblArea.Size = new System.Drawing.Size(51, 25);
+            this.lblArea.TabIndex = 4;
+            this.lblArea.Text = "AREA";
             // 
-            // radLabel9
+            // lblCarnet
             // 
-            this.radLabel9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel9.Location = new System.Drawing.Point(26, 412);
-            this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(72, 25);
-            this.radLabel9.TabIndex = 1;
-            this.radLabel9.Text = "CARNET";
+            this.lblCarnet.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCarnet.Location = new System.Drawing.Point(26, 412);
+            this.lblCarnet.Name = "lblCarnet";
+            this.lblCarnet.Size = new System.Drawing.Size(72, 25);
+            this.lblCarnet.TabIndex = 1;
+            this.lblCarnet.Text = "CARNET";
             // 
-            // radLabel8
+            // lblMotivo
             // 
-            this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel8.Location = new System.Drawing.Point(15, 366);
-            this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(74, 25);
-            this.radLabel8.TabIndex = 3;
-            this.radLabel8.Text = "MOTIVO";
+            this.lblMotivo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMotivo.Location = new System.Drawing.Point(15, 366);
+            this.lblMotivo.Name = "lblMotivo";
+            this.lblMotivo.Size = new System.Drawing.Size(74, 25);
+            this.lblMotivo.TabIndex = 3;
+            this.lblMotivo.Text = "MOTIVO";
             // 
-            // radLabel7
+            // lblTraceIDs
             // 
-            this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel7.Location = new System.Drawing.Point(20, 228);
-            this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(76, 25);
-            this.radLabel7.TabIndex = 2;
-            this.radLabel7.Text = "TRACEID";
+            this.lblTraceIDs.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTraceIDs.Location = new System.Drawing.Point(20, 228);
+            this.lblTraceIDs.Name = "lblTraceIDs";
+            this.lblTraceIDs.Size = new System.Drawing.Size(76, 25);
+            this.lblTraceIDs.TabIndex = 2;
+            this.lblTraceIDs.Text = "TRACEID";
             // 
-            // radLabel6
+            // lblSaca
             // 
-            this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel6.Location = new System.Drawing.Point(38, 274);
-            this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(58, 25);
-            this.radLabel6.TabIndex = 1;
-            this.radLabel6.Text = "SA/CA";
+            this.lblSaca.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSaca.Location = new System.Drawing.Point(38, 274);
+            this.lblSaca.Name = "lblSaca";
+            this.lblSaca.Size = new System.Drawing.Size(58, 25);
+            this.lblSaca.TabIndex = 1;
+            this.lblSaca.Text = "SA/CA";
             // 
             // ContentPanel
             // 
@@ -323,7 +366,7 @@
             this.ContentPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.ContentPanel.Location = new System.Drawing.Point(251, 78);
             this.ContentPanel.Name = "ContentPanel";
-            this.ContentPanel.Size = new System.Drawing.Size(1144, 164);
+            this.ContentPanel.Size = new System.Drawing.Size(1161, 164);
             this.ContentPanel.TabIndex = 3;
             // 
             // datosGroup
@@ -350,14 +393,14 @@
             this.datosGroup.HeaderText = "Datos";
             this.datosGroup.Location = new System.Drawing.Point(0, 0);
             this.datosGroup.Name = "datosGroup";
-            this.datosGroup.Size = new System.Drawing.Size(1144, 164);
+            this.datosGroup.Size = new System.Drawing.Size(1161, 164);
             this.datosGroup.TabIndex = 8;
             this.datosGroup.Text = "Datos";
             // 
             // btnReset
             // 
             this.btnReset.Image = global::Rmc.Properties.Resources.cancel1;
-            this.btnReset.Location = new System.Drawing.Point(1288, 112);
+            this.btnReset.Location = new System.Drawing.Point(43, 112);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(81, 25);
             this.btnReset.TabIndex = 11;
@@ -365,17 +408,6 @@
             this.btnReset.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            // 
-            // checkID
-            // 
-            this.checkID.AutoSize = true;
-            this.checkID.Location = new System.Drawing.Point(54, 120);
-            this.checkID.Name = "checkID";
-            this.checkID.Size = new System.Drawing.Size(66, 17);
-            this.checkID.TabIndex = 10;
-            this.checkID.Text = "TracerID";
-            this.checkID.UseVisualStyleBackColor = true;
-            this.checkID.CheckedChanged += new System.EventHandler(this.CheckID_CheckedChanged);
             // 
             // rmcStripStatus
             // 
@@ -386,7 +418,7 @@
             this.infoToolStrip});
             this.rmcStripStatus.Location = new System.Drawing.Point(2, 140);
             this.rmcStripStatus.Name = "rmcStripStatus";
-            this.rmcStripStatus.Size = new System.Drawing.Size(1140, 22);
+            this.rmcStripStatus.Size = new System.Drawing.Size(1157, 22);
             this.rmcStripStatus.TabIndex = 5;
             // 
             // infoToolStrip
@@ -402,7 +434,7 @@
             // 
             this.txtCarnetDescontar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtCarnetDescontar.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCarnetDescontar.Location = new System.Drawing.Point(980, 62);
+            this.txtCarnetDescontar.Location = new System.Drawing.Point(988, 62);
             this.txtCarnetDescontar.Name = "txtCarnetDescontar";
             this.txtCarnetDescontar.Size = new System.Drawing.Size(112, 29);
             this.txtCarnetDescontar.TabIndex = 9;
@@ -412,7 +444,7 @@
             // 
             this.radLabel16.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.radLabel16.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel16.Location = new System.Drawing.Point(1002, 31);
+            this.radLabel16.Location = new System.Drawing.Point(1010, 31);
             this.radLabel16.Name = "radLabel16";
             this.radLabel16.Size = new System.Drawing.Size(72, 25);
             this.radLabel16.TabIndex = 8;
@@ -423,7 +455,7 @@
             this.txtMesaAsignada.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtMesaAsignada.Enabled = false;
             this.txtMesaAsignada.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMesaAsignada.Location = new System.Drawing.Point(791, 62);
+            this.txtMesaAsignada.Location = new System.Drawing.Point(799, 62);
             this.txtMesaAsignada.Name = "txtMesaAsignada";
             this.txtMesaAsignada.Size = new System.Drawing.Size(112, 29);
             this.txtMesaAsignada.TabIndex = 7;
@@ -433,7 +465,7 @@
             this.lblNameID.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblNameID.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNameID.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblNameID.Location = new System.Drawing.Point(35, 31);
+            this.lblNameID.Location = new System.Drawing.Point(43, 31);
             this.lblNameID.Name = "lblNameID";
             this.lblNameID.Size = new System.Drawing.Size(86, 24);
             this.lblNameID.TabIndex = 0;
@@ -444,7 +476,7 @@
             this.txtSACAseg.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtSACAseg.Enabled = false;
             this.txtSACAseg.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSACAseg.Location = new System.Drawing.Point(602, 62);
+            this.txtSACAseg.Location = new System.Drawing.Point(610, 62);
             this.txtSACAseg.Name = "txtSACAseg";
             this.txtSACAseg.Size = new System.Drawing.Size(112, 29);
             this.txtSACAseg.TabIndex = 7;
@@ -453,7 +485,7 @@
             // 
             this.radLabel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel2.Location = new System.Drawing.Point(257, 31);
+            this.radLabel2.Location = new System.Drawing.Point(265, 31);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(58, 25);
             this.radLabel2.TabIndex = 1;
@@ -464,7 +496,7 @@
             this.txtDocenas.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtDocenas.Enabled = false;
             this.txtDocenas.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDocenas.Location = new System.Drawing.Point(413, 62);
+            this.txtDocenas.Location = new System.Drawing.Point(421, 62);
             this.txtDocenas.Name = "txtDocenas";
             this.txtDocenas.Size = new System.Drawing.Size(112, 29);
             this.txtDocenas.TabIndex = 7;
@@ -473,7 +505,7 @@
             // 
             this.radLabel3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel3.Location = new System.Drawing.Point(435, 31);
+            this.radLabel3.Location = new System.Drawing.Point(443, 31);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(85, 25);
             this.radLabel3.TabIndex = 1;
@@ -484,7 +516,7 @@
             this.txtSACA.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtSACA.Enabled = false;
             this.txtSACA.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSACA.Location = new System.Drawing.Point(224, 62);
+            this.txtSACA.Location = new System.Drawing.Point(232, 62);
             this.txtSACA.Name = "txtSACA";
             this.txtSACA.Size = new System.Drawing.Size(112, 29);
             this.txtSACA.TabIndex = 7;
@@ -493,7 +525,7 @@
             // 
             this.radLabel4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel4.Location = new System.Drawing.Point(612, 31);
+            this.radLabel4.Location = new System.Drawing.Point(620, 31);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(92, 25);
             this.radLabel4.TabIndex = 1;
@@ -503,7 +535,7 @@
             // 
             this.txtTraceID.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtTraceID.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTraceID.Location = new System.Drawing.Point(35, 62);
+            this.txtTraceID.Location = new System.Drawing.Point(43, 62);
             this.txtTraceID.Name = "txtTraceID";
             this.txtTraceID.Size = new System.Drawing.Size(122, 29);
             this.txtTraceID.TabIndex = 7;
@@ -513,7 +545,7 @@
             // 
             this.radLabel5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel5.Location = new System.Drawing.Point(809, 31);
+            this.radLabel5.Location = new System.Drawing.Point(817, 31);
             this.radLabel5.Name = "radLabel5";
             this.radLabel5.Size = new System.Drawing.Size(53, 25);
             this.radLabel5.TabIndex = 1;
@@ -527,9 +559,9 @@
             this.OutputPanel.Controls.Add(this.txtTraceIdSalida);
             this.OutputPanel.Controls.Add(this.radLabel13);
             this.OutputPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.OutputPanel.Location = new System.Drawing.Point(1395, 78);
+            this.OutputPanel.Location = new System.Drawing.Point(1412, 78);
             this.OutputPanel.Name = "OutputPanel";
-            this.OutputPanel.Size = new System.Drawing.Size(241, 710);
+            this.OutputPanel.Size = new System.Drawing.Size(224, 710);
             this.OutputPanel.TabIndex = 4;
             // 
             // radSeparator4
@@ -574,7 +606,7 @@
             this.gridContainerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridContainerPanel.Location = new System.Drawing.Point(251, 242);
             this.gridContainerPanel.Name = "gridContainerPanel";
-            this.gridContainerPanel.Size = new System.Drawing.Size(1144, 546);
+            this.gridContainerPanel.Size = new System.Drawing.Size(1161, 546);
             this.gridContainerPanel.TabIndex = 5;
             // 
             // GridItemsOut
@@ -595,48 +627,48 @@
             this.GridItemsOut.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             this.GridItemsOut.MasterTemplate.BottomPinnedRowsMode = Telerik.WinControls.UI.GridViewBottomPinnedRowsMode.Fixed;
             this.GridItemsOut.MasterTemplate.ClipboardCopyMode = Telerik.WinControls.UI.GridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            gridViewTextBoxColumn17.HeaderText = "Código de Item";
-            gridViewTextBoxColumn17.Name = "column7";
-            gridViewTextBoxColumn17.Width = 150;
-            gridViewTextBoxColumn18.HeaderText = "Descripción";
-            gridViewTextBoxColumn18.Name = "column1";
-            gridViewTextBoxColumn18.Width = 150;
-            gridViewTextBoxColumn19.HeaderText = "Cantidad BOM";
-            gridViewTextBoxColumn19.Name = "column2";
-            gridViewTextBoxColumn19.Width = 151;
-            gridViewTextBoxColumn20.HeaderText = "Cantidad Real";
-            gridViewTextBoxColumn20.Name = "column3";
-            gridViewTextBoxColumn20.Width = 150;
-            gridViewTextBoxColumn21.HeaderText = "Inventario";
-            gridViewTextBoxColumn21.Name = "column4";
-            gridViewTextBoxColumn21.Width = 150;
-            gridViewTextBoxColumn22.HeaderText = "Localidad";
-            gridViewTextBoxColumn22.Name = "column5";
-            gridViewTextBoxColumn22.Width = 155;
-            gridViewTextBoxColumn23.HeaderText = "Usar Sobrantes";
-            gridViewTextBoxColumn23.Name = "column6";
-            gridViewTextBoxColumn23.Width = 96;
-            gridViewTextBoxColumn24.HeaderText = "Sobrantes Disp.";
-            gridViewTextBoxColumn24.Name = "column8";
-            gridViewTextBoxColumn24.Width = 128;
+            gridViewTextBoxColumn1.HeaderText = "Código de Item";
+            gridViewTextBoxColumn1.Name = "column7";
+            gridViewTextBoxColumn1.Width = 152;
+            gridViewTextBoxColumn2.HeaderText = "Descripción";
+            gridViewTextBoxColumn2.Name = "column1";
+            gridViewTextBoxColumn2.Width = 152;
+            gridViewTextBoxColumn3.HeaderText = "Cantidad BOM";
+            gridViewTextBoxColumn3.Name = "column2";
+            gridViewTextBoxColumn3.Width = 153;
+            gridViewTextBoxColumn4.HeaderText = "Cantidad Real";
+            gridViewTextBoxColumn4.Name = "column3";
+            gridViewTextBoxColumn4.Width = 152;
+            gridViewTextBoxColumn5.HeaderText = "Inventario";
+            gridViewTextBoxColumn5.Name = "column4";
+            gridViewTextBoxColumn5.Width = 152;
+            gridViewTextBoxColumn6.HeaderText = "Usar Sobrantes";
+            gridViewTextBoxColumn6.Name = "column6";
+            gridViewTextBoxColumn6.Width = 97;
+            gridViewTextBoxColumn7.HeaderText = "Ubicacion";
+            gridViewTextBoxColumn7.Name = "column5";
+            gridViewTextBoxColumn7.Width = 157;
+            gridViewTextBoxColumn8.HeaderText = "Sobrantes Disp.";
+            gridViewTextBoxColumn8.Name = "column8";
+            gridViewTextBoxColumn8.Width = 132;
             this.GridItemsOut.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn17,
-            gridViewTextBoxColumn18,
-            gridViewTextBoxColumn19,
-            gridViewTextBoxColumn20,
-            gridViewTextBoxColumn21,
-            gridViewTextBoxColumn22,
-            gridViewTextBoxColumn23,
-            gridViewTextBoxColumn24});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8});
             this.GridItemsOut.MasterTemplate.EnableAlternatingRowColor = true;
             this.GridItemsOut.MasterTemplate.EnableFiltering = true;
             this.GridItemsOut.MasterTemplate.SelectionMode = Telerik.WinControls.UI.GridViewSelectionMode.CellSelect;
             this.GridItemsOut.MasterTemplate.ShowFilteringRow = false;
-            this.GridItemsOut.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.GridItemsOut.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.GridItemsOut.Name = "GridItemsOut";
             this.GridItemsOut.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.GridItemsOut.ShowGroupPanel = false;
-            this.GridItemsOut.Size = new System.Drawing.Size(1144, 546);
+            this.GridItemsOut.Size = new System.Drawing.Size(1161, 546);
             this.GridItemsOut.TabIndex = 2;
             this.GridItemsOut.TabStop = false;
             this.GridItemsOut.ThemeName = "ControlDefault";
@@ -660,53 +692,160 @@
             this.GridItemsDesperdicioOut.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             this.GridItemsDesperdicioOut.MasterTemplate.BottomPinnedRowsMode = Telerik.WinControls.UI.GridViewBottomPinnedRowsMode.Fixed;
             this.GridItemsDesperdicioOut.MasterTemplate.ClipboardCopyMode = Telerik.WinControls.UI.GridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            gridViewTextBoxColumn25.HeaderText = "Código de Item";
-            gridViewTextBoxColumn25.Name = "column7";
-            gridViewTextBoxColumn25.Width = 150;
-            gridViewTextBoxColumn26.HeaderText = "Descripción";
-            gridViewTextBoxColumn26.Name = "column1";
-            gridViewTextBoxColumn26.Width = 150;
-            gridViewTextBoxColumn27.HeaderText = "Cantidad BOM";
-            gridViewTextBoxColumn27.Name = "column2";
-            gridViewTextBoxColumn27.Width = 151;
-            gridViewTextBoxColumn28.HeaderText = "Cantidad Real";
-            gridViewTextBoxColumn28.Name = "column3";
-            gridViewTextBoxColumn28.Width = 150;
-            gridViewTextBoxColumn29.HeaderText = "Inventario";
-            gridViewTextBoxColumn29.Name = "column4";
-            gridViewTextBoxColumn29.Width = 150;
-            gridViewTextBoxColumn30.HeaderText = "Localidad";
-            gridViewTextBoxColumn30.Name = "column5";
-            gridViewTextBoxColumn30.Width = 155;
-            gridViewTextBoxColumn31.HeaderText = "Usar Sobrantes";
-            gridViewTextBoxColumn31.Name = "column6";
-            gridViewTextBoxColumn31.Width = 96;
-            gridViewTextBoxColumn32.HeaderText = "Sobrantes Disp.";
-            gridViewTextBoxColumn32.Name = "column8";
-            gridViewTextBoxColumn32.Width = 128;
+            gridViewTextBoxColumn9.HeaderText = "Código de Item";
+            gridViewTextBoxColumn9.Name = "column7";
+            gridViewTextBoxColumn9.Width = 152;
+            gridViewTextBoxColumn10.HeaderText = "Descripción";
+            gridViewTextBoxColumn10.Name = "column1";
+            gridViewTextBoxColumn10.Width = 152;
+            gridViewTextBoxColumn11.HeaderText = "Cantidad BOM";
+            gridViewTextBoxColumn11.Name = "column2";
+            gridViewTextBoxColumn11.Width = 153;
+            gridViewTextBoxColumn12.HeaderText = "Cantidad Real";
+            gridViewTextBoxColumn12.Name = "column3";
+            gridViewTextBoxColumn12.Width = 152;
+            gridViewTextBoxColumn13.HeaderText = "Inventario";
+            gridViewTextBoxColumn13.Name = "column4";
+            gridViewTextBoxColumn13.Width = 152;
+            gridViewTextBoxColumn14.HeaderText = "Localidad";
+            gridViewTextBoxColumn14.Name = "column5";
+            gridViewTextBoxColumn14.Width = 157;
+            gridViewTextBoxColumn15.HeaderText = "Usar Sobrantes";
+            gridViewTextBoxColumn15.Name = "column6";
+            gridViewTextBoxColumn15.Width = 97;
+            gridViewTextBoxColumn16.HeaderText = "Sobrantes Disp.";
+            gridViewTextBoxColumn16.Name = "column8";
+            gridViewTextBoxColumn16.Width = 132;
             this.GridItemsDesperdicioOut.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn25,
-            gridViewTextBoxColumn26,
-            gridViewTextBoxColumn27,
-            gridViewTextBoxColumn28,
-            gridViewTextBoxColumn29,
-            gridViewTextBoxColumn30,
-            gridViewTextBoxColumn31,
-            gridViewTextBoxColumn32});
+            gridViewTextBoxColumn9,
+            gridViewTextBoxColumn10,
+            gridViewTextBoxColumn11,
+            gridViewTextBoxColumn12,
+            gridViewTextBoxColumn13,
+            gridViewTextBoxColumn14,
+            gridViewTextBoxColumn15,
+            gridViewTextBoxColumn16});
             this.GridItemsDesperdicioOut.MasterTemplate.EnableAlternatingRowColor = true;
             this.GridItemsDesperdicioOut.MasterTemplate.EnableFiltering = true;
             this.GridItemsDesperdicioOut.MasterTemplate.SelectionMode = Telerik.WinControls.UI.GridViewSelectionMode.CellSelect;
             this.GridItemsDesperdicioOut.MasterTemplate.ShowFilteringRow = false;
-            this.GridItemsDesperdicioOut.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.GridItemsDesperdicioOut.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.GridItemsDesperdicioOut.Name = "GridItemsDesperdicioOut";
             this.GridItemsDesperdicioOut.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.GridItemsDesperdicioOut.ShowGroupPanel = false;
-            this.GridItemsDesperdicioOut.Size = new System.Drawing.Size(1144, 546);
+            this.GridItemsDesperdicioOut.Size = new System.Drawing.Size(1161, 546);
             this.GridItemsDesperdicioOut.TabIndex = 2;
             this.GridItemsDesperdicioOut.TabStop = false;
             this.GridItemsDesperdicioOut.ThemeName = "ControlDefault";
             this.GridItemsDesperdicioOut.TitleText = " ";
             this.GridItemsDesperdicioOut.Visible = false;
+            // 
+            // txtLocalidad
+            // 
+            this.txtLocalidad.Enabled = false;
+            this.txtLocalidad.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLocalidad.Location = new System.Drawing.Point(102, 316);
+            this.txtLocalidad.Name = "txtLocalidad";
+            this.txtLocalidad.Size = new System.Drawing.Size(112, 29);
+            this.txtLocalidad.TabIndex = 20;
+            this.txtLocalidad.Visible = false;
+            // 
+            // txtCarnetItem
+            // 
+            this.txtCarnetItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCarnetItem.Location = new System.Drawing.Point(102, 408);
+            this.txtCarnetItem.Name = "txtCarnetItem";
+            this.txtCarnetItem.Size = new System.Drawing.Size(112, 29);
+            this.txtCarnetItem.TabIndex = 21;
+            this.txtCarnetItem.Visible = false;
+            // 
+            // txtCantidad
+            // 
+            this.txtCantidad.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCantidad.Location = new System.Drawing.Point(102, 362);
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(112, 29);
+            this.txtCantidad.TabIndex = 22;
+            this.txtCantidad.Visible = false;
+            // 
+            // txtItemCodigo
+            // 
+            this.txtItemCodigo.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtItemCodigo.Location = new System.Drawing.Point(102, 224);
+            this.txtItemCodigo.Name = "txtItemCodigo";
+            this.txtItemCodigo.Size = new System.Drawing.Size(112, 29);
+            this.txtItemCodigo.TabIndex = 23;
+            this.txtItemCodigo.Visible = false;
+            // 
+            // txtIdCaja
+            // 
+            this.txtIdCaja.Enabled = false;
+            this.txtIdCaja.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIdCaja.Location = new System.Drawing.Point(102, 270);
+            this.txtIdCaja.Name = "txtIdCaja";
+            this.txtIdCaja.Size = new System.Drawing.Size(112, 29);
+            this.txtIdCaja.TabIndex = 19;
+            this.txtIdCaja.Visible = false;
+            // 
+            // lblUbicacion
+            // 
+            this.lblUbicacion.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUbicacion.Location = new System.Drawing.Point(-8, 319);
+            this.lblUbicacion.Name = "lblUbicacion";
+            this.lblUbicacion.Size = new System.Drawing.Size(98, 25);
+            this.lblUbicacion.TabIndex = 18;
+            this.lblUbicacion.Text = "UBICACIÓN";
+            this.lblUbicacion.Visible = false;
+            // 
+            // lblCarnetItem
+            // 
+            this.lblCarnetItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCarnetItem.Location = new System.Drawing.Point(20, 412);
+            this.lblCarnetItem.Name = "lblCarnetItem";
+            this.lblCarnetItem.Size = new System.Drawing.Size(72, 25);
+            this.lblCarnetItem.TabIndex = 14;
+            this.lblCarnetItem.Text = "CARNET";
+            this.lblCarnetItem.Visible = false;
+            // 
+            // lblCantidad
+            // 
+            this.lblCantidad.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCantidad.Location = new System.Drawing.Point(-1, 367);
+            this.lblCantidad.Name = "lblCantidad";
+            this.lblCantidad.Size = new System.Drawing.Size(93, 25);
+            this.lblCantidad.TabIndex = 17;
+            this.lblCantidad.Text = "CANTIDAD";
+            this.lblCantidad.Visible = false;
+            // 
+            // lblProduct
+            // 
+            this.lblProduct.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProduct.Location = new System.Drawing.Point(45, 223);
+            this.lblProduct.Name = "lblProduct";
+            this.lblProduct.Size = new System.Drawing.Size(47, 25);
+            this.lblProduct.TabIndex = 16;
+            this.lblProduct.Text = "ITEM";
+            this.lblProduct.Visible = false;
+            // 
+            // lblCaja
+            // 
+            this.lblCaja.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCaja.Location = new System.Drawing.Point(21, 271);
+            this.lblCaja.Name = "lblCaja";
+            this.lblCaja.Size = new System.Drawing.Size(71, 25);
+            this.lblCaja.TabIndex = 15;
+            this.lblCaja.Text = "ID CAJA";
+            this.lblCaja.Visible = false;
+            // 
+            // checkEntry
+            // 
+            this.checkEntry.AutoSize = true;
+            this.checkEntry.Location = new System.Drawing.Point(67, 527);
+            this.checkEntry.Name = "checkEntry";
+            this.checkEntry.Size = new System.Drawing.Size(79, 17);
+            this.checkEntry.TabIndex = 11;
+            this.checkEntry.Text = "Materiales";
+            this.checkEntry.UseVisualStyleBackColor = true;
             // 
             // VentanaForm
             // 
@@ -736,11 +875,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtDespTraceID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDespSaca)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblArea)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCarnet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblMotivo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTraceIDs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblSaca)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ContentPanel)).EndInit();
             this.ContentPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datosGroup)).EndInit();
@@ -773,6 +912,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridItemsOut)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridItemsDesperdicioOut.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridItemsDesperdicioOut)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLocalidad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCarnetItem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantidad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtItemCodigo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIdCaja)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblUbicacion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCarnetItem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCantidad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblProduct)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCaja)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -790,11 +939,11 @@
         private Telerik.WinControls.UI.RadLabel radLabel5;
         private Telerik.WinControls.UI.RadLabel radLabel4;
         private Telerik.WinControls.UI.RadLabel radLabel11;
-        private Telerik.WinControls.UI.RadLabel radLabel10;
-        private Telerik.WinControls.UI.RadLabel radLabel9;
-        private Telerik.WinControls.UI.RadLabel radLabel8;
-        private Telerik.WinControls.UI.RadLabel radLabel7;
-        private Telerik.WinControls.UI.RadLabel radLabel6;
+        private Telerik.WinControls.UI.RadLabel lblArea;
+        private Telerik.WinControls.UI.RadLabel lblCarnet;
+        private Telerik.WinControls.UI.RadLabel lblMotivo;
+        private Telerik.WinControls.UI.RadLabel lblTraceIDs;
+        private Telerik.WinControls.UI.RadLabel lblSaca;
         private Telerik.WinControls.UI.RadTextBox txtDespOperador;
         private Telerik.WinControls.UI.RadTextBox txtDespTraceID;
         private Telerik.WinControls.UI.RadTextBox txtDespSaca;
@@ -823,5 +972,16 @@
         private Telerik.WinControls.UI.RadGridView GridItemsDesperdicioOut;
         private System.Windows.Forms.CheckBox checkID;
         private System.Windows.Forms.Button btnReset;
+        private Telerik.WinControls.UI.RadTextBox txtLocalidad;
+        private Telerik.WinControls.UI.RadTextBox txtCarnetItem;
+        private Telerik.WinControls.UI.RadTextBox txtCantidad;
+        private Telerik.WinControls.UI.RadTextBox txtItemCodigo;
+        private Telerik.WinControls.UI.RadTextBox txtIdCaja;
+        private Telerik.WinControls.UI.RadLabel lblUbicacion;
+        private Telerik.WinControls.UI.RadLabel lblCarnetItem;
+        private Telerik.WinControls.UI.RadLabel lblCantidad;
+        private Telerik.WinControls.UI.RadLabel lblProduct;
+        private Telerik.WinControls.UI.RadLabel lblCaja;
+        private System.Windows.Forms.CheckBox checkEntry;
     }
 }

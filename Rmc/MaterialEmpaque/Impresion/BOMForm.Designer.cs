@@ -116,7 +116,7 @@ namespace Rmc.MaterialEmpaque
             this.btnProcesarFiltrado.ForeColor = System.Drawing.Color.White;
             this.btnProcesarFiltrado.Image = global::Rmc.Properties.Resources.procesar;
             this.btnProcesarFiltrado.ImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnProcesarFiltrado.Location = new System.Drawing.Point(31, 508);
+            this.btnProcesarFiltrado.Location = new System.Drawing.Point(31, 549);
             this.btnProcesarFiltrado.Name = "btnProcesarFiltrado";
             this.btnProcesarFiltrado.Size = new System.Drawing.Size(300, 40);
             this.btnProcesarFiltrado.TabIndex = 6;
@@ -130,23 +130,21 @@ namespace Rmc.MaterialEmpaque
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(27, 580);
+            this.label2.Location = new System.Drawing.Point(27, 206);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(147, 21);
             this.label2.TabIndex = 4;
             this.label2.Text = "SobreConsumoID:";
-            this.label2.Visible = false;
             // 
             // txtSobreConsumoId
             // 
             this.txtSobreConsumoId.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtSobreConsumoId.Location = new System.Drawing.Point(27, 610);
+            this.txtSobreConsumoId.Location = new System.Drawing.Point(27, 236);
             this.txtSobreConsumoId.Name = "txtSobreConsumoId";
             this.txtSobreConsumoId.NullText = "Ingrese SobreConsumoID";
             this.txtSobreConsumoId.Size = new System.Drawing.Size(300, 25);
             this.txtSobreConsumoId.TabIndex = 5;
             this.txtSobreConsumoId.ThemeName = "Material";
-            this.txtSobreConsumoId.Visible = false;
             this.txtSobreConsumoId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSobreConsumoId_KeyDown);
             // 
             // TraceID
@@ -164,7 +162,7 @@ namespace Rmc.MaterialEmpaque
             this.TxtTraceId.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.TxtTraceId.Location = new System.Drawing.Point(27, 101);
             this.TxtTraceId.Name = "TxtTraceId";
-            this.TxtTraceId.NullText = "Ingrese TraceID o SobreConsumoID";
+            this.TxtTraceId.NullText = "Ingrese TraceID";
             this.TxtTraceId.Size = new System.Drawing.Size(300, 25);
             this.TxtTraceId.TabIndex = 1;
             this.TxtTraceId.ThemeName = "Material";
@@ -198,7 +196,7 @@ namespace Rmc.MaterialEmpaque
             this.gbReimpresion.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
             this.gbReimpresion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.gbReimpresion.HeaderText = "Reimpresión de BOM";
-            this.gbReimpresion.Location = new System.Drawing.Point(27, 252);
+            this.gbReimpresion.Location = new System.Drawing.Point(27, 293);
             this.gbReimpresion.Name = "gbReimpresion";
             this.gbReimpresion.Padding = new System.Windows.Forms.Padding(10);
             this.gbReimpresion.Size = new System.Drawing.Size(300, 200);

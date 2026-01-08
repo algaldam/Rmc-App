@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <metadata name="sqlDataSource1.ParameterValues" xml:space="preserve">
-    <value>{"@TraceID":"2335466"}</value>
+    <value>{"@TraceID":"4901923"}</value>
   </metadata>
   <data name="sqlDataSource1.SelectCommand" xml:space="preserve">
     <value>WITH cte AS (
@@ -150,7 +150,29 @@
         { fn CONCAT('9', RIGHT(SA.pmc_SACA_2da, 7)) } AS Slightly_Imperfect,
         SB.sub_saca,
         SB.sub_producto,
-        SB.sub_descripcion,
+        -- Concatenamos la descripción con los sobrantes si existen
+        CASE 
+            WHEN EXISTS (
+                SELECT 1 
+                FROM [ES_SOCKS].[dbo].[pmc_InventoryOverstock] IO 
+                WHERE CT.Saca COLLATE SQL_Latin1_General_CP1_CI_AS = IO.Saca COLLATE SQL_Latin1_General_CP1_CI_AS
+                    AND SB.sub_producto COLLATE SQL_Latin1_General_CP1_CI_AS = IO.Item COLLATE SQL_Latin1_General_CP1_CI_AS
+                    AND IO.Quantity &gt; 0
+            )
+            THEN CONCAT(
+                SB.sub_descripcion,
+                ' -   Sobrantes: ',
+                STUFF((
+                    SELECT ' | ' + CONCAT(CAST(ROUND(Quantity, 0) AS INT), ' en ', Location)
+                    FROM [ES_SOCKS].[dbo].[pmc_InventoryOverstock] IO2
+                    WHERE CT.Saca COLLATE SQL_Latin1_General_CP1_CI_AS = IO2.Saca COLLATE SQL_Latin1_General_CP1_CI_AS
+                        AND SB.sub_producto COLLATE SQL_Latin1_General_CP1_CI_AS = IO2.Item COLLATE SQL_Latin1_General_CP1_CI_AS
+                        AND IO2.Quantity &gt; 0
+                    FOR XML PATH('')
+                ), 1, 3, '')
+            )
+            ELSE SB.sub_descripcion
+        END AS sub_descripcion,
         ROUND(SB.sub_factor, 2) AS Factor,
         ROUND(ROUND(CT.Dozens, 0) / SB.sub_factor, 0) AS cantidad,
         DI.pmc_coddoblado,

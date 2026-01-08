@@ -25,7 +25,7 @@ namespace Rmc.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("32")]
+        [global::System.Configuration.DefaultSettingValueAttribute("47")]
         public int appID {
             get {
                 return ((int)(this["appID"]));

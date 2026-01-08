@@ -25,6 +25,7 @@ using Rmc.MaterialEmpaque.Inventario;
 using Rmc.MaterialEmpaque.Consultas;
 using Rmc.MaterialEmpaque.Ventana;
 using Rmc.MaterialEmpaque.Impresion;
+using System.Collections.Generic;
 
 namespace Rmc
 {
@@ -58,11 +59,330 @@ namespace Rmc
             radRibbonBar1.RibbonBarElement.TabStripElement.Items[1].IsSelected = true;
            
         }
+        
+
+
+        public bool VerificarForm(string nombre)
+        {
+            foreach (DockWindow rd in this.radDock1.DockWindows.DocumentWindows)
+            {
+                System.Console.WriteLine(rd.Name.ToString());
+                if (rd.Text == nombre)
+                {
+                    this.radDock1.ActiveWindow = rd;
+                    return false;
+                }
+            }
+            //MessageBox.Show("verdadero");
+            return true;
+        }
+
+
+        public void Permisos(string strUsuario)
+        {
+            string permisos = "EXEC [usp_mst_PermissionsByUser] '" + strUsuario + "', " + sc.AppID;
+
+            Console.WriteLine($"Ejecutando: {permisos}");
+
+            sc.OpenConection();
+            SqlDataReader mir = sc.DevDataReader(permisos);
+
+            try
+            {
+                // PASO 1: Recopilar MEJORES permisos (evitar duplicados)
+                Dictionary<string, decimal> mejoresPermisos = new Dictionary<string, decimal>();
+                Dictionary<string, string> tiposPorNombre = new Dictionary<string, string>();
+
+                while (mir.Read())
+                {
+                    string nombreBD = mir.GetString(0).Trim();
+                    decimal permisoLeer = mir.GetDecimal(2);
+                    string tipo = mir.GetString(6).Trim();
+
+                    Console.WriteLine($"Leyendo BD: {nombreBD}, PLeer={permisoLeer}");
+
+                    // Guardar el MAYOR valor de PLeer para cada nombre
+                    if (!mejoresPermisos.ContainsKey(nombreBD) || permisoLeer > mejoresPermisos[nombreBD])
+                    {
+                        mejoresPermisos[nombreBD] = permisoLeer;
+                        tiposPorNombre[nombreBD] = tipo;
+                    }
+                }
+
+                // Cerrar reader temprano
+                mir.Close();
+
+                // PASO 2: Ocultar TODO por defecto
+                foreach (RibbonTab tb in this.radRibbonBar1.RibbonBarElement.CommandTabs)
+                {
+                    tb.Visibility = ElementVisibility.Collapsed;
+
+                    foreach (RadRibbonBarGroup gr in tb.Items)
+                    {
+                        gr.Visibility = ElementVisibility.Collapsed;
+
+                        foreach (RadItem item in gr.Items)
+                        {
+                            item.Visibility = ElementVisibility.Collapsed;
+                            item.Enabled = false;
+                        }
+                    }
+                }
+
+                // PASO 3: Aplicar MEJORES permisos desde el diccionario
+                Console.WriteLine("\nAplicando mejores permisos:");
+                foreach (var kvp in mejoresPermisos)
+                {
+                    string nombreBD = kvp.Key;
+                    decimal permisoLeer = kvp.Value;
+                    string tipo = tiposPorNombre[nombreBD];
+
+                    Console.WriteLine($"Aplicando: {nombreBD} ({tipo}), PLeer={permisoLeer}");
+
+                    bool encontrado = false;
+
+                    // Buscar en pestañas
+                    foreach (RibbonTab tab in radRibbonBar1.RibbonBarElement.CommandTabs)
+                    {
+                        if (tab.Name == nombreBD)
+                        {
+                            // Para pestañas: NO las mostramos aquí, las evaluaremos después
+                            // Solo marcamos que existe
+                            encontrado = true;
+                            Console.WriteLine($"  ✓ Es pestaña: {tab.Name}");
+                            break;
+                        }
+
+                        // Buscar en grupos
+                        foreach (RadRibbonBarGroup grupo in tab.Items)
+                        {
+                            if (grupo.Name == nombreBD)
+                            {
+                                bool visible = (permisoLeer > 0);
+                                grupo.Visibility = visible ? ElementVisibility.Visible : ElementVisibility.Collapsed;
+                                grupo.Enabled = visible;
+                                encontrado = true;
+                                Console.WriteLine($"  ✓ Es grupo: {grupo.Name}, Visible={visible}");
+                                break;
+                            }
+
+                            // Buscar en items
+                            foreach (RadItem item in grupo.Items)
+                            {
+                                if (item.Name == nombreBD)
+                                {
+                                    bool visible = (permisoLeer > 0);
+                                    item.Visibility = visible ? ElementVisibility.Visible : ElementVisibility.Collapsed;
+                                    item.Enabled = visible;  // IMPORTANTE: mismo valor que Visibility
+                                    encontrado = true;
+                                    Console.WriteLine($"  ✓ Es item: {item.Name}, Visible={visible}, Enabled={visible}");
+                                    break;
+                                }
+                            }
+
+                            if (encontrado) break;
+                        }
+
+                        if (encontrado) break;
+                    }
+
+                    if (!encontrado)
+                    {
+                        Console.WriteLine($"  ✗ No encontrado en controles: {nombreBD}");
+                    }
+                }
+
+                // PASO 4: Evaluar pestañas (mostrar solo si tienen grupos/items visibles)
+                Console.WriteLine("\nEvaluando pestañas:");
+                foreach (RibbonTab tb in this.radRibbonBar1.RibbonBarElement.CommandTabs)
+                {
+                    bool pestañaTieneVisible = false;
+
+                    foreach (RadRibbonBarGroup gr in tb.Items)
+                    {
+                        bool grupoTieneVisible = false;
+
+                        // Verificar si el grupo tiene items visibles
+                        foreach (RadItem item in gr.Items)
+                        {
+                            if (item.Visibility == ElementVisibility.Visible && item.Enabled)
+                            {
+                                grupoTieneVisible = true;
+                                break;
+                            }
+                        }
+
+                        // También considerar si el grupo mismo es visible
+                        if (gr.Visibility == ElementVisibility.Visible)
+                        {
+                            grupoTieneVisible = true;
+                        }
+
+                        // Actualizar visibilidad del grupo
+                        gr.Visibility = grupoTieneVisible ?
+                            ElementVisibility.Visible : ElementVisibility.Collapsed;
+
+                        if (grupoTieneVisible)
+                        {
+                            pestañaTieneVisible = true;
+                            Console.WriteLine($"  Grupo visible: {gr.Name}");
+                        }
+                    }
+
+                    // Actualizar visibilidad de la pestaña
+                    tb.Visibility = pestañaTieneVisible ?
+                        ElementVisibility.Visible : ElementVisibility.Collapsed;
+
+                    Console.WriteLine($"Pestaña '{tb.Name}': {(pestañaTieneVisible ? "VISIBLE" : "OCULTA")}");
+                }
+
+                Console.WriteLine("=== FIN PERMISOS ===");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error " + e.Message);
+            }
+            finally
+            {
+                sc.CloseConection();
+            }
+        }
+
+
+        private void DebugNombresControles()
+        {
+            Console.WriteLine("\n=== DEBUG: NOMBRES DE CONTROLES ===");
+
+            // Verificar AppID primero
+            Console.WriteLine($"AppID actual: {sc.AppID}");
+
+            // Listar todos los controles con sus nombres
+            int contador = 0;
+            foreach (RibbonTab tab in radRibbonBar1.RibbonBarElement.CommandTabs)
+            {
+                contador++;
+                Console.WriteLine($"{contador}. Pestaña: Name='{tab.Name}', Text='{tab.Text}'");
+
+                foreach (RadRibbonBarGroup grupo in tab.Items)
+                {
+                    contador++;
+                    Console.WriteLine($"   {contador}. Grupo: Name='{grupo.Name}', Text='{grupo.Text}'");
+
+                    foreach (RadItem item in grupo.Items)
+                    {
+                        contador++;
+                        Console.WriteLine($"      {contador}. Item: Name='{item.Name}', Text='{item.Text}'");
+                    }
+                }
+            }
+
+            Console.WriteLine($"Total controles encontrados: {contador}");
+        }
+
+
+        private void ProbarPermisosCompleto()
+        {
+            //Console.Clear();  // Limpiar consola para mejor visualización
+
+            // 1. Debug de nombres
+            DebugNombresControles();
+
+            // 2. Verificar AppID
+            Console.WriteLine($"\n=== CONFIGURACIÓN ===");
+            Console.WriteLine($"Usuario: algaldam");
+            Console.WriteLine($"AppID: {sc.AppID}");
+
+            // 3. Ejecutar SP directamente para ver qué devuelve
+            Console.WriteLine($"\n=== EJECUTANDO SP ===");
+            string query = $"EXEC [usp_mst_PermissionsByUser] @UsLogin = 'algaldam', @App = {sc.AppID}";
+            Console.WriteLine($"Query: {query}");
+
+            try
+            {
+                sc.OpenConection();
+                SqlDataReader reader = sc.DevDataReader(query);
+
+                Console.WriteLine("\nResultados del SP:");
+                Console.WriteLine("Nombre BD        | Tipo     | PLeer");
+                Console.WriteLine("-----------------|----------|------");
+
+                while (reader.Read())
+                {
+                    string nombre = reader.GetString(0).Trim();
+                    decimal pleer = reader.GetDecimal(2);
+                    string tipo = reader.GetString(6).Trim();
+
+                    Console.WriteLine($"{nombre,-16} | {tipo,-8} | {pleer}");
+                }
+
+                reader.Close();
+                sc.CloseConection();
+
+                // 4. Ahora ejecutar el método Permisos
+                Console.WriteLine($"\n=== EJECUTANDO MÉTODO Permisos() ===");
+                Permisos("algaldam");
+
+                // 5. Ver resultado final
+                Console.WriteLine($"\n=== ESTADO FINAL DE CONTROLES ===");
+                foreach (RibbonTab tab in radRibbonBar1.RibbonBarElement.CommandTabs)
+                {
+                    Console.WriteLine($"Pestaña '{tab.Name}': {tab.Visibility}");
+
+                    foreach (RadRibbonBarGroup grupo in tab.Items)
+                    {
+                        Console.WriteLine($"  Grupo '{grupo.Name}': {grupo.Visibility}");
+
+                        foreach (RadItem item in grupo.Items)
+                        {
+                            Console.WriteLine($"    Item '{item.Name}': {item.Visibility}, Enabled={item.Enabled}");
+                        }
+                    }
+                }
+
+                //MessageBox.Show("Prueba completada. Revisa la consola.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            // Temporal: para pruebas
+            ProbarPermisosCompleto();
+
+            // O desde un botón:
+            // button1.Click += (s, args) => ProbarPermisosCompleto();
+        }
+
+        /// <summary>
+        /// CREATED BY DAVID AYALA
+        /// </summary>
+        /// 
+
+        private void SubSobrantesExcel_Click(object sender, EventArgs e)
+        {
+            if (VerificarForm("Carga Sobrantes") != false)
+                sc.CargarFormulario(new frmSobrantes(), this, radDock1);
+        }
+
+        private void SubBomExcelClick(object sender, EventArgs e)
+        {
+            if (VerificarForm("BOM") != false)
+                sc.CargarFormulario(new SubBOMExcel(), this, radDock1);
+        }
+
+        private void radButtonElement5_Click(object sender, EventArgs e)
+        {
+            if (VerificarForm("Mantemiento Semanas") != false)
+                sc.CargarFormulario(new frmMtnSemanas(), this, radDock1);
+        }
 
         private void SubidaArchivos_Click(object sender, EventArgs e)
         {
             radRibbonBar1.Expanded = true;
-            
+
         }
 
         private void Consultas_Click(object sender, EventArgs e)
@@ -95,138 +415,6 @@ namespace Rmc
             if (VerificarForm("Consultar Ordenes") != false)
                 sc.CargarFormulario(new ConsOrdenes(), this, radDock1);
         }
-        
-
-
-        public bool VerificarForm(string nombre)
-        {
-            foreach (DockWindow rd in this.radDock1.DockWindows.DocumentWindows)
-            {
-                System.Console.WriteLine(rd.Name.ToString());
-                if (rd.Text == nombre)
-                {
-                    this.radDock1.ActiveWindow = rd;
-                    return false;
-                }
-            }
-            //MessageBox.Show("verdadero");
-            return true;
-        }
-
-        public void Permisos(String srtUsuario)
-        {
-            /*
-            
-            string permisos = "Exec [usp_mst_PermissionsByUser] '" + usrName + "', " + sc.AppID + "";
-            //MessageBox.Show(permisos);
-            sc.OpenConection();
-            SqlDataReader mir = sc.DevDataReader(permisos);
-
-            bool sino;
-            try
-            {
-                while (mir.Read())
-                {
-                    foreach (RadElement re in radRibbonBar1.RootElement.ChildrenHierarchy)
-                    {
-                        if (re.Name == mir.GetString(0).Trim())
-                        {
-                            // MessageBox.Show((mir.GetString(2)));
-                            if (mir.GetDecimal(2) == 0)
-                            {
-                                sino = false;
-                            }
-                            else
-                            {
-                                sino = true;
-                            }
-                            //bool Sino = Convert.ToBoolean((mir.GetInt32(2)));
-
-                            //Vamos a ver si se trata de una pestaña o boton el que tenemos que activar
-                            if ((mir.GetString(6).Trim()) == "Pestaña")
-                            {
-
-                                sc.PermisosPestanias((RibbonTab)re, true);
-                            }
-                            else
-                            {
-                                sc.Permisos((RadButtonElement)re, sino);
-                            }
-
-                        }
-                    }
-
-                }
-
-                //estas son las pestañas
-                foreach (RibbonTab tb in this.radRibbonBar1.RibbonBarElement.CommandTabs)
-                {
-
-                    //Vamos a ver los grupos que se encuentran
-                    foreach (RadRibbonBarGroup gr in tb.Items)
-                    {
-                        //Ahora que ya tengo los grupos, veo si hay un item en su contenido habilitado, si es asi, lo pongo visible.
-                        //gr.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
-                        foreach (RadItem item in gr.Items)
-                        {
-                            //Si el contenedor tiene una opcion habilitada lo muestro
-                            if (item.Visibility.ToString() == "Visible")
-                            {
-                                gr.Visibility = Telerik.WinControls.ElementVisibility.Visible;
-                            }
-                        }
-                    }
-                }
-
-
-
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error " + e);
-            }
-            sc.CloseConection();
-            */
-
-            foreach (RibbonTab tb in this.radRibbonBar1.RibbonBarElement.CommandTabs)
-            {
-                tb.Visibility = Telerik.WinControls.ElementVisibility.Visible;
-
-                foreach (RadRibbonBarGroup gr in tb.Items)
-                {
-                    gr.Visibility = Telerik.WinControls.ElementVisibility.Visible;
-
-                    foreach (RadItem item in gr.Items)
-                    {
-                        item.Visibility = Telerik.WinControls.ElementVisibility.Visible;
-                        item.Enabled = true;
-                    }
-                }
-            }
-        }
-
-        private void SubSobrantesExcel_Click(object sender, EventArgs e)
-        {
-            if (VerificarForm("Carga Sobrantes") != false)
-                sc.CargarFormulario(new frmSobrantes (), this, radDock1);
-        }
-
-        private void SubBomExcelClick(object sender, EventArgs e)
-        {
-            if (VerificarForm("BOM") != false)
-                sc.CargarFormulario(new SubBOMExcel(), this, radDock1);
-        }
-        
-        private void radButtonElement5_Click(object sender, EventArgs e)
-        {
-            if (VerificarForm("Mantemiento Semanas") != false)
-                 sc.CargarFormulario(new frmMtnSemanas(), this, radDock1);
-        }
-
-        /// <summary>
-        /// CREATED BY DAVID AYALA
-        /// </summary>
-     
 
         private void rbtnRequiMatBodega_Click(object sender, EventArgs e)
         {
@@ -648,7 +836,7 @@ namespace Rmc
 
         private void rbtnVentana_Click(object sender, EventArgs e)
         {
-            if (VerificarForm("Ventana") != false)
+            if (VerificarForm("Consumos en Ventana") != false)
                 sc.CargarFormulario(new VentanaForm(), this, radDock1);
         }
 

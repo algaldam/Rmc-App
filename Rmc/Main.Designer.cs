@@ -49,48 +49,45 @@ namespace Rmc
             this.radRibbonBarButtonGroup7 = new Telerik.WinControls.UI.RadRibbonBarButtonGroup();
             this.Alerta = new Telerik.WinControls.UI.RadDesktopAlert(this.components);
             this.radRibbonBar1 = new Telerik.WinControls.UI.RadRibbonBar();
-            this.Mantenimientos = new Telerik.WinControls.UI.RibbonTab();
-            this.radRibbonBarGroup4 = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.RibbonTabMantenimientos = new Telerik.WinControls.UI.RibbonTab();
+            this.radRibbonBarGroupManttos = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.rbtnManteminientoSemana = new Telerik.WinControls.UI.RadButtonElement();
             this.rbtnPlanSemanal = new Telerik.WinControls.UI.RadButtonElement();
-            this.SubSobrantes = new Telerik.WinControls.UI.RadButtonElement();
-            this.SubBOM = new Telerik.WinControls.UI.RadButtonElement();
-            this.SubidaIRR = new Telerik.WinControls.UI.RadButtonElement();
-            this.BagIRR = new Telerik.WinControls.UI.RadButtonElement();
-            this.Dobladoirr = new Telerik.WinControls.UI.RadButtonElement();
-            this.ConsolidadosPlan = new Telerik.WinControls.UI.RadButtonElement();
-            this.ProductMaster = new Telerik.WinControls.UI.RadButtonElement();
-            this.Desviaciones = new Telerik.WinControls.UI.RadButtonElement();
-            this.UPC = new Telerik.WinControls.UI.RadButtonElement();
-            this.StickersBtn = new Telerik.WinControls.UI.RadButtonElement();
-            this.radButtonElement3 = new Telerik.WinControls.UI.RadButtonElement();
-            this.radButtonElement4 = new Telerik.WinControls.UI.RadButtonElement();
-            this.radButtonElement5 = new Telerik.WinControls.UI.RadButtonElement();
-            this.Consultas = new Telerik.WinControls.UI.RibbonTab();
-            this.radRibbonBarGroup5 = new Telerik.WinControls.UI.RadRibbonBarGroup();
-            this.ConsTransacciones = new Telerik.WinControls.UI.RadButtonElement();
-            this.ConsSobrantes = new Telerik.WinControls.UI.RadButtonElement();
-            this.ribbonTab1 = new Telerik.WinControls.UI.RibbonTab();
-            this.radRibbonBarGroup9 = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.rbtnSubSobrantes = new Telerik.WinControls.UI.RadButtonElement();
+            this.rbtnSubBOM = new Telerik.WinControls.UI.RadButtonElement();
+            this.rbtnSubidaIRR = new Telerik.WinControls.UI.RadButtonElement();
+            this.rbtnBagIRR = new Telerik.WinControls.UI.RadButtonElement();
+            this.rbtnDobladoirr = new Telerik.WinControls.UI.RadButtonElement();
+            this.rbtnConsolidadosPlan = new Telerik.WinControls.UI.RadButtonElement();
+            this.rbtnProductMaster = new Telerik.WinControls.UI.RadButtonElement();
+            this.rbtnDesviaciones = new Telerik.WinControls.UI.RadButtonElement();
+            this.rbtnUPC = new Telerik.WinControls.UI.RadButtonElement();
+            this.rbtnStickers = new Telerik.WinControls.UI.RadButtonElement();
+            this.rbtnUsers = new Telerik.WinControls.UI.RadButtonElement();
+            this.rbtnCelulas = new Telerik.WinControls.UI.RadButtonElement();
+            this.rbtnMaquinas = new Telerik.WinControls.UI.RadButtonElement();
+            this.RibbonTabConsultas = new Telerik.WinControls.UI.RibbonTab();
+            this.radRibbonBarGroupConsultas = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.rbtnMonitoringTraceIds = new Telerik.WinControls.UI.RadButtonElement();
+            this.rbtnReporteInventario = new Telerik.WinControls.UI.RadButtonElement();
+            this.rbtnConsultarInventario = new Telerik.WinControls.UI.RadButtonElement();
+            this.rbtnWasteLogReport = new Telerik.WinControls.UI.RadButtonElement();
+            this.rbtnInvOverview = new Telerik.WinControls.UI.RadButtonElement();
+            this.RibbonTabAreaStikerado = new Telerik.WinControls.UI.RibbonTab();
+            this.radRibbonBarGroupImpresion = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.rbtnInventoryPrint = new Telerik.WinControls.UI.RadButtonElement();
-            this.btnRequestOver = new Telerik.WinControls.UI.RadButtonElement();
+            this.rbtnRequestOver = new Telerik.WinControls.UI.RadButtonElement();
             this.rbtnBOM = new Telerik.WinControls.UI.RadButtonElement();
-            this.radButtonElement6 = new Telerik.WinControls.UI.RadButtonElement();
-            this.radRibbonBarGroup23 = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.rbtnControlMesas = new Telerik.WinControls.UI.RadButtonElement();
+            this.radRibbonBarGroupPreparacion = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.rbtnInvPreparacion = new Telerik.WinControls.UI.RadButtonElement();
-            this.btnPreparacionPkg = new Telerik.WinControls.UI.RadButtonElement();
+            this.rbtnPreparacionPkg = new Telerik.WinControls.UI.RadButtonElement();
             this.rbtnDashboardPreparacion = new Telerik.WinControls.UI.RadButtonElement();
-            this.radRibbonBarGroup18 = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.radRibbonBarGroupVentana = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.rbtnInventarioVent = new Telerik.WinControls.UI.RadButtonElement();
             this.rbtnVentana = new Telerik.WinControls.UI.RadButtonElement();
             this.rbtnSobrantes = new Telerik.WinControls.UI.RadButtonElement();
             this.rbtnCrearSobreConsumo = new Telerik.WinControls.UI.RadButtonElement();
-            this.radRibbonBarGroup24 = new Telerik.WinControls.UI.RadRibbonBarGroup();
-            this.btnMonitoringTraceIds = new Telerik.WinControls.UI.RadButtonElement();
-            this.btnReporteInventario = new Telerik.WinControls.UI.RadButtonElement();
-            this.btnConsultarInventario = new Telerik.WinControls.UI.RadButtonElement();
-            this.btnWasteLogReport = new Telerik.WinControls.UI.RadButtonElement();
-            this.btnInvOverview = new Telerik.WinControls.UI.RadButtonElement();
             this.ribbonTab2 = new Telerik.WinControls.UI.RibbonTab();
             this.radRibbonBarGroup11 = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.btnWarehouseReceipt = new Telerik.WinControls.UI.RadButtonElement();
@@ -173,7 +170,7 @@ namespace Rmc
             // 
             // radStatusStrip1
             // 
-            this.radStatusStrip1.Location = new System.Drawing.Point(0, 430);
+            this.radStatusStrip1.Location = new System.Drawing.Point(0, 678);
             this.radStatusStrip1.Margin = new System.Windows.Forms.Padding(4);
             this.radStatusStrip1.Name = "radStatusStrip1";
             this.radStatusStrip1.Size = new System.Drawing.Size(1866, 26);
@@ -187,7 +184,7 @@ namespace Rmc
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 210);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1866, 220);
+            this.panel1.Size = new System.Drawing.Size(1866, 468);
             this.panel1.TabIndex = 2;
             // 
             // radDock1
@@ -206,7 +203,7 @@ namespace Rmc
             this.radDock1.RootElement.AutoSize = false;
             this.radDock1.ShowDocumentCloseButton = true;
             this.radDock1.ShowToolCloseButton = true;
-            this.radDock1.Size = new System.Drawing.Size(1866, 220);
+            this.radDock1.Size = new System.Drawing.Size(1866, 468);
             this.radDock1.SplitterWidth = 6;
             this.radDock1.TabIndex = 0;
             this.radDock1.TabStop = false;
@@ -271,9 +268,9 @@ namespace Rmc
             // 
             this.radRibbonBar1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.radRibbonBar1.CommandTabs.AddRange(new Telerik.WinControls.RadItem[] {
-            this.Mantenimientos,
-            this.Consultas,
-            this.ribbonTab1,
+            this.RibbonTabMantenimientos,
+            this.RibbonTabConsultas,
+            this.RibbonTabAreaStikerado,
             this.ribbonTab2,
             this.ribbonTab3,
             this.ribbonTab4,
@@ -294,51 +291,50 @@ namespace Rmc
             this.radRibbonBar1.ThemeName = "Desert";
             ((Telerik.WinControls.UI.RadRibbonBarElement)(this.radRibbonBar1.GetChildAt(0))).Text = "Rmc";
             // 
-            // Mantenimientos
+            // RibbonTabMantenimientos
             // 
-            this.Mantenimientos.AutoSize = true;
-            this.Mantenimientos.DrawFill = true;
-            this.Mantenimientos.IsPinned = false;
-            this.Mantenimientos.IsSelected = false;
-            this.Mantenimientos.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radRibbonBarGroup4});
-            this.Mantenimientos.Name = "Mantenimientos";
-            this.Mantenimientos.Text = "Manttos Area Estickerado";
-            this.Mantenimientos.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Mantenimientos.TextWrap = true;
-            this.Mantenimientos.UseMnemonic = false;
-            this.Mantenimientos.Click += new System.EventHandler(this.SubidaArchivos_Click);
+            this.RibbonTabMantenimientos.AutoSize = true;
+            this.RibbonTabMantenimientos.DrawFill = true;
+            this.RibbonTabMantenimientos.IsPinned = false;
+            this.RibbonTabMantenimientos.IsSelected = false;
+            this.RibbonTabMantenimientos.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radRibbonBarGroupManttos});
+            this.RibbonTabMantenimientos.Name = "RibbonTabMantenimientos";
+            this.RibbonTabMantenimientos.Text = "Manttos Area Stickerado";
+            this.RibbonTabMantenimientos.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.RibbonTabMantenimientos.TextWrap = true;
+            this.RibbonTabMantenimientos.UseMnemonic = false;
+            this.RibbonTabMantenimientos.Click += new System.EventHandler(this.SubidaArchivos_Click);
             // 
-            // radRibbonBarGroup4
+            // radRibbonBarGroupManttos
             // 
-            this.radRibbonBarGroup4.AutoSize = false;
-            this.radRibbonBarGroup4.Bounds = new System.Drawing.Rectangle(0, 0, 1450, 130);
-            this.radRibbonBarGroup4.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radRibbonBarGroupManttos.AutoSize = false;
+            this.radRibbonBarGroupManttos.Bounds = new System.Drawing.Rectangle(0, 0, 1450, 130);
+            this.radRibbonBarGroupManttos.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.rbtnManteminientoSemana,
             this.rbtnPlanSemanal,
-            this.SubSobrantes,
-            this.SubBOM,
-            this.SubidaIRR,
-            this.BagIRR,
-            this.Dobladoirr,
-            this.ConsolidadosPlan,
-            this.ProductMaster,
-            this.Desviaciones,
-            this.UPC,
-            this.StickersBtn,
-            this.radButtonElement3,
-            this.radButtonElement4,
-            this.radButtonElement5});
-            this.radRibbonBarGroup4.Margin = new System.Windows.Forms.Padding(0);
-            this.radRibbonBarGroup4.MaxSize = new System.Drawing.Size(0, 1724);
-            this.radRibbonBarGroup4.MinSize = new System.Drawing.Size(0, 0);
-            this.radRibbonBarGroup4.Name = "radRibbonBarGroup4";
-            this.radRibbonBarGroup4.StretchHorizontally = true;
-            this.radRibbonBarGroup4.StretchVertically = true;
-            this.radRibbonBarGroup4.Text = "Subida de Archivos";
-            this.radRibbonBarGroup4.TextOrientation = System.Windows.Forms.Orientation.Horizontal;
-            this.radRibbonBarGroup4.UseCompatibleTextRendering = false;
-            this.radRibbonBarGroup4.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            this.rbtnSubSobrantes,
+            this.rbtnSubBOM,
+            this.rbtnSubidaIRR,
+            this.rbtnBagIRR,
+            this.rbtnDobladoirr,
+            this.rbtnConsolidadosPlan,
+            this.rbtnProductMaster,
+            this.rbtnDesviaciones,
+            this.rbtnUPC,
+            this.rbtnStickers,
+            this.rbtnUsers,
+            this.rbtnCelulas,
+            this.rbtnMaquinas});
+            this.radRibbonBarGroupManttos.Margin = new System.Windows.Forms.Padding(0);
+            this.radRibbonBarGroupManttos.MaxSize = new System.Drawing.Size(0, 1724);
+            this.radRibbonBarGroupManttos.MinSize = new System.Drawing.Size(0, 0);
+            this.radRibbonBarGroupManttos.Name = "radRibbonBarGroupManttos";
+            this.radRibbonBarGroupManttos.StretchHorizontally = true;
+            this.radRibbonBarGroupManttos.StretchVertically = true;
+            this.radRibbonBarGroupManttos.Text = "Subida de Archivos";
+            this.radRibbonBarGroupManttos.TextOrientation = System.Windows.Forms.Orientation.Horizontal;
+            this.radRibbonBarGroupManttos.UseCompatibleTextRendering = false;
             // 
             // rbtnManteminientoSemana
             // 
@@ -362,231 +358,270 @@ namespace Rmc
             this.rbtnPlanSemanal.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.rbtnPlanSemanal.Click += new System.EventHandler(this.rbtnPlanSemanal_Click);
             // 
-            // SubSobrantes
+            // rbtnSubSobrantes
             // 
-            this.SubSobrantes.AutoSize = true;
-            this.SubSobrantes.Image = global::Rmc.Properties.Resources.folder;
-            this.SubSobrantes.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.SubSobrantes.Name = "SubSobrantes";
-            this.SubSobrantes.Text = "Cargar Sobrantes";
-            this.SubSobrantes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.SubSobrantes.Click += new System.EventHandler(this.SubSobrantesExcel_Click);
+            this.rbtnSubSobrantes.AutoSize = true;
+            this.rbtnSubSobrantes.Image = global::Rmc.Properties.Resources.folder;
+            this.rbtnSubSobrantes.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnSubSobrantes.Name = "rbtnSubSobrantes";
+            this.rbtnSubSobrantes.Text = "Cargar Sobrantes";
+            this.rbtnSubSobrantes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnSubSobrantes.Click += new System.EventHandler(this.SubSobrantesExcel_Click);
             // 
-            // SubBOM
+            // rbtnSubBOM
             // 
-            this.SubBOM.AutoSize = false;
-            this.SubBOM.Bounds = new System.Drawing.Rectangle(0, 0, 80, 126);
-            this.SubBOM.Image = global::Rmc.Properties.Resources.reporter;
-            this.SubBOM.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.SubBOM.Name = "SubBOM";
-            this.SubBOM.Text = "BOM";
-            this.SubBOM.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.SubBOM.Click += new System.EventHandler(this.SubBomExcelClick);
+            this.rbtnSubBOM.AutoSize = false;
+            this.rbtnSubBOM.Bounds = new System.Drawing.Rectangle(0, 0, 80, 126);
+            this.rbtnSubBOM.Image = global::Rmc.Properties.Resources.reporter;
+            this.rbtnSubBOM.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnSubBOM.Name = "rbtnSubBOM";
+            this.rbtnSubBOM.Text = "BOM";
+            this.rbtnSubBOM.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnSubBOM.Click += new System.EventHandler(this.SubBomExcelClick);
             // 
-            // SubidaIRR
+            // rbtnSubidaIRR
             // 
-            this.SubidaIRR.Image = ((System.Drawing.Image)(resources.GetObject("SubidaIRR.Image")));
-            this.SubidaIRR.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.SubidaIRR.Name = "SubidaIRR";
-            this.SubidaIRR.Text = "Carga Irregulares";
-            this.SubidaIRR.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.SubidaIRR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.SubidaIRR.Click += new System.EventHandler(this.SubidaIRR_Click);
+            this.rbtnSubidaIRR.Image = ((System.Drawing.Image)(resources.GetObject("rbtnSubidaIRR.Image")));
+            this.rbtnSubidaIRR.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnSubidaIRR.Name = "rbtnSubidaIRR";
+            this.rbtnSubidaIRR.Text = "Carga Irregulares";
+            this.rbtnSubidaIRR.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnSubidaIRR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnSubidaIRR.Click += new System.EventHandler(this.SubidaIRR_Click);
             // 
-            // BagIRR
+            // rbtnBagIRR
             // 
-            this.BagIRR.Image = ((System.Drawing.Image)(resources.GetObject("BagIRR.Image")));
-            this.BagIRR.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.BagIRR.Name = "BagIRR";
-            this.BagIRR.Text = "Bolsa de Irregulares";
-            this.BagIRR.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.BagIRR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.BagIRR.Click += new System.EventHandler(this.BagIRR_Click);
+            this.rbtnBagIRR.Image = ((System.Drawing.Image)(resources.GetObject("rbtnBagIRR.Image")));
+            this.rbtnBagIRR.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnBagIRR.Name = "rbtnBagIRR";
+            this.rbtnBagIRR.Text = "Bolsa de Irregulares";
+            this.rbtnBagIRR.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnBagIRR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnBagIRR.Click += new System.EventHandler(this.BagIRR_Click);
             // 
-            // Dobladoirr
+            // rbtnDobladoirr
             // 
-            this.Dobladoirr.Image = ((System.Drawing.Image)(resources.GetObject("Dobladoirr.Image")));
-            this.Dobladoirr.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Dobladoirr.Name = "Dobladoirr";
-            this.Dobladoirr.Text = "Doblado de Irregulares";
-            this.Dobladoirr.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Dobladoirr.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.Dobladoirr.Click += new System.EventHandler(this.Dobladoirr_Click);
+            this.rbtnDobladoirr.Image = ((System.Drawing.Image)(resources.GetObject("rbtnDobladoirr.Image")));
+            this.rbtnDobladoirr.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnDobladoirr.Name = "rbtnDobladoirr";
+            this.rbtnDobladoirr.Text = "Doblado de Irregulares";
+            this.rbtnDobladoirr.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnDobladoirr.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnDobladoirr.Click += new System.EventHandler(this.Dobladoirr_Click);
             // 
-            // ConsolidadosPlan
+            // rbtnConsolidadosPlan
             // 
-            this.ConsolidadosPlan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(31)))), ((int)(((byte)(60)))));
-            this.ConsolidadosPlan.Image = ((System.Drawing.Image)(resources.GetObject("ConsolidadosPlan.Image")));
-            this.ConsolidadosPlan.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ConsolidadosPlan.Name = "ConsolidadosPlan";
-            this.ConsolidadosPlan.Text = "Consolidado Planes";
-            this.ConsolidadosPlan.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ConsolidadosPlan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.ConsolidadosPlan.Click += new System.EventHandler(this.ConsolidadosPlan_Click);
+            this.rbtnConsolidadosPlan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(31)))), ((int)(((byte)(60)))));
+            this.rbtnConsolidadosPlan.Image = ((System.Drawing.Image)(resources.GetObject("rbtnConsolidadosPlan.Image")));
+            this.rbtnConsolidadosPlan.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnConsolidadosPlan.Name = "rbtnConsolidadosPlan";
+            this.rbtnConsolidadosPlan.Text = "Consolidado Planes";
+            this.rbtnConsolidadosPlan.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnConsolidadosPlan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnConsolidadosPlan.Click += new System.EventHandler(this.ConsolidadosPlan_Click);
             // 
-            // ProductMaster
+            // rbtnProductMaster
             // 
-            this.ProductMaster.Image = ((System.Drawing.Image)(resources.GetObject("ProductMaster.Image")));
-            this.ProductMaster.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ProductMaster.Name = "ProductMaster";
-            this.ProductMaster.Text = "Product Master";
-            this.ProductMaster.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ProductMaster.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.ProductMaster.Click += new System.EventHandler(this.ProductMaster_Click);
+            this.rbtnProductMaster.Image = ((System.Drawing.Image)(resources.GetObject("rbtnProductMaster.Image")));
+            this.rbtnProductMaster.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnProductMaster.Name = "rbtnProductMaster";
+            this.rbtnProductMaster.Text = "Product Master";
+            this.rbtnProductMaster.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnProductMaster.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnProductMaster.Click += new System.EventHandler(this.ProductMaster_Click);
             // 
-            // Desviaciones
+            // rbtnDesviaciones
             // 
-            this.Desviaciones.Image = global::Rmc.Properties.Resources.traslados;
-            this.Desviaciones.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Desviaciones.Name = "Desviaciones";
-            this.Desviaciones.Text = "Desviaciones";
-            this.Desviaciones.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Desviaciones.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.Desviaciones.Click += new System.EventHandler(this.Desviaciones_Click);
+            this.rbtnDesviaciones.Image = global::Rmc.Properties.Resources.traslados;
+            this.rbtnDesviaciones.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnDesviaciones.Name = "rbtnDesviaciones";
+            this.rbtnDesviaciones.Text = "Desviaciones";
+            this.rbtnDesviaciones.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnDesviaciones.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnDesviaciones.Click += new System.EventHandler(this.Desviaciones_Click);
             // 
-            // UPC
+            // rbtnUPC
             // 
-            this.UPC.AutoSize = false;
-            this.UPC.Bounds = new System.Drawing.Rectangle(0, 0, 80, 126);
-            this.UPC.Image = global::Rmc.Properties.Resources.ident;
-            this.UPC.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.UPC.Name = "UPC";
-            this.UPC.Text = "UPC";
-            this.UPC.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.UPC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.UPC.Click += new System.EventHandler(this.UPC_Click);
+            this.rbtnUPC.AutoSize = false;
+            this.rbtnUPC.Bounds = new System.Drawing.Rectangle(0, 0, 80, 126);
+            this.rbtnUPC.Image = global::Rmc.Properties.Resources.ident;
+            this.rbtnUPC.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnUPC.Name = "rbtnUPC";
+            this.rbtnUPC.Text = "UPC";
+            this.rbtnUPC.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnUPC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnUPC.Click += new System.EventHandler(this.UPC_Click);
             // 
-            // StickersBtn
+            // rbtnStickers
             // 
-            this.StickersBtn.AutoSize = false;
-            this.StickersBtn.Bounds = new System.Drawing.Rectangle(0, 0, 80, 126);
-            this.StickersBtn.Image = ((System.Drawing.Image)(resources.GetObject("StickersBtn.Image")));
-            this.StickersBtn.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.StickersBtn.Name = "StickersBtn";
-            this.StickersBtn.Text = "Stickers";
-            this.StickersBtn.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.StickersBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.StickersBtn.UseCompatibleTextRendering = false;
-            this.StickersBtn.Click += new System.EventHandler(this.StickersBtn_Click);
+            this.rbtnStickers.AutoSize = false;
+            this.rbtnStickers.Bounds = new System.Drawing.Rectangle(0, 0, 80, 126);
+            this.rbtnStickers.Image = ((System.Drawing.Image)(resources.GetObject("rbtnStickers.Image")));
+            this.rbtnStickers.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnStickers.Name = "rbtnStickers";
+            this.rbtnStickers.Text = "Stickers";
+            this.rbtnStickers.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnStickers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnStickers.UseCompatibleTextRendering = false;
+            this.rbtnStickers.Click += new System.EventHandler(this.StickersBtn_Click);
             // 
-            // radButtonElement3
+            // rbtnUsers
             // 
-            this.radButtonElement3.AutoSize = false;
-            this.radButtonElement3.Bounds = new System.Drawing.Rectangle(0, 0, 80, 126);
-            this.radButtonElement3.Enabled = false;
-            this.radButtonElement3.Image = global::Rmc.Properties.Resources.agregar_usuario;
-            this.radButtonElement3.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radButtonElement3.Name = "radButtonElement3";
-            this.radButtonElement3.Text = "Usuarios";
-            this.radButtonElement3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.radButtonElement3.Click += new System.EventHandler(this.Usuarios_Click);
+            this.rbtnUsers.AutoSize = false;
+            this.rbtnUsers.Bounds = new System.Drawing.Rectangle(0, 0, 80, 126);
+            this.rbtnUsers.Image = global::Rmc.Properties.Resources.agregar_usuario;
+            this.rbtnUsers.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnUsers.Name = "rbtnUsers";
+            this.rbtnUsers.Text = "Usuarios";
+            this.rbtnUsers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnUsers.Click += new System.EventHandler(this.Usuarios_Click);
             // 
-            // radButtonElement4
+            // rbtnCelulas
             // 
-            this.radButtonElement4.AutoSize = false;
-            this.radButtonElement4.Bounds = new System.Drawing.Rectangle(0, 0, 80, 126);
-            this.radButtonElement4.Enabled = false;
-            this.radButtonElement4.Image = global::Rmc.Properties.Resources.rompecabezas;
-            this.radButtonElement4.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radButtonElement4.Name = "radButtonElement4";
-            this.radButtonElement4.Text = "Celulas";
-            this.radButtonElement4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.radButtonElement4.Click += new System.EventHandler(this.Células_Click);
+            this.rbtnCelulas.AutoSize = false;
+            this.rbtnCelulas.Bounds = new System.Drawing.Rectangle(0, 0, 80, 126);
+            this.rbtnCelulas.Image = global::Rmc.Properties.Resources.rompecabezas;
+            this.rbtnCelulas.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnCelulas.Name = "rbtnCelulas";
+            this.rbtnCelulas.Text = "Celulas";
+            this.rbtnCelulas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnCelulas.Click += new System.EventHandler(this.Células_Click);
             // 
-            // radButtonElement5
+            // rbtnMaquinas
             // 
-            this.radButtonElement5.AutoSize = false;
-            this.radButtonElement5.Bounds = new System.Drawing.Rectangle(0, 0, 80, 126);
-            this.radButtonElement5.Enabled = false;
-            this.radButtonElement5.Image = global::Rmc.Properties.Resources.engranajes;
-            this.radButtonElement5.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radButtonElement5.Name = "radButtonElement5";
-            this.radButtonElement5.Text = "Maquinas";
-            this.radButtonElement5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.radButtonElement5.Click += new System.EventHandler(this.Maquinas_Click);
+            this.rbtnMaquinas.AutoSize = false;
+            this.rbtnMaquinas.Bounds = new System.Drawing.Rectangle(0, 0, 80, 126);
+            this.rbtnMaquinas.Image = global::Rmc.Properties.Resources.engranajes;
+            this.rbtnMaquinas.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnMaquinas.Name = "rbtnMaquinas";
+            this.rbtnMaquinas.Text = "Maquinas";
+            this.rbtnMaquinas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnMaquinas.Click += new System.EventHandler(this.Maquinas_Click);
             // 
-            // Consultas
+            // RibbonTabConsultas
             // 
-            this.Consultas.AutoSize = true;
-            this.Consultas.Enabled = false;
-            this.Consultas.IsSelected = false;
-            this.Consultas.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radRibbonBarGroup5});
-            this.Consultas.Name = "Consultas";
-            this.Consultas.Text = "Consultas";
-            this.Consultas.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Consultas.UseMnemonic = false;
-            this.Consultas.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
-            this.Consultas.Click += new System.EventHandler(this.Consultas_Click);
+            this.RibbonTabConsultas.AutoSize = true;
+            this.RibbonTabConsultas.IsSelected = true;
+            this.RibbonTabConsultas.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radRibbonBarGroupConsultas});
+            this.RibbonTabConsultas.Name = "RibbonTabConsultas";
+            this.RibbonTabConsultas.Text = "Consultas Stickerado";
+            this.RibbonTabConsultas.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.RibbonTabConsultas.UseMnemonic = false;
+            this.RibbonTabConsultas.Click += new System.EventHandler(this.Consultas_Click);
             // 
-            // radRibbonBarGroup5
+            // radRibbonBarGroupConsultas
             // 
-            this.radRibbonBarGroup5.AutoSize = false;
-            this.radRibbonBarGroup5.Bounds = new System.Drawing.Rectangle(0, 0, 200, 130);
-            this.radRibbonBarGroup5.Enabled = false;
-            this.radRibbonBarGroup5.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.ConsTransacciones,
-            this.ConsSobrantes});
-            this.radRibbonBarGroup5.Margin = new System.Windows.Forms.Padding(0);
-            this.radRibbonBarGroup5.MaxSize = new System.Drawing.Size(0, 1638);
-            this.radRibbonBarGroup5.MinSize = new System.Drawing.Size(305, 1407);
-            this.radRibbonBarGroup5.Name = "radRibbonBarGroup5";
-            this.radRibbonBarGroup5.Text = "Consultas";
-            this.radRibbonBarGroup5.UseCompatibleTextRendering = false;
-            this.radRibbonBarGroup5.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            this.radRibbonBarGroupConsultas.AutoSize = false;
+            this.radRibbonBarGroupConsultas.Bounds = new System.Drawing.Rectangle(0, 0, 600, 130);
+            this.radRibbonBarGroupConsultas.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.rbtnMonitoringTraceIds,
+            this.rbtnReporteInventario,
+            this.rbtnConsultarInventario,
+            this.rbtnWasteLogReport,
+            this.rbtnInvOverview});
+            this.radRibbonBarGroupConsultas.Margin = new System.Windows.Forms.Padding(0);
+            this.radRibbonBarGroupConsultas.MaxSize = new System.Drawing.Size(0, 1638);
+            this.radRibbonBarGroupConsultas.MinSize = new System.Drawing.Size(305, 1407);
+            this.radRibbonBarGroupConsultas.Name = "radRibbonBarGroupConsultas";
+            this.radRibbonBarGroupConsultas.Text = "Consultas";
+            this.radRibbonBarGroupConsultas.UseCompatibleTextRendering = false;
             // 
-            // ConsTransacciones
+            // rbtnMonitoringTraceIds
             // 
-            this.ConsTransacciones.AutoSize = true;
-            this.ConsTransacciones.Enabled = false;
-            this.ConsTransacciones.Image = global::Rmc.Properties.Resources.trass;
-            this.ConsTransacciones.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ConsTransacciones.Name = "ConsTransacciones";
-            this.ConsTransacciones.Text = "Transacciones";
-            this.ConsTransacciones.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.ConsTransacciones.Visibility = Telerik.WinControls.ElementVisibility.Hidden;
-            this.ConsTransacciones.Click += new System.EventHandler(this.ConsTransacciones_Click);
+            this.rbtnMonitoringTraceIds.AutoSize = false;
+            this.rbtnMonitoringTraceIds.Bounds = new System.Drawing.Rectangle(0, 0, 108, 108);
+            this.rbtnMonitoringTraceIds.Image = global::Rmc.Properties.Resources.monitor;
+            this.rbtnMonitoringTraceIds.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnMonitoringTraceIds.Name = "rbtnMonitoringTraceIds";
+            this.rbtnMonitoringTraceIds.StretchHorizontally = false;
+            this.rbtnMonitoringTraceIds.StretchVertically = false;
+            this.rbtnMonitoringTraceIds.Text = "Monitoreo TraceIDs";
+            this.rbtnMonitoringTraceIds.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnMonitoringTraceIds.Click += new System.EventHandler(this.btnMonitoringTraceIds_Click);
             // 
-            // ConsSobrantes
+            // rbtnReporteInventario
             // 
-            this.ConsSobrantes.AutoSize = true;
-            this.ConsSobrantes.Enabled = false;
-            this.ConsSobrantes.Image = global::Rmc.Properties.Resources.so1;
-            this.ConsSobrantes.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ConsSobrantes.Name = "ConsSobrantes";
-            this.ConsSobrantes.Text = "Sobrantes";
-            this.ConsSobrantes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.ConsSobrantes.TextWrap = true;
-            this.ConsSobrantes.Visibility = Telerik.WinControls.ElementVisibility.Hidden;
-            this.ConsSobrantes.Click += new System.EventHandler(this.ConsSobrantes_Click);
+            this.rbtnReporteInventario.AutoSize = false;
+            this.rbtnReporteInventario.Bounds = new System.Drawing.Rectangle(0, 0, 130, 108);
+            this.rbtnReporteInventario.Image = global::Rmc.Properties.Resources.stock_rotation;
+            this.rbtnReporteInventario.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnReporteInventario.Name = "rbtnReporteInventario";
+            this.rbtnReporteInventario.StretchHorizontally = false;
+            this.rbtnReporteInventario.StretchVertically = false;
+            this.rbtnReporteInventario.Text = "Movimientos Inventario";
+            this.rbtnReporteInventario.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.rbtnReporteInventario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnReporteInventario.Click += new System.EventHandler(this.btnReporteInventario_Click);
             // 
-            // ribbonTab1
+            // rbtnConsultarInventario
             // 
-            this.ribbonTab1.IsSelected = true;
-            this.ribbonTab1.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radRibbonBarGroup9,
-            this.radRibbonBarGroup23,
-            this.radRibbonBarGroup18,
-            this.radRibbonBarGroup24});
-            this.ribbonTab1.Name = "ribbonTab1";
-            this.ribbonTab1.Text = "Area de Estickerado";
-            this.ribbonTab1.UseMnemonic = false;
+            this.rbtnConsultarInventario.AutoSize = false;
+            this.rbtnConsultarInventario.Bounds = new System.Drawing.Rectangle(0, 0, 114, 108);
+            this.rbtnConsultarInventario.Image = global::Rmc.Properties.Resources.tracking;
+            this.rbtnConsultarInventario.ImageAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.rbtnConsultarInventario.Name = "rbtnConsultarInventario";
+            this.rbtnConsultarInventario.StretchHorizontally = false;
+            this.rbtnConsultarInventario.StretchVertically = false;
+            this.rbtnConsultarInventario.Text = "Consultar Inventario";
+            this.rbtnConsultarInventario.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnConsultarInventario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnConsultarInventario.Click += new System.EventHandler(this.btnConsultarInventario_Click);
             // 
-            // radRibbonBarGroup9
+            // rbtnWasteLogReport
             // 
-            this.radRibbonBarGroup9.AutoSize = false;
-            this.radRibbonBarGroup9.Bounds = new System.Drawing.Rectangle(0, 0, 430, 130);
-            this.radRibbonBarGroup9.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.rbtnWasteLogReport.AutoSize = false;
+            this.rbtnWasteLogReport.Bounds = new System.Drawing.Rectangle(0, 0, 128, 108);
+            this.rbtnWasteLogReport.Image = global::Rmc.Properties.Resources.treatment;
+            this.rbtnWasteLogReport.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnWasteLogReport.Name = "rbtnWasteLogReport";
+            this.rbtnWasteLogReport.StretchHorizontally = false;
+            this.rbtnWasteLogReport.StretchVertically = false;
+            this.rbtnWasteLogReport.Text = "Consultar Desperdicios";
+            this.rbtnWasteLogReport.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.rbtnWasteLogReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnWasteLogReport.Click += new System.EventHandler(this.btnWasteLogReport_Click);
+            // 
+            // rbtnInvOverview
+            // 
+            this.rbtnInvOverview.AutoSize = false;
+            this.rbtnInvOverview.Bounds = new System.Drawing.Rectangle(0, 0, 104, 108);
+            this.rbtnInvOverview.Image = global::Rmc.Properties.Resources.safe_boxes;
+            this.rbtnInvOverview.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnInvOverview.Name = "rbtnInvOverview";
+            this.rbtnInvOverview.StretchHorizontally = false;
+            this.rbtnInvOverview.StretchVertically = false;
+            this.rbtnInvOverview.Text = "Inventario General";
+            this.rbtnInvOverview.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.rbtnInvOverview.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnInvOverview.Click += new System.EventHandler(this.btnInvOverview_Click);
+            // 
+            // RibbonTabAreaStikerado
+            // 
+            this.RibbonTabAreaStikerado.IsSelected = false;
+            this.RibbonTabAreaStikerado.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radRibbonBarGroupImpresion,
+            this.radRibbonBarGroupPreparacion,
+            this.radRibbonBarGroupVentana});
+            this.RibbonTabAreaStikerado.Name = "RibbonTabAreaStikerado";
+            this.RibbonTabAreaStikerado.Text = "Area de Stickerado";
+            this.RibbonTabAreaStikerado.UseMnemonic = false;
+            // 
+            // radRibbonBarGroupImpresion
+            // 
+            this.radRibbonBarGroupImpresion.AutoSize = false;
+            this.radRibbonBarGroupImpresion.Bounds = new System.Drawing.Rectangle(0, 0, 430, 130);
+            this.radRibbonBarGroupImpresion.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.rbtnInventoryPrint,
-            this.btnRequestOver,
+            this.rbtnRequestOver,
             this.rbtnBOM,
-            this.radButtonElement6});
-            this.radRibbonBarGroup9.Margin = new System.Windows.Forms.Padding(3);
-            this.radRibbonBarGroup9.MaxSize = new System.Drawing.Size(0, 1557);
-            this.radRibbonBarGroup9.MinSize = new System.Drawing.Size(305, 309);
-            this.radRibbonBarGroup9.Name = "radRibbonBarGroup9";
-            this.radRibbonBarGroup9.Text = "Impresíon de BOM y Stickers";
-            this.radRibbonBarGroup9.UseCompatibleTextRendering = false;
+            this.rbtnControlMesas});
+            this.radRibbonBarGroupImpresion.Margin = new System.Windows.Forms.Padding(3);
+            this.radRibbonBarGroupImpresion.MaxSize = new System.Drawing.Size(0, 1557);
+            this.radRibbonBarGroupImpresion.MinSize = new System.Drawing.Size(305, 309);
+            this.radRibbonBarGroupImpresion.Name = "radRibbonBarGroupImpresion";
+            this.radRibbonBarGroupImpresion.Text = "Impresíon de BOM y Stickers";
+            this.radRibbonBarGroupImpresion.UseCompatibleTextRendering = false;
             // 
             // rbtnInventoryPrint
             // 
@@ -598,14 +633,14 @@ namespace Rmc
             this.rbtnInventoryPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.rbtnInventoryPrint.Click += new System.EventHandler(this.rbtnInventoryVtn_Click);
             // 
-            // btnRequestOver
+            // rbtnRequestOver
             // 
-            this.btnRequestOver.Image = global::Rmc.Properties.Resources.consumo;
-            this.btnRequestOver.ImageAlignment = System.Drawing.ContentAlignment.TopCenter;
-            this.btnRequestOver.Name = "btnRequestOver";
-            this.btnRequestOver.Text = "Impresión Sobreconsumos";
-            this.btnRequestOver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnRequestOver.Click += new System.EventHandler(this.btnRequestOver_Click);
+            this.rbtnRequestOver.Image = global::Rmc.Properties.Resources.consumo;
+            this.rbtnRequestOver.ImageAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.rbtnRequestOver.Name = "rbtnRequestOver";
+            this.rbtnRequestOver.Text = "Impresión Sobreconsumos";
+            this.rbtnRequestOver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnRequestOver.Click += new System.EventHandler(this.btnRequestOver_Click);
             // 
             // rbtnBOM
             // 
@@ -617,26 +652,26 @@ namespace Rmc
             this.rbtnBOM.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.rbtnBOM.Click += new System.EventHandler(this.rbtnBOM_Click);
             // 
-            // radButtonElement6
+            // rbtnControlMesas
             // 
-            this.radButtonElement6.Image = global::Rmc.Properties.Resources.preferences;
-            this.radButtonElement6.ImageAlignment = System.Drawing.ContentAlignment.TopCenter;
-            this.radButtonElement6.Name = "radButtonElement6";
-            this.radButtonElement6.Text = "Control de Mesas";
-            this.radButtonElement6.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radButtonElement6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.radButtonElement6.Click += new System.EventHandler(this.radButtonElement6_Click);
+            this.rbtnControlMesas.Image = global::Rmc.Properties.Resources.preferences;
+            this.rbtnControlMesas.ImageAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.rbtnControlMesas.Name = "rbtnControlMesas";
+            this.rbtnControlMesas.Text = "Control de Mesas";
+            this.rbtnControlMesas.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnControlMesas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnControlMesas.Click += new System.EventHandler(this.radButtonElement6_Click);
             // 
-            // radRibbonBarGroup23
+            // radRibbonBarGroupPreparacion
             // 
-            this.radRibbonBarGroup23.AutoSize = false;
-            this.radRibbonBarGroup23.Bounds = new System.Drawing.Rectangle(0, 0, 360, 130);
-            this.radRibbonBarGroup23.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radRibbonBarGroupPreparacion.AutoSize = false;
+            this.radRibbonBarGroupPreparacion.Bounds = new System.Drawing.Rectangle(0, 0, 360, 130);
+            this.radRibbonBarGroupPreparacion.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.rbtnInvPreparacion,
-            this.btnPreparacionPkg,
+            this.rbtnPreparacionPkg,
             this.rbtnDashboardPreparacion});
-            this.radRibbonBarGroup23.Name = "radRibbonBarGroup23";
-            this.radRibbonBarGroup23.Text = "Preparación de Material de Empaque";
+            this.radRibbonBarGroupPreparacion.Name = "radRibbonBarGroupPreparacion";
+            this.radRibbonBarGroupPreparacion.Text = "Preparación de Material de Empaque";
             // 
             // rbtnInvPreparacion
             // 
@@ -649,15 +684,15 @@ namespace Rmc
             this.rbtnInvPreparacion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.rbtnInvPreparacion.Click += new System.EventHandler(this.rbtnInvPreparacion_Click);
             // 
-            // btnPreparacionPkg
+            // rbtnPreparacionPkg
             // 
-            this.btnPreparacionPkg.Image = global::Rmc.Properties.Resources.machine;
-            this.btnPreparacionPkg.ImageAlignment = System.Drawing.ContentAlignment.TopCenter;
-            this.btnPreparacionPkg.Name = "btnPreparacionPkg";
-            this.btnPreparacionPkg.Text = "Preparacion Material";
-            this.btnPreparacionPkg.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnPreparacionPkg.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnPreparacionPkg.Click += new System.EventHandler(this.btnPreparacionPkg_Click);
+            this.rbtnPreparacionPkg.Image = global::Rmc.Properties.Resources.machine;
+            this.rbtnPreparacionPkg.ImageAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.rbtnPreparacionPkg.Name = "rbtnPreparacionPkg";
+            this.rbtnPreparacionPkg.Text = "Preparacion Material";
+            this.rbtnPreparacionPkg.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnPreparacionPkg.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.rbtnPreparacionPkg.Click += new System.EventHandler(this.btnPreparacionPkg_Click);
             // 
             // rbtnDashboardPreparacion
             // 
@@ -669,22 +704,20 @@ namespace Rmc
             this.rbtnDashboardPreparacion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.rbtnDashboardPreparacion.Click += new System.EventHandler(this.rbtnDashboardPreparacion_Click);
             // 
-            // radRibbonBarGroup18
+            // radRibbonBarGroupVentana
             // 
-            this.radRibbonBarGroup18.AutoSize = false;
-            this.radRibbonBarGroup18.Bounds = new System.Drawing.Rectangle(0, 0, 440, 130);
-            this.radRibbonBarGroup18.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radRibbonBarGroupVentana.AutoSize = false;
+            this.radRibbonBarGroupVentana.Bounds = new System.Drawing.Rectangle(0, 0, 450, 130);
+            this.radRibbonBarGroupVentana.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.rbtnInventarioVent,
             this.rbtnVentana,
             this.rbtnSobrantes,
             this.rbtnCrearSobreConsumo});
-            this.radRibbonBarGroup18.Name = "radRibbonBarGroup18";
-            this.radRibbonBarGroup18.Text = "Ventana";
-            this.radRibbonBarGroup18.Visibility = Telerik.WinControls.ElementVisibility.Hidden;
+            this.radRibbonBarGroupVentana.Name = "radRibbonBarGroupVentana";
+            this.radRibbonBarGroupVentana.Text = "Ventana";
             // 
             // rbtnInventarioVent
             // 
-            this.rbtnInventarioVent.Enabled = false;
             this.rbtnInventarioVent.Image = global::Rmc.Properties.Resources.Ventana;
             this.rbtnInventarioVent.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnInventarioVent.Name = "rbtnInventarioVent";
@@ -694,7 +727,6 @@ namespace Rmc
             // 
             // rbtnVentana
             // 
-            this.rbtnVentana.Enabled = false;
             this.rbtnVentana.Image = global::Rmc.Properties.Resources.window_frame;
             this.rbtnVentana.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnVentana.Name = "rbtnVentana";
@@ -721,70 +753,8 @@ namespace Rmc
             this.rbtnCrearSobreConsumo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.rbtnCrearSobreConsumo.Click += new System.EventHandler(this.rbtnCrearSobreConsumo_Click);
             // 
-            // radRibbonBarGroup24
-            // 
-            this.radRibbonBarGroup24.AutoSize = false;
-            this.radRibbonBarGroup24.Bounds = new System.Drawing.Rectangle(0, 0, 570, 130);
-            this.radRibbonBarGroup24.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.btnMonitoringTraceIds,
-            this.btnReporteInventario,
-            this.btnConsultarInventario,
-            this.btnWasteLogReport,
-            this.btnInvOverview});
-            this.radRibbonBarGroup24.Name = "radRibbonBarGroup24";
-            this.radRibbonBarGroup24.Text = "Consultas";
-            // 
-            // btnMonitoringTraceIds
-            // 
-            this.btnMonitoringTraceIds.Image = global::Rmc.Properties.Resources.monitor;
-            this.btnMonitoringTraceIds.ImageAlignment = System.Drawing.ContentAlignment.TopCenter;
-            this.btnMonitoringTraceIds.Name = "btnMonitoringTraceIds";
-            this.btnMonitoringTraceIds.Text = "Monitoreo TraceIDs";
-            this.btnMonitoringTraceIds.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnMonitoringTraceIds.Click += new System.EventHandler(this.btnMonitoringTraceIds_Click);
-            // 
-            // btnReporteInventario
-            // 
-            this.btnReporteInventario.Image = global::Rmc.Properties.Resources.stock_rotation;
-            this.btnReporteInventario.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnReporteInventario.Name = "btnReporteInventario";
-            this.btnReporteInventario.Text = "Movimientos Inventario";
-            this.btnReporteInventario.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            this.btnReporteInventario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnReporteInventario.Click += new System.EventHandler(this.btnReporteInventario_Click);
-            // 
-            // btnConsultarInventario
-            // 
-            this.btnConsultarInventario.Image = global::Rmc.Properties.Resources.tracking;
-            this.btnConsultarInventario.ImageAlignment = System.Drawing.ContentAlignment.TopCenter;
-            this.btnConsultarInventario.Name = "btnConsultarInventario";
-            this.btnConsultarInventario.Text = "Consultar Inventario";
-            this.btnConsultarInventario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnConsultarInventario.Click += new System.EventHandler(this.btnConsultarInventario_Click);
-            // 
-            // btnWasteLogReport
-            // 
-            this.btnWasteLogReport.Image = global::Rmc.Properties.Resources.treatment;
-            this.btnWasteLogReport.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnWasteLogReport.Name = "btnWasteLogReport";
-            this.btnWasteLogReport.Text = "Consultar Desperdicios";
-            this.btnWasteLogReport.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            this.btnWasteLogReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnWasteLogReport.Click += new System.EventHandler(this.btnWasteLogReport_Click);
-            // 
-            // btnInvOverview
-            // 
-            this.btnInvOverview.Image = global::Rmc.Properties.Resources.safe_boxes;
-            this.btnInvOverview.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnInvOverview.Name = "btnInvOverview";
-            this.btnInvOverview.Text = "Inventario General";
-            this.btnInvOverview.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            this.btnInvOverview.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnInvOverview.Click += new System.EventHandler(this.btnInvOverview_Click);
-            // 
             // ribbonTab2
             // 
-            this.ribbonTab2.Enabled = false;
             this.ribbonTab2.IsSelected = false;
             this.ribbonTab2.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radRibbonBarGroup11,
@@ -1109,7 +1079,6 @@ namespace Rmc
             // 
             // ribbonTab3
             // 
-            this.ribbonTab3.Enabled = false;
             this.ribbonTab3.IsSelected = false;
             this.ribbonTab3.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radRibbonBarGroup10,
@@ -1238,7 +1207,6 @@ namespace Rmc
             // 
             // ribbonTab4
             // 
-            this.ribbonTab4.Enabled = false;
             this.ribbonTab4.IsSelected = false;
             this.ribbonTab4.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radRibbonBarGroup12,
@@ -1357,7 +1325,6 @@ namespace Rmc
             // 
             // ribbonTab5
             // 
-            this.ribbonTab5.Enabled = false;
             this.ribbonTab5.IsSelected = false;
             this.ribbonTab5.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radRibbonBarGroup13});
@@ -1433,7 +1400,7 @@ namespace Rmc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1866, 456);
+            this.ClientSize = new System.Drawing.Size(1866, 704);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.radStatusStrip1);
             this.Controls.Add(this.radRibbonBar1);
@@ -1445,6 +1412,7 @@ namespace Rmc
             this.Tag = "Rmc";
             this.Text = "Rmc";
             this.ThemeName = "Desert";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).EndInit();
@@ -1468,31 +1436,29 @@ namespace Rmc
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup2;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup3;
         private Telerik.WinControls.UI.RadButtonElement radButtonElement1;
-        private Telerik.WinControls.UI.RibbonTab Mantenimientos;
-        private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup4;
-        private Telerik.WinControls.UI.RibbonTab Consultas;
-        private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup5;
-        private Telerik.WinControls.UI.RadButtonElement ConsSobrantes;
-        private Telerik.WinControls.UI.RadButtonElement ConsTransacciones;
+        private Telerik.WinControls.UI.RibbonTab RibbonTabMantenimientos;
+        private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroupManttos;
+        private Telerik.WinControls.UI.RibbonTab RibbonTabConsultas;
+        private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroupConsultas;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup6;
         private Telerik.WinControls.UI.RadButtonElement radButtonElement2;
-        private Telerik.WinControls.UI.RadButtonElement SubSobrantes;
-        private Telerik.WinControls.UI.RadButtonElement SubBOM;
+        private Telerik.WinControls.UI.RadButtonElement rbtnSubSobrantes;
+        private Telerik.WinControls.UI.RadButtonElement rbtnSubBOM;
         private Telerik.WinControls.Themes.BreezeTheme breezeTheme1;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup7;
         private Telerik.WinControls.UI.RadButtonElement rbtnManteminientoSemana;
-        private Telerik.WinControls.UI.RibbonTab ribbonTab1;
-        private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup9;
+        private Telerik.WinControls.UI.RibbonTab RibbonTabAreaStikerado;
+        private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroupImpresion;
         private Telerik.WinControls.UI.RadButtonElement rbtnBOM;
-        private Telerik.WinControls.UI.RadButtonElement SubidaIRR;
-        private Telerik.WinControls.UI.RadButtonElement BagIRR;
-        private Telerik.WinControls.UI.RadButtonElement Dobladoirr;
-        private Telerik.WinControls.UI.RadButtonElement ConsolidadosPlan;
-        private Telerik.WinControls.UI.RadButtonElement ProductMaster;
-        private Telerik.WinControls.UI.RadButtonElement Desviaciones;
-        private Telerik.WinControls.UI.RadButtonElement UPC;
+        private Telerik.WinControls.UI.RadButtonElement rbtnSubidaIRR;
+        private Telerik.WinControls.UI.RadButtonElement rbtnBagIRR;
+        private Telerik.WinControls.UI.RadButtonElement rbtnDobladoirr;
+        private Telerik.WinControls.UI.RadButtonElement rbtnConsolidadosPlan;
+        private Telerik.WinControls.UI.RadButtonElement rbtnProductMaster;
+        private Telerik.WinControls.UI.RadButtonElement rbtnDesviaciones;
+        private Telerik.WinControls.UI.RadButtonElement rbtnUPC;
         private Telerik.WinControls.UI.RadRibbonBar radRibbonBar1;
-        private Telerik.WinControls.UI.RadButtonElement StickersBtn;
+        private Telerik.WinControls.UI.RadButtonElement rbtnStickers;
         private Telerik.WinControls.UI.RibbonTab ribbonTab2;
         private Telerik.WinControls.UI.RibbonTab ribbonTab3;
         private Telerik.WinControls.UI.RibbonTab ribbonTab4;
@@ -1553,30 +1519,29 @@ namespace Rmc
         private Telerik.WinControls.UI.RadButtonElement btnWarehouseReportRequestPackaging;
         private Telerik.WinControls.UI.RadButtonElement btnWarehouseDailyDeliveriesPackaging;
         private Telerik.WinControls.UI.RadButtonElement BtnRptPlan;
-        private Telerik.WinControls.UI.RadButtonElement radButtonElement3;
-        private Telerik.WinControls.UI.RadButtonElement radButtonElement4;
-        private Telerik.WinControls.UI.RadButtonElement radButtonElement5;
+        private Telerik.WinControls.UI.RadButtonElement rbtnUsers;
+        private Telerik.WinControls.UI.RadButtonElement rbtnCelulas;
+        private Telerik.WinControls.UI.RadButtonElement rbtnMaquinas;
         private Telerik.WinControls.UI.RadButtonElement btnPOWarehouse;
-        private Telerik.WinControls.UI.RadButtonElement radButtonElement6;
+        private Telerik.WinControls.UI.RadButtonElement rbtnControlMesas;
         private Telerik.WinControls.UI.RadButtonElement radButtonElement7;
-        private Telerik.WinControls.UI.RadButtonElement btnMonitoringTraceIds;
-        private Telerik.WinControls.UI.RadButtonElement btnPreparacionPkg;
+        private Telerik.WinControls.UI.RadButtonElement rbtnMonitoringTraceIds;
+        private Telerik.WinControls.UI.RadButtonElement rbtnPreparacionPkg;
         private Telerik.WinControls.UI.RadButtonElement rbtnInvPreparacion;
         public Telerik.WinControls.UI.RadDesktopAlert Alerta;
         private Telerik.WinControls.UI.RadButtonElement rbtnPlanSemanal;
         private Telerik.WinControls.UI.RadButtonElement rbtnInventoryPrint;
-        private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup23;
+        private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroupPreparacion;
         private Telerik.WinControls.UI.RadButtonElement rbtnInventarioVent;
-        private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup18;
+        private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroupVentana;
         private Telerik.WinControls.UI.RadButtonElement rbtnVentana;
-        private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup24;
         private Telerik.WinControls.UI.RadButtonElement rbtnDashboardPreparacion;
-        private Telerik.WinControls.UI.RadButtonElement btnReporteInventario;
-        private Telerik.WinControls.UI.RadButtonElement btnConsultarInventario;
-        private Telerik.WinControls.UI.RadButtonElement btnRequestOver;
+        private Telerik.WinControls.UI.RadButtonElement rbtnReporteInventario;
+        private Telerik.WinControls.UI.RadButtonElement rbtnConsultarInventario;
+        private Telerik.WinControls.UI.RadButtonElement rbtnRequestOver;
         private Telerik.WinControls.UI.RadButtonElement rbtnSobrantes;
         private Telerik.WinControls.UI.RadButtonElement rbtnCrearSobreConsumo;
-        private Telerik.WinControls.UI.RadButtonElement btnWasteLogReport;
-        private Telerik.WinControls.UI.RadButtonElement btnInvOverview;
+        private Telerik.WinControls.UI.RadButtonElement rbtnWasteLogReport;
+        private Telerik.WinControls.UI.RadButtonElement rbtnInvOverview;
     }
 }

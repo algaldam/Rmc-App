@@ -126,7 +126,7 @@ namespace Rmc.MaterialEmpaque.Inventario
                             FROM pmc_Subida_BOM
                             GROUP BY sub_producto
                         ) SB ON IT.Code = SB.sub_producto
-                        INNER JOIN mst_Empleados EM ON IT.CreatedBy = EM.Emp_ID
+                        INNER JOIN mst_Empleados EM ON IT.ModifiedBy = EM.Emp_ID
                         INNER JOIN pmc_Warehouse W ON IT.WarehouseID = W.WarehouseID
                         WHERE IT.WarehouseID = @WarehouseID
                         ORDER BY IT.CreatedDate DESC";
