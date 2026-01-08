@@ -789,10 +789,10 @@
     <Compile Include="MaterialEmpaque\Impresion\BOMForm.Designer.cs">
       <DependentUpon>BOMForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MaterialEmpaque\DevolucionDesperdicio.cs">
+    <Compile Include="MaterialEmpaque\Deprecado\DevolucionDesperdicio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MaterialEmpaque\DevolucionDesperdicio.Designer.cs">
+    <Compile Include="MaterialEmpaque\Deprecado\DevolucionDesperdicio.Designer.cs">
       <DependentUpon>DevolucionDesperdicio.cs</DependentUpon>
     </Compile>
     <Compile Include="MaterialEmpaque\Deprecado\HistoricosID.cs">
@@ -801,16 +801,16 @@
     <Compile Include="MaterialEmpaque\Deprecado\HistoricosID.Designer.cs">
       <DependentUpon>HistoricosID.cs</DependentUpon>
     </Compile>
-    <Compile Include="MaterialEmpaque\InventarioMaterial.cs">
+    <Compile Include="MaterialEmpaque\Deprecado\InventarioMaterial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MaterialEmpaque\InventarioMaterial.Designer.cs">
+    <Compile Include="MaterialEmpaque\Deprecado\InventarioMaterial.Designer.cs">
       <DependentUpon>InventarioMaterial.cs</DependentUpon>
     </Compile>
-    <Compile Include="MaterialEmpaque\MaterialDeBodega.cs">
+    <Compile Include="MaterialEmpaque\Deprecado\MaterialDeBodega.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MaterialEmpaque\MaterialDeBodega.Designer.cs">
+    <Compile Include="MaterialEmpaque\Deprecado\MaterialDeBodega.Designer.cs">
       <DependentUpon>MaterialDeBodega.cs</DependentUpon>
     </Compile>
     <Compile Include="MaterialEmpaque\Deprecado\Mesas.cs">
@@ -826,22 +826,22 @@
       <DependentUpon>ActivarMesas.cs</DependentUpon>
     </Compile>
     <Compile Include="MaterialEmpaque\Deprecado\PBMesas.cs" />
-    <Compile Include="MaterialEmpaque\PreKiteoSACA.cs">
+    <Compile Include="MaterialEmpaque\Deprecado\PreKiteoSACA.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MaterialEmpaque\PreKiteoSACA.Designer.cs">
+    <Compile Include="MaterialEmpaque\Deprecado\PreKiteoSACA.Designer.cs">
       <DependentUpon>PreKiteoSACA.cs</DependentUpon>
     </Compile>
-    <Compile Include="MaterialEmpaque\ReporteriaInventario.cs">
+    <Compile Include="MaterialEmpaque\Deprecado\ReporteriaInventario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MaterialEmpaque\ReporteriaInventario.Designer.cs">
+    <Compile Include="MaterialEmpaque\Deprecado\ReporteriaInventario.Designer.cs">
       <DependentUpon>ReporteriaInventario.cs</DependentUpon>
     </Compile>
-    <Compile Include="MaterialEmpaque\RequisicionMaterialBodega.cs">
+    <Compile Include="MaterialEmpaque\Deprecado\RequisicionMaterialBodega.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MaterialEmpaque\RequisicionMaterialBodega.Designer.cs">
+    <Compile Include="MaterialEmpaque\Deprecado\RequisicionMaterialBodega.Designer.cs">
       <DependentUpon>RequisicionMaterialBodega.cs</DependentUpon>
     </Compile>
     <Compile Include="EntityFramework\Model\ClaseGenerica.cs" />
@@ -1393,7 +1393,7 @@
     <EmbeddedResource Include="MaterialEmpaque\Inventario\VistaPreparacionForm.resx">
       <DependentUpon>VistaPreparacionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MaterialEmpaque\MaterialDeBodega.resx">
+    <EmbeddedResource Include="MaterialEmpaque\Deprecado\MaterialDeBodega.resx">
       <DependentUpon>MaterialDeBodega.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MaterialEmpaque\Deprecado\Mesas.resx">
@@ -1414,10 +1414,10 @@
     <EmbeddedResource Include="MaterialEmpaque\Monitoreo\TraceIdCard.resx">
       <DependentUpon>TraceIdCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MaterialEmpaque\PreKiteoSACA.resx">
+    <EmbeddedResource Include="MaterialEmpaque\Deprecado\PreKiteoSACA.resx">
       <DependentUpon>PreKiteoSACA.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MaterialEmpaque\ReporteriaInventario.resx">
+    <EmbeddedResource Include="MaterialEmpaque\Deprecado\ReporteriaInventario.resx">
       <DependentUpon>ReporteriaInventario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MaterialEmpaque\Ventana\SobreconsumosForm.resx">
@@ -1637,13 +1637,13 @@
     <EmbeddedResource Include="MaterialEmpaque\Impresion\BOMForm.resx">
       <DependentUpon>BOMForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MaterialEmpaque\DevolucionDesperdicio.resx">
+    <EmbeddedResource Include="MaterialEmpaque\Deprecado\DevolucionDesperdicio.resx">
       <DependentUpon>DevolucionDesperdicio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MaterialEmpaque\InventarioMaterial.resx">
+    <EmbeddedResource Include="MaterialEmpaque\Deprecado\InventarioMaterial.resx">
       <DependentUpon>InventarioMaterial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MaterialEmpaque\RequisicionMaterialBodega.resx">
+    <EmbeddedResource Include="MaterialEmpaque\Deprecado\RequisicionMaterialBodega.resx">
       <DependentUpon>RequisicionMaterialBodega.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\ReportesDesign\Entrega.resx">
